@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "BS3008: Computer Aided Drug Discovery"
+  author: "Kevin Fo"
+  chapters:
+    - index.qmd
+    - part: "**PART 1 : LECTURES**"
+      chapters:
+        - intro.qmd
+        - wk2.qmd
+        - summary.qmd
+  sharing: [twitter, facebook]
+  page-navigation: true
+
+bibliography: references.bib
+
+format:
+  html:
+    toc: true 
+    theme:
+      light: cosmo
+      dark: darkly
+  pdf:
+    documentclass: scrreprt
+
+editor: visual

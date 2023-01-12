@@ -1,0 +1,185 @@
+# Theoretical Foundations of BS3008
+
+This week's (i.e., week 1) lecture aims to provide an introduction to BS3008's course contents by explaining its various theoretical aspects.
+
+## Discplines in BS3008
+
+BS3008 covers numerous disciplines, including the following. A brief explanation on what each discipline is is also provided for each of the disciplines:
+
+1.  **Chemoinformatics**
+
+    This discipline deals with similarities and differences between chemical compounds.
+
+2.  **Bioinformatics**
+
+    This disciplines applies informatics tools (e.g., Python coding) to Biological molecules and data.
+
+3.  **Theoretical Chemistry (i.e., Quantum Chemistry)**
+
+    This discipline provides the theoretical foundations needed to understand the course's contents.
+
+4.  **Computational Chemistry and Biology**
+
+    This discipline not only encompasses theoretical chemistry, but also molecular mechanics, minimization, simulations, and conformational analysis.
+
+5.  **Molecular Modelling**
+
+    This discipline uses all of the above disciplines to represent and manipulate the structures of molecules.
+
+Hence, BS3008 primarily focuses on molecular modelling (with emphasis on theoretical chemistry for the theoretical component of the course).
+
+### What is Molecular Modelling?
+
+According to Tamar Schlick, molecular modelling is:
+
+> "...the science and art of studying molecular structure and function through model building and computation."
+>
+> -- Tamar Schlick
+
+"Computation" in this sense refer to practices such as:
+
+1.  ab initio and semi-empirical quantum mechanics
+2.  Molecular mechanics
+3.  Monte Carlo simulations
+4.  Molecular dynamics
+5.  Free energy and solvation methods
+6.  Structure / activity relationships (i.e., SAR analyses)
+7.  Chemical / biochemical information and databases
+
+It is important to understand that while "model building" can be as simple as using plastic or metal rods to depict molecules' structures, it can also be as sophisticated as an interactive, animated color graphics and lasers.
+
+Nonetheless, the computational tools used in molecular modelling is just as, if not more complex than Biological systems. However, the concepts in molecular modelling must be carefully applied and one must also be wary of molecular modeling's strengths and weaknesses.
+
+### Important Databases and Tools
+
+Professor Mu lists some important molecular modelling tools in this chapter - click on their hyperlinks to access them:
+
+1.  [**PDB**](https://www.rcsb.org/)
+
+    This is a database with numerous entries on proteins' information.
+
+2.  [**PDBBinding**](http://pdbbind.org.cn/)
+
+    This is another database that provides entries on the binding affinity for all biomolecular complexes.
+
+3.  [**ZINK DOCK**]()
+
+    <this site appears to be down>
+
+4.  [**Autodock Zina**](https://vina.scripps.edu/)
+
+    This is an open-source program for performing molecular docking.
+
+### Molecular Mechanics in Molecular Modelling
+
+Molecular modelling started with the idea that molecular geometry, energy, and other molecular properties could be calculated from models (that are influenced by basic forces).
+
+A **molecule** - hence - is a system of particles (i.e., atoms) connected by springs (i.e., bonds). This molecule is free to rotate, vibrate, and adopt a favorable conformation in space as a result of the inter- *and* intramolecular forces acting upon it.
+
+## Structure, Topology, Motion, Functions, and Potential Energy
+
+This section aims to illustrate how different energy functions can influence the behavior of particles in a system.
+
+### Case #1
+
+```{r system, echo = F, fig.cap = "A Simple System to Consider", fig.align = "center"}
+knitr::include_graphics("images/wk1/system.jpg")
+```
+
+The potential and kinetic energy $E_p$ and $E_k$ respectively in this system is given by:
+
+```{=tex}
+\begin{align}
+  E_p &= E_p(\vec{x}) = \sum_{i}f_i(x, y, z) \\ 
+  E_k &= \frac{1}{2} \cdot (m_1v_1^2 + m_2v_2^2) 
+\end{align}
+```
+Where $\vec{x}$ is the system and $f_i(x, y, z)$ a function that calculates the potential energy for each particle in the system (i.e., each atom). Hence, we can say that:
+
+```{=tex}
+\begin{equation}
+  E_{tot} = E_p + E_k
+\end{equation}
+```
+Where $E_{tot}$ is the total energy of the system.
+
+Since $r$ represents the distance between both molecules, therefore $E_p(r) = 0$.
+
+```{=tex}
+\begin{equation}
+  \vec{F} = \frac{\partial E_p(\vec{x})}{\partial \vec{x}}
+\end{equation}
+```
+The force[^intro-1] $\vec{F}$ on the system is denoted via the above equation.
+
+[^intro-1]: Note that $\vec{F}$ is caused by a change in potential energy, not by potential energy itself!
+
+Since $E_p(r) = 0$ in the first figure, it follows that $F(r) = 0$.
+
+### Case #2
+
+```{r echo = F, fig.cap = "A System with Two Charged Molecules", fig.align = "center"}
+knitr::include_graphics("images/wk1/sys2.jpg")
+```
+
+Here, the charge $V_{ele}$ and the potential energy $E_p(r)$ is given via the following equations:
+
+```{=tex}
+\begin{align}
+  V_{ele}(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1}{r} \\ 
+  E_p(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1q_2}{r}
+\end{align}
+```
+Some important considerations to think about include the variables and the parameters of the system.
+
+### Case #3
+
+```{r echo = F, fig.cap = "A System with Two Molecules and their Energy Graph", fig.align = "center"}
+knitr::include_graphics("images/wk1/sys3.jpg")
+```
+
+In this system, we let:
+
+```{=tex}
+\begin{equation}
+  E_p(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
+\end{equation}
+```
+In this system, we also note that $E_p(r) = 0$ when $r = \sigma$ and that $\displaystyle E_p(\sqrt[6]{2}\sigma) = -\epsilon$.
+
+Do also consider the variables and parameters in this system (and whether or not both particles in this system can move freely).
+
+### Case #4
+
+```{r echo = F, fig.cap = "A System with Two Molecules and their Energy Graph", fig.align = "center"}
+knitr::include_graphics("images/wk1/sys4.jpg")
+```
+
+Here, we define the system's potential energy $E_p$ as:
+
+```{=tex}
+\begin{equation}
+  E_p(r) = \frac{1}{2}k(r - r_0)^2
+\end{equation}
+```
+While the energy graph for this system appears to be that of bonding, it is still important to consider the variables and the parameters of the system.
+
+We can also further decompose the above equation to its spatial components $x$, $y$, and $z$ and say that:
+
+```{=tex}
+\begin{equation}
+E_p(r) = \frac{1}{2}k(x - x_0)^2 + \frac{1}{2}k(y - y_0)^2 + \frac{1}{2}k(z - z_0)^2
+\end{equation}
+```
+In this sub-case, the system appears to be a lattice. However, are the particles still movable?
+
+## Professor Mu's Current Works
+
+As of the time of writing, professor Mu's lab is currently focused on the following topics:
+
+1.  Amyloidogenic protein / peptide aggregation and misfolding
+2.  DNA-DNA, DNA-ions, and DNA-protein interactions
+3.  Drug-protein interaction and drug candidate screening
+4.  Peptide-membrane interactions.
+
+For more information on professor Mu's current research topics, do visit his [lab's homepage](https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang).

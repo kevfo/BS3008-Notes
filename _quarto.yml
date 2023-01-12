@@ -14,6 +14,8 @@ book:
         - summary.qmd
   sharing: [twitter, facebook]
   page-navigation: true
+  repo-url: https://github.com/kevfo/BS3008-Notes
+  repo-actions: [edit, issue]
 
 bibliography: references.bib
 

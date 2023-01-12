@@ -16,6 +16,8 @@ book:
   page-navigation: true
   repo-url: https://github.com/kevfo/BS3008-Notes
   repo-actions: [edit, issue]
+  reader-mode: true
+  hypothesis: true
 
 bibliography: references.bib
 

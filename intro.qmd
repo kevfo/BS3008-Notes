@@ -9,10 +9,14 @@ BS3008 covers numerous disciplines, including the following. A brief explanation
 1.  **Chemoinformatics**
 
     This discipline deals with similarities and differences between chemical compounds.
+    
+    Chemoinformatics deals with compounds from $10^{-60}$ to $10^{-30}$ in magnitudes.  Individuals who work in this field try to find "an island in an ocean" - they try to find a molecule that can do *some* purpose.
 
 2.  **Bioinformatics**
 
     This disciplines applies informatics tools (e.g., Python coding) to Biological molecules and data.
+    
+    Bioinformatics mainly focuses on Biological modelling.
 
 3.  **Theoretical Chemistry (i.e., Quantum Chemistry)**
 
@@ -25,6 +29,8 @@ BS3008 covers numerous disciplines, including the following. A brief explanation
 5.  **Molecular Modelling**
 
     This discipline uses all of the above disciplines to represent and manipulate the structures of molecules.
+    
+    This also means that this discipline uses physics to model a system - that way, a model can be compared against experimental results.
 
 Hence, BS3008 primarily focuses on molecular modelling (with emphasis on theoretical chemistry for the theoretical component of the course).
 

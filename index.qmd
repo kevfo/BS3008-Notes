@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This is a Quarto book website (authored in the form of a website) that I (i.e., Kevin) has authored for the SBS module [*BS3008: Computer Aided Drug Discovery*](https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs&p=BS3008). As of the time of writing, BS3008 is a three **a**cademic **u**nit (i.e., **AU**) module available to SBS students as a core module.  
+This is a Quarto book website (authored in the form of a website) that I (i.e., Kevin) has authored for the SBS module [*BS3008: Computer Aided Drug Discovery*](https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs&p=BS3008) (this module was formerly known as "Computational Biology"). As of the time of writing, BS3008 is a three **a**cademic **u**nit (i.e., **AU**) module available to SBS students as a core module.  
 
 BS3008 taught by professor [Mu Yuguang](https://dr.ntu.edu.sg/cris/rp/rp00074).
 

@@ -1,0 +1,135 @@
+# PDB Files and PyMOL Visualizations 
+
+If you have taken [*BS1005: Biochemistry I*](https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs&p=BS1005), then the contents of this practical will be relatively straightforward^[So much so that you don't need to come if you don't want to.].
+
+This lab aims to provide a gentle introduction to PDB files and also PyMOL.
+
+## PDB Files
+
+The first part of the lab examines the structure of a PDB typical PDB file.  The later part of this lab then requires you to write your own PDB file for a water molecule (before opening it up in PyMOL to ensure that you have done it correctly.)
+
+The **P**rotein **D**ata **B**ank (i.e., **PDB**) is an initiative by the [Brookhaven National Laboratory](https://www.bnl.gov/world/) that stores three-dimensional data of biological molecules (i.e., biomolecules).  A considerable amount of information has since been uploaded to the PDB from various fields in Biology, including but not limited to genomics, proteonomics, and structural biology.
+
+### What is a PDB File?
+
+A **PDB file** is a plain text document that contains metainformation about a biomolecule - for instance, its atoms, its side chains, and its amino acid residues.  
+
+The PDB also has [official documentation](https://files.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_Letter.pdf) on the structure of its files that you can view for reference.
+
+### Points to Note 
+
+Although a typical PDB file contains numerous section and record types, BS3008 only focuses on a few of these records (and their important parts):
+
+1.  **The `ATOM` Record**
+
+    This is used to define atoms in a PDB file.  With this record, the file writer can also define the positions of the atoms (in a three-dimensional space), define side-chain groups, and also define amino acid residues.
+    
+    Note that all coordinates of length will be in *Angstroms* in a PDB file.
+
+1.  **B-factors**
+
+    This is also known as the **temperature factor**.  B-factors describe how much an atom's placement differs from its average values - the higher the B-factor, the higher its displacement.  
+    
+    Areas with high B-factors are usually red (i.e., hot) and vice versa.
+    
+1.  **Occupancy**
+
+    This parameter is associated with different conformations of a biomolecule.  
+    
+    Depending on how many conformations there are available, the occupancy may be less than one (but whatever the case, the values of all occupancices will always add up to one).
+  
+### Making a PDB File for a Water Molecule 
+
+A water molecule has two hydrogen atoms and one oxygen atom.  Its O-H bond length is 0.957 Angstroms and its H-O-H bond angle is $109^\circ$.  
+
+Hence, first set the Oxygen atom to the origin (0, 0, 0) using an ATOM record^[The column numbers on the first two lines have been provided for reference!]:
+
+```
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+```
+
+Thereafter, add in the first hydrogen atom at the coordinates (0.957, 0, 0) using another ATOM record. It not necessary to use the aforementioned coordinates - (0, 0.957, 0) and (0, 0, 0.957) also work:
+
+```
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+ATOM     2   H      A    1      0.957   0.000    0.000  1.00 0.00            H
+```
+
+Basic trigonometry can then be used to discover the coordinates of the final hydrogen atom.  In this case:
+
+\begin{align}
+  x &= -\cos(71^\circ) * 0.957 \\ 
+  y &= \sin(71^\circ) * 0.957
+\end{align}
+
+Doing so should yield a pair of coordinates $(-0.312, 0.905)$.  The final pair of coordinates (with **`TER`** and **`END`** records) should be:
+
+```
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+ATOM     2   H      A    1      0.957   0.000    0.000  1.00 0.00            H
+ATOM     3   H      A    1     -0.312   0.957    0.000  1.00 0.00            H
+TER      4
+END 
+```
+
+You can open your PDB file in PyMOL to verify that your PDB file is correct.
+
+## Visualizing Molecules in PyMOL
+
+**PyMOL** is an open-source software for visualizing molecules and measuring their various properties.  These "molecules" are often stored in a PDB file format (hence the reason why the first portion of the practical deals with PDB files).
+
+```
+         1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+ATOM     38  N       A        -33.869   10.617   7.317  1.00 76.26           N
+ATOM     39  CA      A        -34.134    9.234   6.904  1.00 74.56           C
+ATOM     40  C       A        -33.089    8.813   5.875  1.00 73.03           C
+ATOM     41  O       A        -32.729    9.593   4.989  1.00 72.13           O
+ATOM     42  CB      A        -35.552    9.101   6.317  1.00 75.48           C
+ATOM     43  CG      A        -36.647    9.421   7.338  1.00 77.63           C
+ATOM     44  OD1     A        -36.667    8.874   8.452  1.00 81.93           O
+ATOM     45  ND2     A        -37.570   10.304   6.961  1.00 75.30           N
+ATOM     46  N       A        -32.604    7.582   5.965  1.00 74.10           N
+ATOM     47  CA      A        -31.570    7.168   5.019  1.00 77.48           C
+ATOM     48  C       A        -32.043    6.300   3.846  1.00 73.71           C
+ATOM     49  O       A        -31.538    5.201   3.613  1.00 76.65           O
+ATOM     50  CB      A        -30.416    6.504   5.793  1.00 83.44           C
+ATOM     51  CG      A        -29.901    7.343   6.934  1.00 90.57           C
+ATOM     52  ND1     A        -29.361    8.601   6.754  1.00 92.16           N
+ATOM     53  CD2     A        -29.899    7.125   8.275  1.00 92.50           C
+ATOM     54  CE1     A        -29.051    9.123   7.930  1.00 91.80           C
+ATOM     55  NE2     A        -29.369    8.247   8.871  1.00 92.32           N
+ATOM     56  N       A        -33.001    6.831   3.089  1.00 67.38           N
+ATOM     57  CA      A        -33.551    6.148   1.924  1.00 59.99           C
+ATOM     58  C       A        -33.046    6.785   0.618  1.00 55.78           C
+ATOM     59  O       A        -32.178    7.656   0.640  1.00 54.77           O
+ATOM     60  CB      A        -35.079    6.191   1.993  1.00 58.20           C
+ATOM     61  CG      A        -35.615    7.603   2.156  1.00 55.61           C
+ATOM     62  OD1     A        -36.782    7.745   2.593  1.00 55.40           O
+ATOM     63  OD2     A        -34.876    8.561   1.843  1.00 55.57           O
+ATOM     64  N       A        -33.583    6.349  -0.515  1.00 54.36           N
+ATOM     65  CA      A        -33.167    6.876  -1.814  1.00 53.16           C
+ATOM     66  C       A        -33.626    8.317  -2.061  1.00 51.53           C
+ATOM     67  O       A        -33.041    9.039  -2.874  1.00 50.28           O
+ATOM     68  CB      A        -33.673    5.962  -2.929  1.00 56.36           C
+ATOM     69  CG      A        -33.144    4.523  -2.821  1.00 59.12           C
+ATOM     70  CD      A        -33.329    3.750  -4.125  1.00 57.06           C
+ATOM     71  CE      A        -32.718    2.350  -4.022  1.00 60.09           C
+ATOM     72  NZ      A        -32.740    1.596  -5.327  1.00 61.46           N
+ATOM     73  N       A        -34.685    8.721  -1.368  1.00 48.02           N
+ATOM     74  CA      A        -35.197   10.077  -1.478  1.00 42.97           C
+ATOM     75  C       A        -34.131   10.992  -0.891  1.00 43.60           C
+ATOM     76  O       A        -33.858   12.059  -1.426  1.00 44.56           O
+ATOM     77  CB      A        -36.487   10.260  -0.668  1.00 40.66           C
+ATOM     78  CG1     A        -37.593    9.371  -1.249  1.00 39.01           C
+ATOM     79  CG2     A        -36.885   11.737  -0.658  1.00 39.33           C
+ATOM     80  CD1     A        -38.855    9.309  -0.390  1.00 36.41           C
+```
+
+In the second part of the practical, you are given a PDB file (see above) for a polypeptide that is missing its amino acid labels.  You will need to open the file using PyMOL, identify the polypeptide's N and C terminals, and fill in the three-letter code for each `ATOM` record's amino acid in columns 18 to 20.

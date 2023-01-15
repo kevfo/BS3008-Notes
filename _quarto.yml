@@ -12,6 +12,9 @@ book:
         - intro.qmd
         - wk2.qmd
         - summary.qmd
+    - part: "**PART 2 : PRACTICAL SESSIONS**"
+      chapters:
+        - lab1.qmd
   sharing: [twitter, facebook]
   page-navigation: true
   repo-url: https://github.com/kevfo/BS3008-Notes

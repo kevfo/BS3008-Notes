@@ -10,8 +10,9 @@ book:
     - part: "**PART 1 : LECTURES**"
       chapters:
         - intro.qmd
+        - wk2a.qmd
+        - wk3.qmd
         - wk2.qmd
-        - summary.qmd
     - part: "**PART 2 : PRACTICAL SESSIONS**"
       chapters:
         - lab1.qmd
@@ -31,7 +32,5 @@ format:
     theme:
       light: cosmo
       dark: darkly
-  pdf:
-    documentclass: scrreprt
 
 editor: visual

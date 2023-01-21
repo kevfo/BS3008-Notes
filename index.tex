@@ -1,0 +1,1758 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={BS3008: Computer Aided Drug Discovery},
+  pdfauthor={Kevin Fo},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{BS3008: Computer Aided Drug Discovery}
+\author{Kevin Fo}
+\date{}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is a Quarto book website (authored in the form of a website) that I
+(i.e., Kevin) has authored for the SBS module
+\href{https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs\&p=BS3008}{\emph{BS3008:
+Computer Aided Drug Discovery}} (this module was formerly known as
+``Computational Biology''). As of the time of writing, BS3008 is a three
+\textbf{a}cademic \textbf{u}nit (i.e., \textbf{AU}) module available to
+SBS students as a core module.
+
+BS3008 taught by professor
+\href{https://dr.ntu.edu.sg/cris/rp/rp00074}{Mu Yuguang}.
+
+\part{\textbf{PART 1 : LECTURES}}
+
+\hypertarget{theoretical-foundations-of-bs3008}{%
+\chapter{Theoretical Foundations of
+BS3008}\label{theoretical-foundations-of-bs3008}}
+
+This week's (i.e., week 1) lecture aims to provide an introduction to
+BS3008's course contents by explaining its various theoretical aspects.
+
+\hypertarget{discplines-in-bs3008}{%
+\section{Discplines in BS3008}\label{discplines-in-bs3008}}
+
+BS3008 covers numerous disciplines, including the following. A brief
+explanation on what each discipline is is also provided for each of the
+disciplines:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Chemoinformatics}
+
+  This discipline deals with similarities and differences between
+  chemical compounds.
+
+  Chemoinformatics deals with compounds from \(10^{-60}\) to
+  \(10^{-30}\) in magnitudes. Individuals who work in this field try to
+  find ``an island in an ocean'' - they try to find a molecule that can
+  do \emph{some} purpose.
+\item
+  \textbf{Bioinformatics}
+
+  This disciplines applies informatics tools (e.g., Python coding) to
+  Biological molecules and data.
+
+  Bioinformatics mainly focuses on Biological modelling.
+\item
+  \textbf{Theoretical Chemistry (i.e., Quantum Chemistry)}
+
+  This discipline provides the theoretical foundations needed to
+  understand the course's contents.
+\item
+  \textbf{Computational Chemistry and Biology}
+
+  This discipline not only encompasses theoretical chemistry, but also
+  molecular mechanics, minimization, simulations, and conformational
+  analysis.
+\item
+  \textbf{Molecular Modelling}
+
+  This discipline uses all of the above disciplines to represent and
+  manipulate the structures of molecules.
+
+  This also means that this discipline uses physics to model a system -
+  that way, a model can be compared against experimental results.
+\end{enumerate}
+
+Hence, BS3008 primarily focuses on molecular modelling (with emphasis on
+theoretical chemistry for the theoretical component of the course).
+
+\hypertarget{what-is-molecular-modelling}{%
+\subsection{What is Molecular
+Modelling?}\label{what-is-molecular-modelling}}
+
+According to Tamar Schlick, molecular modelling is:
+
+\begin{quote}
+``\ldots the science and art of studying molecular structure and
+function through model building and computation.''
+
+-- Tamar Schlick
+\end{quote}
+
+``Computation'' in this sense refer to practices such as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ab initio and semi-empirical quantum mechanics
+\item
+  Molecular mechanics
+\item
+  Monte Carlo simulations
+\item
+  Molecular dynamics
+\item
+  Free energy and solvation methods
+\item
+  Structure / activity relationships (i.e., SAR analyses)
+\item
+  Chemical / biochemical information and databases
+\end{enumerate}
+
+It is important to understand that while ``model building'' can be as
+simple as using plastic or metal rods to depict molecules' structures,
+it can also be as sophisticated as an interactive, animated color
+graphics and lasers.
+
+Nonetheless, the computational tools used in molecular modelling is just
+as, if not more complex than Biological systems. However, the concepts
+in molecular modelling must be carefully applied and one must also be
+wary of molecular modeling's strengths and weaknesses.
+
+\hypertarget{important-databases-and-tools}{%
+\subsection{Important Databases and
+Tools}\label{important-databases-and-tools}}
+
+Professor Mu lists some important molecular modelling tools in this
+chapter - click on their hyperlinks to access them:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \href{https://www.rcsb.org/}{\textbf{PDB}}
+
+  This is a database with numerous entries on proteins' information.
+\item
+  \href{http://pdbbind.org.cn/}{\textbf{PDBBinding}}
+
+  This is another database that provides entries on the binding affinity
+  for all biomolecular complexes.
+\item
+  \href{}{\textbf{ZINK DOCK}}
+\item
+  \href{https://vina.scripps.edu/}{\textbf{Autodock Zina}}
+
+  This is an open-source program for performing molecular docking.
+\end{enumerate}
+
+\hypertarget{molecular-mechanics-in-molecular-modelling}{%
+\subsection{Molecular Mechanics in Molecular
+Modelling}\label{molecular-mechanics-in-molecular-modelling}}
+
+Molecular modelling started with the idea that molecular geometry,
+energy, and other molecular properties could be calculated from models
+(that are influenced by basic forces).
+
+A \textbf{molecule} - hence - is a system of particles (i.e., atoms)
+connected by springs (i.e., bonds). This molecule is free to rotate,
+vibrate, and adopt a favorable conformation in space as a result of the
+inter- \emph{and} intramolecular forces acting upon it.
+
+\hypertarget{structure-topology-motion-functions-and-potential-energy}{%
+\section{Structure, Topology, Motion, Functions, and Potential
+Energy}\label{structure-topology-motion-functions-and-potential-energy}}
+
+This section aims to illustrate how different energy functions can
+influence the behavior of particles in a system.
+
+\hypertarget{case-1}{%
+\subsection{Case \#1}\label{case-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.04in,height=\textheight]{./images/wk1/system.jpg}
+
+}
+
+\caption{A Simple System to Consider}
+
+\end{figure}
+
+The potential and kinetic energy \(E_p\) and \(E_k\) respectively in
+this system is given by:
+
+\begin{align}
+  E_p &= E_p(\vec{x}) = \sum_{i}f_i(x, y, z) \\ 
+  E_k &= \frac{1}{2} \cdot (m_1v_1^2 + m_2v_2^2) 
+\end{align}
+
+Where \(\vec{x}\) is the system and \(f_i(x, y, z)\) a function that
+calculates the potential energy for each particle in the system (i.e.,
+each atom). Hence, we can say that:
+
+\begin{equation}
+  E_{tot} = E_p + E_k
+\end{equation}
+
+Where \(E_{tot}\) is the total energy of the system.
+
+Since \(r\) represents the distance between both molecules, therefore
+\(E_p(r) = 0\).
+
+\begin{equation}
+  \vec{F} = \frac{\partial E_p(\vec{x})}{\partial \vec{x}}
+\end{equation}
+
+The force\footnote{Note that \(\vec{F}\) is caused by a change in
+  potential energy, not by potential energy itself!} \(\vec{F}\) on the
+system is denoted via the above equation.
+
+Since \(E_p(r) = 0\) in the first figure, it follows that \(F(r) = 0\).
+
+\hypertarget{case-2}{%
+\subsection{Case \#2}\label{case-2}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.92in,height=\textheight]{./images/wk1/sys2.jpg}
+
+}
+
+\caption{A System with Two Charged Molecules}
+
+\end{figure}
+
+Here, the charge \(V_{ele}\) and the potential energy \(E_p(r)\) is
+given via the following equations:
+
+\begin{align}
+  V_{ele}(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1}{r} \\ 
+  E_p(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1q_2}{r}
+\end{align}
+
+Some important considerations to think about include the variables and
+the parameters of the system.
+
+\hypertarget{case-3}{%
+\subsection{Case \#3}\label{case-3}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.36in,height=\textheight]{./images/wk1/sys3.jpg}
+
+}
+
+\caption{A System with Two Molecules and their Energy Graph}
+
+\end{figure}
+
+In this system, we let:
+
+\begin{equation}
+  E_p(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
+\end{equation}
+
+In this system, we also note that \(E_p(r) = 0\) when \(r = \sigma\) and
+that \(\displaystyle E_p(\sqrt[6]{2}\sigma) = -\epsilon\).
+
+Do also consider the variables and parameters in this system (and
+whether or not both particles in this system can move freely).
+
+\hypertarget{case-4}{%
+\subsection{Case \#4}\label{case-4}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.13in,height=\textheight]{./images/wk1/sys4.jpg}
+
+}
+
+\caption{A System with Two Molecules and their Energy Graph}
+
+\end{figure}
+
+Here, we define the system's potential energy \(E_p\) as:
+
+\begin{equation}
+  E_p(r) = \frac{1}{2}k(r - r_0)^2
+\end{equation}
+
+While the energy graph for this system appears to be that of bonding, it
+is still important to consider the variables and the parameters of the
+system.
+
+We can also further decompose the above equation to its spatial
+components \(x\), \(y\), and \(z\) and say that:
+
+\begin{equation}
+E_p(r) = \frac{1}{2}k(x - x_0)^2 + \frac{1}{2}k(y - y_0)^2 + \frac{1}{2}k(z - z_0)^2
+\end{equation}
+
+In this sub-case, the system appears to be a lattice. However, are the
+particles still movable?
+
+\hypertarget{professor-mus-current-works}{%
+\section{Professor Mu's Current
+Works}\label{professor-mus-current-works}}
+
+As of the time of writing, professor Mu's lab is currently focused on
+the following topics:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Amyloidogenic protein / peptide aggregation and misfolding
+\item
+  DNA-DNA, DNA-ions, and DNA-protein interactions
+\item
+  Drug-protein interaction and drug candidate screening
+\item
+  Peptide-membrane interactions.
+\end{enumerate}
+
+For more information on professor Mu's current research topics, do visit
+his
+\href{https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang}{lab's
+homepage}.
+
+\hypertarget{fundamental-quantum-chemistry}{%
+\chapter{Fundamental Quantum
+Chemistry}\label{fundamental-quantum-chemistry}}
+
+\textbf{Computational chemistry} is a branch of chemistry that uses
+mathematical approximations and computer programs to obtain results (for
+chemical problems).
+
+\textbf{Computational \emph{quantum} chemistry} focuses specifically on
+equations that have been derived from principles in quantum mechanics
+(i.e., solving Schrodinger's equation for molecular systems).
+
+\textbf{Ab initio quantum chemistry} uses methods that do not use any
+empirical data.
+
+Computational chemistry is a growing field: computers are getting faster
+and so are algorithms. This discipline can be used to calculate the
+following parameters:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  NMR spectra
+\item
+  Vibrational frequencies
+\item
+  Thermochemical data
+\end{enumerate}
+
+The goal of this chapter is to provide a basic, high-level overview of
+quantum chemistry: necessary to use GaussianView and Gaussian 16.
+
+\hypertarget{born-oppenheimer-approximation}{%
+\section{Born-Oppenheimer
+Approximation}\label{born-oppenheimer-approximation}}
+
+This technique in computational chemistry leads to a later concept:
+\textbf{potential energy surfaces} (i.e., \textbf{PES}). A \textbf{PES}
+is a graph that describes the energy of a molecule (i.e., a system) in
+terms of certain parameters
+
+For molecules that have many electrons, their wavefunction is a
+combination of electron and nuclear coordinates. Their wavefunctions can
+be represented as \(\psi(R, r)\), where \(R\) are the nuclear
+coordinates and \(r\) the electron coordinates.
+
+However, nuclei are \emph{way} heavier than electrons, nuclei also move
+much slower than electrons.
+
+\begin{equation}
+  \psi(R, r) = \psi_{et}(r; R)\psi_N(R)
+\end{equation}
+
+The \textbf{Born-Oppenheimer approximation} allows us to separate
+electrons and nuclear motion via the above wavefunction approximation.
+
+\hypertarget{schrodingers-equation}{%
+\subsection{Schrodinger's Equation}\label{schrodingers-equation}}
+
+The time-independent Schrodinger equation is:
+
+\begin{align}
+  \hat{H}\psi &= E\psi \\ 
+  \hat{H} &= \hat{T} + \hat{V}
+\end{align}
+
+Where \(\hat{H}\) is the Hamiltonian, \(\psi\) the wavefunction, and
+\(E\) the total amount of energy in the system.
+
+\(T\) represents kinetic energy and \(V\) the potential energy.
+
+\hypertarget{solutions-of-the-schrodinger-equation}{%
+\subsection{Solutions of the Schrodinger
+Equation}\label{solutions-of-the-schrodinger-equation}}
+
+The equation can only be solved for simple cases (e.g., particle in a
+box, hydrogen atoms, rigid rotors, etc). For more complex solutions,
+some assumptions will need to be made.
+
+Solving this equation also attempts to expand the wave function \(\psi\)
+into one of many Slater determinants - these are represented by
+\textbf{molecular orbitals}: linear combinations of atomic-like-orbital
+functions.
+
+Yet, it is still possible to get \emph{very} accurate results. Generally
+speaking, the cost of calculation increases with the accuracy of the
+calculation (and the size of the system).
+
+\hypertarget{electronic-schrodinger-equation}{%
+\subsection{Electronic Schrodinger
+Equation}\label{electronic-schrodinger-equation}}
+
+This equation is as follows:
+
+\begin{align}
+  \hat{H}_{el}\psi_{el}(r; R) &=  E_{el}\psi_{el}(r; R) \\ 
+  \hat{H}_{el} &= -\frac{\hbar^2}{2m_e}\sum_i\nabla_i^2 - \sum_\alpha\sum_i\frac{Z_\alpha e'^2}{r_{i\alpha}} + \sum_j\sum_{i > j}\frac{e'^2}{r_{ij}}
+\end{align}
+
+In a typical potential energy graph, the potential energy takes a dip
+within a certain distance before it goes up:
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.47in,height=\textheight]{./images/wk2a/hgbr.jpg}
+
+}
+
+\caption{Potential Energy Graph for HgBr}
+
+\end{figure}
+
+From the above graph, the following formulas can be derived:
+
+\begin{align}
+  U(R) &= E_{el} + V_{NN} \\ 
+  V_{NN} &= \sum_\alpha \sum_{\alpha > \beta}\frac{Z_\alpha Z_\beta e'^2}{r_{\alpha\beta}}
+\end{align}
+
+\hypertarget{nuclear-schrodinger-equation}{%
+\subsection{Nuclear Schrodinger
+Equation}\label{nuclear-schrodinger-equation}}
+
+Once a \textbf{p}otential \textbf{e}nergy \textbf{s}urface (i.e.,
+\textbf{PES}) has been obtained for a molecule, one can solve the
+nuclear Schrodinger equation:
+
+\begin{align}
+  \hat{H}_N\psi_N(R) &= E_N\psi_N(R) \\ 
+  \hat{H}_N &= -\frac{\hbar^2}{2}\sum_\alpha\frac{1}{m_\alpha}\nabla_\alpha^2 + U(R)
+\end{align}
+
+The solutions of this equation allow one to determine a large amount of
+molecular properties - for instance, vibrational energy levels.
+
+\hypertarget{polyatomic-peses}{%
+\subsection{Polyatomic PESes}\label{polyatomic-peses}}
+
+Where there are more than one parameters that are used to describe a
+molecule's PES, the degrees of freedom is given by \(3n - 6\), where
+\(N\) is the number of atoms in the system.
+
+\hypertarget{basic-methods}{%
+\section{Basic Methods}\label{basic-methods}}
+
+\hypertarget{solving-the-electronic-schrodinger-equation}{%
+\subsection{Solving the Electronic Schrodinger
+Equation}\label{solving-the-electronic-schrodinger-equation}}
+
+\begin{equation}
+  \hat{H}_{el} = -\frac{\hbar^2}{2m_e}\sum_i\nabla_i^2 - \sum_\alpha\sum_i\frac{Z_\alpha e'^2}{r_{i\alpha}} + \sum_j\sum_{i > j}\frac{e'^2}{r_{ij}}
+\end{equation}
+
+The final term \(\displaystyle \sum_j\sum_{i > j}\frac{e'^2}{e_{ij}}\)
+represents electron interactions. - this is the reason that it is
+impossible solve the electron schrodinger's equation.
+
+\hypertarget{electron-spin-and-antisymmetry}{%
+\subsubsection{Electron Spin and
+Antisymmetry}\label{electron-spin-and-antisymmetry}}
+
+All electrons are described by a spin quantum number. The eigenfunctions
+describing these spins are denoted as \(\alpha\) and \(\beta\).
+
+Electron spin also obeys the following principles:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Indisguinshability}
+
+  All electrons that are spin-up are identical to one another.
+\item
+  \textbf{Pauli's Exclusion Principle}
+
+  No two electrons can be described by the same set of quantum numbers.
+\end{enumerate}
+
+Whenever two electrons are interchanged, the signs of their
+wavefunctions are also changed - for instance:
+
+If a wave function \(\psi = \psi_a(1)\alpha(1)\psi_b(2)\alpha(2)\) is
+inverted, the result is
+\(\psi_a(2)\alpha(2)\psi_b(1)\alpha(1) - \psi_a(1)\alpha(1)\psi_b(2)\alpha(2)\).
+
+\hypertarget{slater-determinants}{%
+\subsection{Slater Determinants}\label{slater-determinants}}
+
+After performing the Born-Oppenheimer approximation, one then determines
+the expansion of the electron wavefunction \(\psi_{el}\) via Slater
+determinants:
+
+\begin{equation}
+  \psi_{el} = \sum_id_i\phi_i = d_0\phi_0 + d_1\phi_1 + d_2\phi_2 + ...
+\end{equation}
+
+The Slater determinant \(\phi_0\) is given via the below matrix. One can
+also choose to think about Slater determinants as a kind of
+``configuration'' (i.e., ground-state neon might go something like
+\(\psi_0\) =
+1s\textsuperscript{2}2s\textsuperscript{2}2p\textsuperscript{6} and so
+on).
+
+\begin{equation}
+  \phi_0 = \frac{1}{\sqrt{N!}}\left[
+  \begin{matrix}
+    \phi_1\alpha(1) & \phi_1\beta(1) & \phi_2\alpha(1) & ... & \phi_M\beta(1) \\
+    \phi_1\alpha(2) & \phi_1\beta(2) & \phi_2\alpha(2) & ... & \phi_M\beta(1) \\ 
+    ... & .... & ... & ... & ... \\ 
+    \phi_1\alpha(N) & \phi_1\beta(N) & \phi_2\alpha(N) & ... & \phi_M\beta(N)    
+  \end{matrix}
+  \right]
+\end{equation}
+
+Where:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\alpha\) and \(\beta\) are the spin-up and spin-down functions
+  respectively.
+\item
+  \(\psi_i\) the spatial functions
+\item
+  \(\psi_i\alpha\) and \(\psi_i\beta\) the spin-orbitals
+\end{enumerate}
+
+Slater determinants give proper anti-symmetry (i.e., the Pauli Exclusion
+Principle).
+
+\hypertarget{hartree-fock-approximations}{%
+\subsection{Hartree-Fock
+Approximations}\label{hartree-fock-approximations}}
+
+It is impractical (and impossible) to consider all configurations of a
+system \(\phi_i\). Hence, the \textbf{Hartree-Fock} approximation is
+often used to approximate the wavefunction for the complete set of
+\(\phi_i\)s using a single determinant \(\psi_0\).
+
+In this method, \textbf{S}elf-\textbf{c}onsistent \textbf{f}ield
+energies (i.e., SCF energies) are used instead to find an optimal set of
+molecular orbitals for \(\psi_0\).
+
+Each electron in this approximation only sees an \emph{average}
+repulsion of the remaining electrons.
+
+\hypertarget{how-accurate-is-the-approximation}{%
+\subsubsection{How Accurate is the
+Approximation?}\label{how-accurate-is-the-approximation}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.31in,height=\textheight]{./images/wk2a/fock.jpg}
+
+}
+
+\caption{Total Accuracy of a Hartree-Fock Approximation on a CO
+Molecule}
+
+\end{figure}
+
+Hartree-Fock wavefunctions usually approximate about 99\% of the total
+energy. Hartree-Fock approximations can also be used to predict bond
+angles, thermochemistry measurements (e.g., enthalpy), and even
+vibrational force constants.
+
+Quantum chemists are typically interested in energy differences and not
+total energies.
+
+\hypertarget{electron-correlations}{%
+\subsubsection{Electron Correlations}\label{electron-correlations}}
+
+The \textbf{electron correlation} is the energy difference between an
+experimentally measured value (i.e., the ``exact'' value) and value
+obtained from a Hartree-Fock approximation. In more empirical terms:
+
+\begin{equation}
+  E_{corr} = E_{exact} - E_{HF}
+\end{equation}
+
+The \(E_{corr}\) accounts for missing electron-electron interactions in
+the Hartree-Fock method.
+
+Because of this, the Hartree-Fock approximation is often used as a
+``starting point'' for finding the wavefunction.
+
+Do also note that different correlation methods also exist - depending
+on which values of \(\phi_i\) and \(d_i\) to use, the value of
+\(E_{corr}\) might change.
+
+\hypertarget{configuration-interactions}{%
+\subsubsection{Configuration
+Interactions}\label{configuration-interactions}}
+
+First suppose the following about electron wavefunction:
+
+\begin{equation}
+  \psi_{el} = d_0\phi_{HF} + \sum_{i = 1}d_i\phi_i
+\end{equation}
+
+The above assumption uses the \textbf{linear variation principle}: the
+amount energy in a wavefunction is always equal to or great than the
+true energy.
+
+Some other possible configurations (i.e., methods) include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{CISD}
+
+  This is short for \textbf{C}onfiguration \textbf{I}nteraction with
+  \textbf{S}ingle and \textbf{D}ouble excitations. All determinants of
+  ``s'' and ``d'' type orbitals are used.
+\item
+  \textbf{MRCI}
+
+  This is short for \textbf{M}ulti\textbf{r}eference
+  \textbf{C}onfiguration \textbf{I}nteraction.
+\end{enumerate}
+
+Both CISD and MRCI can be very accurate, but they also take a long time
+to process.
+
+\hypertarget{mollet-plesset-i.e.-mp-perturbation-theory}{%
+\subsection{Mollet-Plesset (i.e., MP) Perturbation
+Theory}\label{mollet-plesset-i.e.-mp-perturbation-theory}}
+
+Perturbation methods such as these assume that the problem at hand
+(i.e., \(\psi\) and \(E\)) only differ \emph{slightly} from a solved
+problem (i.e., \(HF_{\psi}\) and \(E\)).
+
+The energy is calculated via various orders of approximations. At MP2,
+the calculation involves single and double excitations; higher MPs
+result in costlier calculations.
+
+\hypertarget{coupled-cluster-i.e.-cc-theory}{%
+\subsection{Coupled Cluster (i.e., CC)
+Theory}\label{coupled-cluster-i.e.-cc-theory}}
+
+This theory leads to accurate wavefunction expansions (and yields
+accurate electronic charges).
+
+Some common variants of this include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{CCSD}
+
+  Which includes single and double CCs, hence its name.
+\item
+  \textbf{CCSD(T)}
+
+  This is the same as CCSD, albeit with treatments of triple
+  excitations. This method uses accurate results when used on large
+  basis sets.
+
+  It's possible to get thermochemical results (i.e., enthalpy) with good
+  accuracy.
+\end{enumerate}
+
+\hypertarget{frozen-core-approximations}{%
+\subsection{Frozen Core
+Approximations}\label{frozen-core-approximations}}
+
+Here, only valence orbitals are involved in chemical bonding processes.
+Core orbitals don't change much when atoms are involved in molecules (as
+opposed to when atoms are free).
+
+Because of this, most electronic structure calculations only correlate
+with the frozen electrons (i.e., the core orbitals are kept frozen).
+
+\hypertarget{density-frozen-theory}{%
+\subsection{Density Frozen Theory}\label{density-frozen-theory}}
+
+The wavefunction is generally uninterpretable\footnote{i.e., even
+  scientists don't fully know what it means - this is still a matter of
+  debate over quantum chemists.}.
+
+Nonetheless, a useful physical observation would be an atom's electron
+density \(\rho\) as it gives the total number of electrons over space.
+
+\textbf{Density Functional Theory} solves for electron density. The cost
+of such method is similar to Hartree-Fock approximations (and usually
+involve some of empirical parameterization).
+
+This approach is often the best choice when dealing with large
+molecules.
+
+\hypertarget{basis-sets}{%
+\section{Basis sets}\label{basis-sets}}
+
+\hypertarget{linear-combination-of-atomic-orbitals-molecular-orbitals}{%
+\subsection{Linear Combination of Atomic Orbitals-Molecular
+Orbitals}\label{linear-combination-of-atomic-orbitals-molecular-orbitals}}
+
+Given the Slater determinant \(\phi_0\):
+
+\begin{equation}
+    \phi_0 = \frac{1}{\sqrt{N!}}\left[
+  \begin{matrix}
+    \phi_1\alpha(1) & \phi_1\beta(1) & \phi_2\alpha(1) & ... & \phi_M\beta(1) \\
+    \phi_1\alpha(2) & \phi_1\beta(2) & \phi_2\alpha(2) & ... & \phi_M\beta(1) \\ 
+    ... & .... & ... & ... & ... \\ 
+    \phi_1\alpha(N) & \phi_1\beta(N) & \phi_2\alpha(N) & ... & \phi_M\beta(N)    
+  \end{matrix}
+  \right]
+\end{equation}
+
+The spatial functions \(\phi_i\) can be calculated via the following
+equation:
+
+\begin{equation}
+  \phi_i = \sum_k^Mc_{ki}\chi_k
+\end{equation}
+
+Where \(c_{ki}\) molecular orbital coefficients that are calculated in
+the SCF procedure previous outlined and \(\chi_k\) atom-centric
+functions that mimic solutions of hydrogen atoms (i.e., s and p
+orbitals).
+
+Just like other calculations, the more accurate a calculation is, the
+more expensive it becomes.
+
+\hypertarget{gaussian-type-orbitals}{%
+\subsection{Gaussian Type Orbitals}\label{gaussian-type-orbitals}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=2.13in,height=\textheight]{./images/wk2a/gaussian.jpg}
+
+}
+
+\caption{Graph of a Slater-Type Function Against a Gaussian-Type
+Function}
+
+\end{figure}
+
+\(l_x\), \(l_y\), and \(l_z\) in the above graphic determines the kinds
+of orbitals in question (e.g., \(l = 1\) represents a ``p'' orbital).
+
+The solutions of a hydrogen atom come in the form of a Slater-type
+function (most of which are electronic structure theory calculations):
+
+\begin{equation}
+  \chi_{\alpha, n, l, m}(r, \theta, \phi) = NY_{l, m}(\theta, \phi)r^{n - 1}e^{-\alpha r}
+\end{equation}
+
+Where \(\chi\) can be a single Gaussian function (i.e., primitives) or a
+linear combination of Gaussian functions (i.e., contractives).
+
+\hypertarget{single-zeta-mutliple-zeta-and-split-valences}{%
+\subsection{\texorpdfstring{Single \(\zeta\), Mutliple-\(\zeta\), and
+Split-Valences}{Single \textbackslash zeta, Mutliple-\textbackslash zeta, and Split-Valences}}\label{single-zeta-mutliple-zeta-and-split-valences}}
+
+\begin{equation}
+  \psi(x, y, z; \{\alpha\}, i, j, k) = \sum_{a = 1}^Mc_a\phi(x, y, z; \alpha_a, i, j, k)
+\end{equation}
+
+\textbf{STO-\emph{M}G} (where \(M\) is between two and six) is short for
+\textbf{S}later \textbf{T}ype \textbf{O}rbital approximated by
+\textbf{\emph{M}} \textbf{G}aussians. Quantum chemists found via
+experimentation that \(M = 3\) gave the best combination of speed and
+accuracy.
+
+To increase the flexibility of a basis set, one might choose to take a
+STO-3G basis set and construct two basis functions for each atomic
+orbital. The first atomic orbital could be a contraction of the first
+two primitive Gaussians while the second could be a normalized third
+primitive. A basis with two functions for each atomic orbital is called
+a \textbf{double-\(\zeta\) basis}.
+
+More decontractions are possible - this would give rise to higher,
+multiple-\(\xeta\) basis sets. More examples of such sets include
+cc-pCVDZ and cc-pCVTZ.
+
+\hypertarget{polarization-functions}{%
+\subsection{Polarization Functions}\label{polarization-functions}}
+
+Due to the utility of atomic-orbital-like gaussian type orbitals, this
+amount of flexibility is often provided in the form of one quantum
+number higher of higher angular momentum than the valence orbitals.
+Thus, for a first-row atom, the most useful polarization function are
+d-GTOs\footnote{This is short for \textbf{G}aussian \textbf{T}ype
+  \textbf{O}rbital}, and for hydrogens, p-GTOs.
+
+Adding a d-function to nitrogen's basis set causes Hartree-Fock
+approximations to correctly predict a trigonal pyrimidal shape for
+ammonica.
+
+\hypertarget{diffuse-functions}{%
+\subsection{Diffuse Functions}\label{diffuse-functions}}
+
+The highest-energy molecular orbitals of anions, highly-excited electron
+states, and loose supermolecular complexes are more spatially diffuse
+than garden-variety molecular orbitals.
+
+When a basis set doesn't have enough flexibility to allow a
+weakly-bonded electron to localize far from the remaining density,
+significant errors in energies and other molecular properties can occur.
+
+To address the aforementioned, standard basis sets often augmented with
+diffuse basis functions when their use is warranted.
+
+\hypertarget{pople-and-dunning-style-basis-sets}{%
+\subsubsection{Pople and Dunning-Style Basis
+Sets}\label{pople-and-dunning-style-basis-sets}}
+
+\hypertarget{pople-style-basis-sets}{%
+\paragraph{Pople-Style Basis Sets}\label{pople-style-basis-sets}}
+
+This was named after professor John Pople who won the Nobel Prize in
+Chemistry in 1998 for his work in quantum chemistry.
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.32in,height=\textheight]{./images/wk2a/pople.jpg}
+
+}
+
+\caption{Notation for a Pople-Style Basis Set}
+
+\end{figure}
+
+In this family, diffuse functions are denoted by having a ``+'' in their
+basis sets' names. Hence, ``6-31 + G(d)'' means that heavy atoms have
+been augmented with one additional ``one s'' and one set of ``p''
+functions that have small exponents.
+
+A second plus indicates diffuse ``s'' functions on a hydrogen atom
+(e.g., ``6-3H++G(3d,f 2pd)'').
+
+\hypertarget{dunning-style-basis-sets}{%
+\paragraph{Dunning-Style Basis Sets}\label{dunning-style-basis-sets}}
+
+Here, diffuse functions are indicated by an ``aug''; one set of diffuse
+functions will be added for each angular momentum already present. Hence
+``aug-cc-pVTZ'' has diffuse ``s'', ``p'', ``d'', and ``f'' functions on
+heavy atoms and diffuse ``s'', ``p'', and ``d'' functions on hydrogen
+and helium atoms.
+
+\hypertarget{correlation-consistent-basis-sets}{%
+\subsection{Correlation-Consistent Basis
+Sets}\label{correlation-consistent-basis-sets}}
+
+These are designed so that have the unique property of forming a
+\emph{systematically-converging set}.
+
+Correlations with \textbf{c}orrelation \textbf{c}onsistent (i.e.,
+\textbf{cc}) basis sets lead to accurate estimates of the
+\textbf{c}omplete \textbf{b}asis \textbf{s}et limit (i.e., \textbf{CBS})
+limit.
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.31in,height=\textheight]{./images/wk2a/cc.jpg}
+
+}
+
+\caption{Correlation-Consistent Basis Sets}
+
+\end{figure}
+
+Professor Mu's slides lists the notation of cc sets and some examples.
+
+\hypertarget{molecular-mechanics-in-molecular-modelling-1}{%
+\chapter{Molecular Mechanics in Molecular
+Modelling}\label{molecular-mechanics-in-molecular-modelling-1}}
+
+Molecular modelling started with the idea that molecular geometry,
+energy, and other molecular properties could be calculated from models
+(that are influenced by basic forces).
+
+A \textbf{molecule} - hence - is a system of particles (i.e., atoms)
+connected by springs (i.e., bonds). This molecule is free to rotate,
+vibrate, and adopt a favorable conformation in space as a result of the
+inter- \emph{and} intramolecular forces acting upon it.
+
+\hypertarget{structure-topology-motion-functions-and-potential-energy-1}{%
+\section{Structure, Topology, Motion, Functions, and Potential
+Energy}\label{structure-topology-motion-functions-and-potential-energy-1}}
+
+This section aims to illustrate how different energy functions can
+influence the behavior of particles in a system.
+
+\hypertarget{case-1-1}{%
+\subsection{Case \#1}\label{case-1-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.04in,height=\textheight]{./images/wk1/system.jpg}
+
+}
+
+\caption{A Simple System to Consider}
+
+\end{figure}
+
+The potential and kinetic energy \(E_p\) and \(E_k\) respectively in
+this system is given by:
+
+\begin{align}
+  E_p &= E_p(\vec{x}) = \sum_{i}f_i(x, y, z) \\ 
+  E_k &= \frac{1}{2} \cdot (m_1v_1^2 + m_2v_2^2) 
+\end{align}
+
+Where \(\vec{x}\) is the system and \(f_i(x, y, z)\) a function that
+calculates the potential energy for each particle in the system (i.e.,
+each atom). Hence, we can say that:
+
+\begin{equation}
+  E_{tot} = E_p + E_k
+\end{equation}
+
+Where \(E_{tot}\) is the total energy of the system.
+
+Since \(r\) represents the distance between both molecules, therefore
+\(E_p(r) = 0\).
+
+\begin{equation}
+  \vec{F} = \frac{\partial E_p(\vec{x})}{\partial \vec{x}}
+\end{equation}
+
+The force\footnote{Note that \(\vec{F}\) is caused by a change in
+  potential energy, not by potential energy itself!} \(\vec{F}\) on the
+system is denoted via the above equation.
+
+Since \(E_p(r) = 0\) in the first figure, it follows that \(F(r) = 0\).
+
+\hypertarget{case-2-1}{%
+\subsection{Case \#2}\label{case-2-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.92in,height=\textheight]{./images/wk1/sys2.jpg}
+
+}
+
+\caption{A System with Two Charged Molecules}
+
+\end{figure}
+
+Here, the charge \(V_{ele}\) and the potential energy \(E_p(r)\) is
+given via the following equations:
+
+\begin{align}
+  V_{ele}(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1}{r} \\ 
+  E_p(r) &= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1q_2}{r}
+\end{align}
+
+Some important considerations to think about include the variables and
+the parameters of the system.
+
+\hypertarget{case-3-1}{%
+\subsection{Case \#3}\label{case-3-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.36in,height=\textheight]{./images/wk1/sys3.jpg}
+
+}
+
+\caption{A System with Two Molecules and their Energy Graph}
+
+\end{figure}
+
+In this system, we let:
+
+\begin{equation}
+  E_p(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
+\end{equation}
+
+In this system, we also note that \(E_p(r) = 0\) when \(r = \sigma\) and
+that \(\displaystyle E_p(\sqrt[6]{2}\sigma) = -\epsilon\).
+
+Do also consider the variables and parameters in this system (and
+whether or not both particles in this system can move freely).
+
+\hypertarget{case-4-1}{%
+\subsection{Case \#4}\label{case-4-1}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.13in,height=\textheight]{./images/wk1/sys4.jpg}
+
+}
+
+\caption{A System with Two Molecules and their Energy Graph}
+
+\end{figure}
+
+Here, we define the system's potential energy \(E_p\) as:
+
+\begin{equation}
+  E_p(r) = \frac{1}{2}k(r - r_0)^2
+\end{equation}
+
+While the energy graph for this system appears to be that of bonding, it
+is still important to consider the variables and the parameters of the
+system.
+
+We can also further decompose the above equation to its spatial
+components \(x\), \(y\), and \(z\) and say that:
+
+\begin{equation}
+E_p(r) = \frac{1}{2}k(x - x_0)^2 + \frac{1}{2}k(y - y_0)^2 + \frac{1}{2}k(z - z_0)^2
+\end{equation}
+
+In this sub-case, the system appears to be a lattice. However, are the
+particles still movable?
+
+\hypertarget{professor-mus-current-works-1}{%
+\section{Professor Mu's Current
+Works}\label{professor-mus-current-works-1}}
+
+As of the time of writing, professor Mu's lab is currently focused on
+the following topics:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Amyloidogenic protein / peptide aggregation and misfolding
+\item
+  DNA-DNA, DNA-ions, and DNA-protein interactions
+\item
+  Drug-protein interaction and drug candidate screening
+\item
+  Peptide-membrane interactions.
+\end{enumerate}
+
+For more information on professor Mu's current research topics, do visit
+his
+\href{https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang}{lab's
+homepage}.
+
+\hypertarget{force-fields}{%
+\chapter{Force Fields}\label{force-fields}}
+
+A \textbf{force field} implies that a molecule's atoms are a collection
+of different matter interacting with one another via \emph{forces
+described by empirical energy functions}. This is unlike quantum
+mechanical calculations: the electrons and atoms' nuclei are not
+explicitly included in such calculations.
+
+Force fields provide a fast computational method that works for small
+and big molecules alike (and even complex molecular systems).
+
+\hypertarget{typical-force-fields}{%
+\section{Typical Force Fields}\label{typical-force-fields}}
+
+A typical force field \(U(\{r_{ij}\})\) has the following formula:
+
+\begin{align}
+  U(\{r_{ij}\}) = &\sum_j\frac{k^l_j}{2}(l_j - l^0_j)^2 + \sum_j\frac{k^\delta_j}{2}(\delta_j - \delta_j^0)^2 + \sum_{torsions}\frac{V_n}{2}(1 + \cos(n\phi - \gamma)) \\ &+   
+  \sum_{i, j = 1}^N\frac{q_iq_j}{r_{ij}} + \sum_{i, j = 1}^N4\epsilon_{ij}\left[\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left(\frac{\sigma_{ij}}{r_{ij}}\right)^6\right]
+\end{align}
+
+Or in more layman terms:
+
+\begin{align}
+  \text{Force field} = &\text{ bond stretching} + \text{valence angle bending} \\ 
+  &+ \text{torsions} + \text{Electrostatic charges} \\ 
+  &+ \text{van der Waals forces}
+\end{align}
+
+Both bond stretching and valence angle bending refer to
+\emph{intramolecular forces}. This is in contrast to electrostatic
+charges and van der Waals forces: \emph{intra- and intermolecular
+bonding}.
+
+\hypertarget{bond-stretching}{%
+\subsection{Bond Stretching}\label{bond-stretching}}
+
+The Morse potential \(E(l)\) and the Harmonic potential \(a\) are:
+
+\begin{align}
+  E(l) &= D_e\{1 - \exp[-a(l - l_0)]\}^2 \\ 
+  a &= \omega \sqrt{\frac{\mu}{2D_e}}
+\end{align}
+
+\(D_e\) in the above equations represent the depth of the potential
+energy minimum:
+
+\begin{figure}
+
+{\centering \includegraphics[width=2.29in,height=\textheight]{./images/wk2/d3.jpg}
+
+}
+
+\caption{A Potential Energy Graph Between an Oxygen Atom and a Hydrogen
+Atom}
+
+\end{figure}
+
+\(\omega\) represents the bond vibration frequency, \(\mu\) the reduced
+mass, and \(l_0\) the reference bond length\footnote{This is 0.923
+  \(\stackrel{\circ}{A}\) in this scenario.}
+
+\hypertarget{at-room-temperature-i.e.-298-k}{%
+\subsubsection{At Room Temperature (i.e., 298
+K)}\label{at-room-temperature-i.e.-298-k}}
+
+In such a case, the thermal kinetic energy of the system (i.e.,
+molecule) falls within \(\displaystyle \frac{1}{2}k_BT\) and \(300 K\).
+An approximation for the thermal kinetic energy \(E_{thermal}\) is about
+\emph{0.3 kcal / mol}. We can also say that:
+
+\begin{align}
+  E(l) &= \frac{1}{2}k(l - l_0)^2 \\ 
+  k &= 2D_ea^2 = \mu\omega^2
+\end{align}
+
+At room temperature, the energy potential of a molecule can be described
+via the following graph:
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.52in,height=\textheight]{./images/wk2/well.jpg}
+
+}
+
+\caption{A Potential Energy Well at Room Temperature}
+
+\end{figure}
+
+This graph is also called a \textbf{Hooke's spring}.
+
+\hypertarget{angle-bending}{%
+\subsection{Angle Bending}\label{angle-bending}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.05in,height=\textheight]{./images/wk2/bondangle.jpg}
+
+}
+
+\caption{Information on Several Bond Angles}
+
+\end{figure}
+
+Because of a covalent bond's directionality, its bond angles do not
+change that much.
+
+\begin{equation}
+  E(\theta) = \frac{k}{2}(\theta - \theta_0)^2
+\end{equation}
+
+Therefore,
+\href{https://www.khanacademy.org/science/physics/work-and-energy/hookes-law/a/what-is-hookes-law}{Hooke's
+law} is often used to calculate the harmonic potential energy of a
+certain type of bond angle.
+
+\hypertarget{torison-terms}{%
+\subsection{Torison Terms}\label{torison-terms}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=2.79in,height=\textheight]{./images/wk2/torsional.jpg}
+
+}
+
+\caption{Professor Mu's Slides on Torsion Terms and Dihedral Angles}
+
+\end{figure}
+
+The \textbf{torsional energy} is defined between every quartet of atoms
+- it depends on the dihedral angle \(\phi\) made by two planes (and also
+incorporating the first and last three terms in the torsion).
+
+\begin{equation}
+  E(\psi) = \sum_{n = 0}^N\frac{V_n}{2}[1 + \cos(n\psi - \psi_0)]
+\end{equation}
+
+Torsional motions are typically hundreds of times less stiff than bond
+stretching motions.
+
+Torsion terms also mimic bonding characteristics and neighboring atoms'
+and their side groups' steric hindrances about the chain axis.
+
+\hypertarget{exammple-torsional-terms-for-ethane}{%
+\subsubsection{Exammple Torsional Terms for
+Ethane}\label{exammple-torsional-terms-for-ethane}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.33in,height=\textheight]{./images/wk2/ethane.jpg}
+
+}
+
+\caption{Example Torsional Term for an Ethane Molecule}
+
+\end{figure}
+
+Note that the y-axis of the above graphic is in kcal / mol.
+
+\hypertarget{non-bonded-interactions}{%
+\subsection{Non-Bonded Interactions}\label{non-bonded-interactions}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.18in,height=\textheight]{./images/wk2/nonbond.jpg}
+
+}
+
+\caption{Nomenclature for Non-Bonded Interactions}
+
+\end{figure}
+
+The kind of bonded interactions depend on the bonding relationship
+between atoms. Such energy functions in this scenario describe the total
+interactions between atoms and cannot be further decomposed.
+
+\hypertarget{electrostatic-interactions}{%
+\subsection{Electrostatic
+Interactions}\label{electrostatic-interactions}}
+
+This is a group in its own right - the other group of non-bonded terms
+is van der Waals interactions.
+
+\begin{equation}
+  E_{ele} = \sum_{i > j}\frac{1}{4\pi\epsilon_0}\frac{q_iq_j}{r_{ij}}
+\end{equation}
+
+In a simple model consisting of two water molecules, their partial
+charges are \(q_O = -0.834\) and \(q_H = 0.417\).
+
+\hypertarget{calculating-partial-charges}{%
+\subsubsection{Calculating Partial
+Charges}\label{calculating-partial-charges}}
+
+A molecule's electrostatic potential can be measured - it can also be
+determined from molecular wavefunctions (from quantum mechanics):
+
+\begin{equation}
+  R = \sum_{i = 1}^{N_{points}}(\phi_i^{calc} - \phi_i^0)^2
+\end{equation}
+
+The goal is to find a set partial charge from which the calculated
+potentials are closest to the reference ones.
+
+\hypertarget{van-der-waals-interactions}{%
+\subsection{van der Waals
+Interactions}\label{van-der-waals-interactions}}
+
+They arise from a balance between attractive and repulsive forces.
+
+The attractive force is due to dispersion forces and is equivalent to
+\(\displaystyle \frac{1}{r^6}\). The repulsive force originates from
+quantum mechanics and can be understood using Pauli's exclusion
+principle.
+
+\hypertarget{lennard-jones-potential}{%
+\subsubsection{Lennard-Jones Potential}\label{lennard-jones-potential}}
+
+The \textbf{Lennard-Jones 12-6 function}
+\(\displaystyle 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]\)
+has two adjustable parameters:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Collision diameter \(\sigma\)
+\item
+  Well depth \(\sigma\)
+\end{enumerate}
+
+The \(\displaystyle \frac{1}{r^{12}}\) is questionable at times, but
+also allows for rapid computations.
+
+\hypertarget{combination-rules}{%
+\subsubsection{Combination Rules}\label{combination-rules}}
+
+A way to approximate parameters is needed to calculate the van der Waals
+interactions between different kinds of atoms.
+
+There are two methods covered in BS3008:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Amber and Charmm}
+
+  \begin{align}
+    \epsilon_{ij} &= \sqrt{\epsilon_i\epsilon_j} \\ 
+    \sigma_{ij} &= \frac{\sigma_i + \sigma_j}{2}
+  \end{align}
+
+  The Lorentz-Berthelodt rules are used.
+\item
+  \textbf{OPLS\footnote{This is short for \textbf{O}ptimized
+    \textbf{P}otentials for \textbf{L}iquid \textbf{S}imulations} Force
+  Fields}
+
+  \begin{align}
+    \epsilon_{ij} &= \sqrt{\epsilon_i\epsilon_j} \\ 
+    \sigma_{ij} &= \sqrt{\sigma_i\sigma_j}
+  \end{align}
+\end{enumerate}
+
+\hypertarget{parameters-of-van-der-waals-forces}{%
+\subsubsection{Parameters of van der Waals
+Forces}\label{parameters-of-van-der-waals-forces}}
+
+The \textbf{L}ennard \textbf{J}ohnson (i.e., \textbf{LJ}) parameters
+state the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Heat of vaporization
+\item
+  Density (i.e., molecular volume)
+\item
+  Partial Molar Volume
+\item
+  Crystal simulations
+\end{enumerate}
+
+\hypertarget{common-empirical-force-fields}{%
+\section{Common Empirical Force
+Fields}\label{common-empirical-force-fields}}
+
+BS3008 lists several different force fields for one's own reference:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Class I Force Fields}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    CHARMM
+  \item
+    CHARMm
+  \item
+    AMBER
+  \item
+    OPLS / Schrodinger
+  \item
+    ECEPP (i.e., free energy force field)
+  \item
+    GROMOS
+  \end{itemize}
+\item
+  \textbf{Class II Force Field}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    CFF95
+  \item
+    MM3
+  \item
+    MMFF94
+  \item
+    UFF, DREIDING
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{on-class-ii-force-fields}{%
+\subsection{On Class II Force Fields}\label{on-class-ii-force-fields}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=3.16in,height=\textheight]{./images/wk2/classii.jpg}
+
+}
+
+\caption{Equation and Summary of Class II Force Fields}
+
+\end{figure}
+
+The above image was taken off professor Mu's teaching slides.
+
+\part{\textbf{PART 2 : PRACTICAL SESSIONS}}
+
+\hypertarget{pdb-files-and-pymol-visualizations}{%
+\chapter{PDB Files and PyMOL
+Visualizations}\label{pdb-files-and-pymol-visualizations}}
+
+If you have taken
+\href{https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs\&p=BS1005}{\emph{BS1005:
+Biochemistry I}}, then the contents of this practical will be relatively
+straightforward\footnote{So much so that you don't need to come if you
+  don't want to.}.
+
+This lab aims to provide a gentle introduction to PDB files and also
+PyMOL.
+
+\hypertarget{pdb-files}{%
+\section{PDB Files}\label{pdb-files}}
+
+The first part of the lab examines the structure of a PDB typical PDB
+file. The later part of this lab then requires you to write your own PDB
+file for a water molecule (before opening it up in PyMOL to ensure that
+you have done it correctly.)
+
+The \textbf{P}rotein \textbf{D}ata \textbf{B}ank (i.e., \textbf{PDB}) is
+an initiative by the \href{https://www.bnl.gov/world/}{Brookhaven
+National Laboratory} that stores three-dimensional data of biological
+molecules (i.e., biomolecules). A considerable amount of information has
+since been uploaded to the PDB from various fields in Biology, including
+but not limited to genomics, proteonomics, and structural biology.
+
+\hypertarget{what-is-a-pdb-file}{%
+\subsection{What is a PDB File?}\label{what-is-a-pdb-file}}
+
+A \textbf{PDB file} is a plain text document that contains
+metainformation about a biomolecule - for instance, its atoms, its side
+chains, and its amino acid residues.
+
+The PDB also has
+\href{https://files.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_Letter.pdf}{official
+documentation} on the structure of its files that you can view for
+reference.
+
+\hypertarget{points-to-note}{%
+\subsection{Points to Note}\label{points-to-note}}
+
+Although a typical PDB file contains numerous section and record types,
+BS3008 only focuses on a few of these records (and their important
+parts):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{The \texttt{ATOM} Record}
+
+  This is used to define atoms in a PDB file. With this record, the file
+  writer can also define the positions of the atoms (in a
+  three-dimensional space), define side-chain groups, and also define
+  amino acid residues.
+
+  Note that all coordinates of length will be in \emph{Angstroms} in a
+  PDB file.
+\item
+  \textbf{B-factors}
+
+  This is also known as the \textbf{temperature factor}. B-factors
+  describe how much an atom's placement differs from its average values
+  - the higher the B-factor, the higher its displacement.
+
+  Areas with high B-factors are usually red (i.e., hot) and vice versa.
+\item
+  \textbf{Occupancy}
+
+  This parameter is associated with different conformations of a
+  biomolecule.
+
+  Depending on how many conformations there are available, the occupancy
+  may be less than one (but whatever the case, the values of all
+  occupancices will always add up to one).
+\end{enumerate}
+
+\hypertarget{making-a-pdb-file-for-a-water-molecule}{%
+\subsection{Making a PDB File for a Water
+Molecule}\label{making-a-pdb-file-for-a-water-molecule}}
+
+A water molecule has two hydrogen atoms and one oxygen atom. Its O-H
+bond length is 0.957 Angstroms and its H-O-H bond angle is
+\(109^\circ\).
+
+Hence, first set the Oxygen atom to the origin (0, 0, 0) using an ATOM
+record\footnote{The column numbers on the first two lines have been
+  provided for reference!}:
+
+\begin{verbatim}
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+\end{verbatim}
+
+Thereafter, add in the first hydrogen atom at the coordinates (0.957, 0,
+0) using another ATOM record. It not necessary to use the aforementioned
+coordinates - (0, 0.957, 0) and (0, 0, 0.957) also work:
+
+\begin{verbatim}
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+ATOM     2   H      A    1      0.957   0.000    0.000  1.00 0.00            H
+\end{verbatim}
+
+Basic trigonometry can then be used to discover the coordinates of the
+final hydrogen atom. In this case:
+
+\begin{align}
+  x &= -\cos(71^\circ) * 0.957 \\ 
+  y &= \sin(71^\circ) * 0.957
+\end{align}
+
+Doing so should yield a pair of coordinates \((-0.312, 0.905)\). The
+final pair of coordinates (with \textbf{\texttt{TER}} and
+\textbf{\texttt{END}} records) should be:
+
+\begin{verbatim}
+         1         2         3         4         5         6         7
+1234567890123456789012345678901234567890123456789012345678901234567890123456789
+ATOM     1   O      A    1      0.000   0.000    0.000  1.00 0.00            O
+ATOM     2   H      A    1      0.957   0.000    0.000  1.00 0.00            H
+ATOM     3   H      A    1     -0.312   0.957    0.000  1.00 0.00            H
+TER      4
+END 
+\end{verbatim}
+
+You can open your PDB file in PyMOL to verify that your PDB file is
+correct.
+
+\hypertarget{visualizing-molecules-in-pymol}{%
+\section{Visualizing Molecules in
+PyMOL}\label{visualizing-molecules-in-pymol}}
+
+\textbf{PyMOL} is an open-source software for visualizing molecules and
+measuring their various properties. These ``molecules'' are often stored
+in a PDB file format (hence the reason why the first portion of the
+practical deals with PDB files).
+
+\begin{verbatim}
+         1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+ATOM     38  N       A        -33.869   10.617   7.317  1.00 76.26           N
+ATOM     39  CA      A        -34.134    9.234   6.904  1.00 74.56           C
+ATOM     40  C       A        -33.089    8.813   5.875  1.00 73.03           C
+ATOM     41  O       A        -32.729    9.593   4.989  1.00 72.13           O
+ATOM     42  CB      A        -35.552    9.101   6.317  1.00 75.48           C
+ATOM     43  CG      A        -36.647    9.421   7.338  1.00 77.63           C
+ATOM     44  OD1     A        -36.667    8.874   8.452  1.00 81.93           O
+ATOM     45  ND2     A        -37.570   10.304   6.961  1.00 75.30           N
+ATOM     46  N       A        -32.604    7.582   5.965  1.00 74.10           N
+ATOM     47  CA      A        -31.570    7.168   5.019  1.00 77.48           C
+ATOM     48  C       A        -32.043    6.300   3.846  1.00 73.71           C
+ATOM     49  O       A        -31.538    5.201   3.613  1.00 76.65           O
+ATOM     50  CB      A        -30.416    6.504   5.793  1.00 83.44           C
+ATOM     51  CG      A        -29.901    7.343   6.934  1.00 90.57           C
+ATOM     52  ND1     A        -29.361    8.601   6.754  1.00 92.16           N
+ATOM     53  CD2     A        -29.899    7.125   8.275  1.00 92.50           C
+ATOM     54  CE1     A        -29.051    9.123   7.930  1.00 91.80           C
+ATOM     55  NE2     A        -29.369    8.247   8.871  1.00 92.32           N
+ATOM     56  N       A        -33.001    6.831   3.089  1.00 67.38           N
+ATOM     57  CA      A        -33.551    6.148   1.924  1.00 59.99           C
+ATOM     58  C       A        -33.046    6.785   0.618  1.00 55.78           C
+ATOM     59  O       A        -32.178    7.656   0.640  1.00 54.77           O
+ATOM     60  CB      A        -35.079    6.191   1.993  1.00 58.20           C
+ATOM     61  CG      A        -35.615    7.603   2.156  1.00 55.61           C
+ATOM     62  OD1     A        -36.782    7.745   2.593  1.00 55.40           O
+ATOM     63  OD2     A        -34.876    8.561   1.843  1.00 55.57           O
+ATOM     64  N       A        -33.583    6.349  -0.515  1.00 54.36           N
+ATOM     65  CA      A        -33.167    6.876  -1.814  1.00 53.16           C
+ATOM     66  C       A        -33.626    8.317  -2.061  1.00 51.53           C
+ATOM     67  O       A        -33.041    9.039  -2.874  1.00 50.28           O
+ATOM     68  CB      A        -33.673    5.962  -2.929  1.00 56.36           C
+ATOM     69  CG      A        -33.144    4.523  -2.821  1.00 59.12           C
+ATOM     70  CD      A        -33.329    3.750  -4.125  1.00 57.06           C
+ATOM     71  CE      A        -32.718    2.350  -4.022  1.00 60.09           C
+ATOM     72  NZ      A        -32.740    1.596  -5.327  1.00 61.46           N
+ATOM     73  N       A        -34.685    8.721  -1.368  1.00 48.02           N
+ATOM     74  CA      A        -35.197   10.077  -1.478  1.00 42.97           C
+ATOM     75  C       A        -34.131   10.992  -0.891  1.00 43.60           C
+ATOM     76  O       A        -33.858   12.059  -1.426  1.00 44.56           O
+ATOM     77  CB      A        -36.487   10.260  -0.668  1.00 40.66           C
+ATOM     78  CG1     A        -37.593    9.371  -1.249  1.00 39.01           C
+ATOM     79  CG2     A        -36.885   11.737  -0.658  1.00 39.33           C
+ATOM     80  CD1     A        -38.855    9.309  -0.390  1.00 36.41           C
+\end{verbatim}
+
+In the second part of the practical, you are given a PDB file (see
+above) for a polypeptide that is missing its amino acid labels. You will
+need to open the file using PyMOL, identify the polypeptide's N and C
+terminals, and fill in the three-letter code for each \texttt{ATOM}
+record's amino acid in columns 18 to 20.
+
+
+
+\end{document}

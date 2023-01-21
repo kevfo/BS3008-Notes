@@ -23,7 +23,6 @@ Or in more layman terms:
   &+ \text{van der Waals forces}
 \end{align}
 ```
-
 Both bond stretching and valence angle bending refer to *intramolecular forces*. This is in contrast to electrostatic charges and van der Waals forces: *intra- and intermolecular bonding*.
 
 ### Bond Stretching
@@ -48,13 +47,14 @@ $\omega$ represents the bond vibration frequency, $\mu$ the reduced mass, and $l
 
 #### At Room Temperature (i.e., 298 K)
 
-In such a case, the thermal kinetic energy of the system (i.e., molecule) falls within $\displaystyle \frac{1}{2}k_BT$ and $300 K$. An approximation for the thermal kinetic energy $E_{thermal}$ is about *0.3 kcal / mol*.  We can also say that:
+In such a case, the thermal kinetic energy of the system (i.e., molecule) falls within $\displaystyle \frac{1}{2}k_BT$ and $300 K$. An approximation for the thermal kinetic energy $E_{thermal}$ is about *0.3 kcal / mol*. We can also say that:
 
+```{=tex}
 \begin{align}
   E(l) &= \frac{1}{2}k(l - l_0)^2 \\ 
   k &= 2D_ea^2 = \mu\omega^2
 \end{align}
-
+```
 At room temperature, the energy potential of a molecule can be described via the following graph:
 
 ```{r echo = F, fig.cap = "A Potential Energy Well at Room Temperature", fig.align = "center"}
@@ -63,18 +63,19 @@ knitr::include_graphics("images/wk2/well.jpg")
 
 This graph is also called a **Hooke's spring**.
 
-### Angle Bending 
+### Angle Bending
 
 ```{r echo = F, fig.cap = "Information on Several Bond Angles", fig.align = "center"}
 knitr::include_graphics("images/wk2/bondangle.jpg")
 ```
 
-Because of a covalent bond's directionality, its bond angles do not change that much.  
+Because of a covalent bond's directionality, its bond angles do not change that much.
 
+```{=tex}
 \begin{equation}
   E(\theta) = \frac{k}{2}(\theta - \theta_0)^2
 \end{equation}
-
+```
 Therefore, [Hooke's law](https://www.khanacademy.org/science/physics/work-and-energy/hookes-law/a/what-is-hookes-law) is often used to calculate the harmonic potential energy of a certain type of bond angle.
 
 ### Torison Terms
@@ -85,15 +86,16 @@ knitr::include_graphics("images/wk2/torsional.jpg")
 
 The **torsional energy** is defined between every quartet of atoms - it depends on the dihedral angle $\phi$ made by two planes (and also incorporating the first and last three terms in the torsion).
 
+```{=tex}
 \begin{equation}
   E(\psi) = \sum_{n = 0}^N\frac{V_n}{2}[1 + \cos(n\psi - \psi_0)]
 \end{equation}
-
+```
 Torsional motions are typically hundreds of times less stiff than bond stretching motions.
 
 Torsion terms also mimic bonding characteristics and neighboring atoms' and their side groups' steric hindrances about the chain axis.
 
-#### Exammple Torsional Terms for Ethane 
+#### Exammple Torsional Terms for Ethane
 
 ```{r echo = F, fig.cap = "Example Torsional Term for an Ethane Molecule", fig.align = "center"}
 knitr::include_graphics("images/wk2/ethane.jpg")
@@ -101,50 +103,52 @@ knitr::include_graphics("images/wk2/ethane.jpg")
 
 Note that the y-axis of the above graphic is in kcal / mol.
 
-### Non-Bonded Interactions 
+### Non-Bonded Interactions
 
 ```{r echo = F, fig.cap = "Nomenclature for Non-Bonded Interactions", fig.align = "center"}
 knitr::include_graphics("images/wk2/nonbond.jpg")
 ```
 
-The kind of bonded interactions depend on the bonding relationship between atoms.  Such energy functions in this scenario describe the total interactions between atoms and cannot be further decomposed.
+The kind of bonded interactions depend on the bonding relationship between atoms. Such energy functions in this scenario describe the total interactions between atoms and cannot be further decomposed.
 
-### Electrostatic Interactions 
+### Electrostatic Interactions
 
 This is a group in its own right - the other group of non-bonded terms is van der Waals interactions.
 
+```{=tex}
 \begin{equation}
   E_{ele} = \sum_{i > j}\frac{1}{4\pi\epsilon_0}\frac{q_iq_j}{r_{ij}}
 \end{equation}
-
+```
 In a simple model consisting of two water molecules, their partial charges are $q_O = -0.834$ and $q_H = 0.417$.
 
 #### Calculating Partial Charges
 
 A molecule's electrostatic potential can be measured - it can also be determined from molecular wavefunctions (from quantum mechanics):
 
+```{=tex}
 \begin{equation}
   R = \sum_{i = 1}^{N_{points}}(\phi_i^{calc} - \phi_i^0)^2
 \end{equation}
-
+```
 The goal is to find a set partial charge from which the calculated potentials are closest to the reference ones.
 
 ### van der Waals Interactions
 
-They arise from a balance between attractive and repulsive forces.  
+They arise from a balance between attractive and repulsive forces.
 
-The attractive force is due to dispersion forces and is equivalent to $\displaystyle \frac{1}{r^6}$.  The repulsive force originates from quantum mechanics and can be understood using Pauli's exclusion principle.
+The attractive force is due to dispersion forces and is equivalent to $\displaystyle \frac{1}{r^6}$. The repulsive force originates from quantum mechanics and can be understood using Pauli's exclusion principle.
 
 #### Lennard-Jones Potential
 
-The **Lennard-Jones 12-6 function** $\displaystyle 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]$ has two adjustable parameters: 
+The **Lennard-Jones 12-6 function** $\displaystyle 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]$ has two adjustable parameters:
 
 1.  Collision diameter $\sigma$
-1.  Well depth $\sigma$
+2.  Well depth $\sigma$
 
 The $\displaystyle \frac{1}{r^{12}}$ is questionable at times, but also allows for rapid computations.
 
-#### Combination Rules 
+#### Combination Rules
 
 A way to approximate parameters is needed to calculate the van der Waals interactions between different kinds of atoms.
 
@@ -152,28 +156,33 @@ There are two methods covered in BS3008:
 
 1.  **Amber and Charmm**
 
+    ```{=tex}
     \begin{align}
       \epsilon_{ij} &= \sqrt{\epsilon_i\epsilon_j} \\ 
       \sigma_{ij} &= \frac{\sigma_i + \sigma_j}{2}
     \end{align}
-
+    ```
     The Lorentz-Berthelodt rules are used.
-    
-1.  **OPLS^[This is short for **O**ptimized **P**otentials for **L**iquid **S**imulations] Force Fields**
 
+2.  **OPLS**[^wk2-2] Force Fields
+
+    ```{=tex}
     \begin{align}
       \epsilon_{ij} &= \sqrt{\epsilon_i\epsilon_j} \\ 
       \sigma_{ij} &= \sqrt{\sigma_i\sigma_j}
     \end{align}
+    ```
+
+[^wk2-2]: **This is short for O**ptimized **P**otentials for **L**iquid **S**imulations
 
 #### Parameters of van der Waals Forces
 
 The **L**ennard **J**ohnson (i.e., **LJ**) parameters state the following:
 
 1.  Heat of vaporization
-1.  Density (i.e., molecular volume)
-1.  Partial Molar Volume 
-1.  Crystal simulations
+2.  Density (i.e., molecular volume)
+3.  Partial Molar Volume
+4.  Crystal simulations
 
 ## Common Empirical Force Fields
 
@@ -181,28 +190,24 @@ BS3008 lists several different force fields for one's own reference:
 
 1.  **Class I Force Fields**
 
-    - CHARMM
-    - CHARMm
-    - AMBER
-    - OPLS / Schrodinger
-    - ECEPP (i.e., free energy force field)
-    - GROMOS
-    
-1.  **Class II Force Field**
+    -   CHARMM
+    -   CHARMm
+    -   AMBER
+    -   OPLS / Schrodinger
+    -   ECEPP (i.e., free energy force field)
+    -   GROMOS
 
-    - CFF95
-    - MM3 
-    - MMFF94
-    - UFF, DREIDING 
-    
-### On Class II Force Fields 
+2.  **Class II Force Field**
+
+    -   CFF95
+    -   MM3
+    -   MMFF94
+    -   UFF, DREIDING
+
+### On Class II Force Fields
 
 ```{r echo = F, fig.cap = "Equation and Summary of Class II Force Fields", fig.align = "center"}
 knitr::include_graphics("images/wk2/classii.jpg")
 ```
 
 The above image was taken off professor Mu's teaching slides.
-
-
-
-

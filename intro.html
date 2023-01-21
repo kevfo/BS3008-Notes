@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./wk2.html" rel="next">
+<link href="./wk2a.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -141,12 +141,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+  <a href="./wk2a.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./wk3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
   </div>
 </li>
       </ul>
@@ -161,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
   </div>
 </li>
       </ul>
@@ -179,16 +184,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#what-is-molecular-modelling" id="toc-what-is-molecular-modelling" class="nav-link" data-scroll-target="#what-is-molecular-modelling"><span class="toc-section-number">1.1.1</span>  What is Molecular Modelling?</a></li>
   <li><a href="#important-databases-and-tools" id="toc-important-databases-and-tools" class="nav-link" data-scroll-target="#important-databases-and-tools"><span class="toc-section-number">1.1.2</span>  Important Databases and Tools</a></li>
-  <li><a href="#molecular-mechanics-in-molecular-modelling" id="toc-molecular-mechanics-in-molecular-modelling" class="nav-link" data-scroll-target="#molecular-mechanics-in-molecular-modelling"><span class="toc-section-number">1.1.3</span>  Molecular Mechanics in Molecular Modelling</a></li>
   </ul></li>
-  <li><a href="#structure-topology-motion-functions-and-potential-energy" id="toc-structure-topology-motion-functions-and-potential-energy" class="nav-link" data-scroll-target="#structure-topology-motion-functions-and-potential-energy"><span class="toc-section-number">1.2</span>  Structure, Topology, Motion, Functions, and Potential Energy</a>
-  <ul class="collapse">
-  <li><a href="#case-1" id="toc-case-1" class="nav-link" data-scroll-target="#case-1"><span class="toc-section-number">1.2.1</span>  Case #1</a></li>
-  <li><a href="#case-2" id="toc-case-2" class="nav-link" data-scroll-target="#case-2"><span class="toc-section-number">1.2.2</span>  Case #2</a></li>
-  <li><a href="#case-3" id="toc-case-3" class="nav-link" data-scroll-target="#case-3"><span class="toc-section-number">1.2.3</span>  Case #3</a></li>
-  <li><a href="#case-4" id="toc-case-4" class="nav-link" data-scroll-target="#case-4"><span class="toc-section-number">1.2.4</span>  Case #4</a></li>
-  </ul></li>
-  <li><a href="#professor-mus-current-works" id="toc-professor-mus-current-works" class="nav-link" data-scroll-target="#professor-mus-current-works"><span class="toc-section-number">1.3</span>  Professor Mu’s Current Works</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/intro.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -264,125 +260,9 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="https://vina.scripps.edu/"><strong>Autodock Zina</strong></a></p>
 <p>This is an open-source program for performing molecular docking.</p></li>
 </ol>
-</section>
-<section id="molecular-mechanics-in-molecular-modelling" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="molecular-mechanics-in-molecular-modelling"><span class="header-section-number">1.1.3</span> Molecular Mechanics in Molecular Modelling</h3>
-<p>Molecular modelling started with the idea that molecular geometry, energy, and other molecular properties could be calculated from models (that are influenced by basic forces).</p>
-<p>A <strong>molecule</strong> - hence - is a system of particles (i.e., atoms) connected by springs (i.e., bonds). This molecule is free to rotate, vibrate, and adopt a favorable conformation in space as a result of the inter- <em>and</em> intramolecular forces acting upon it.</p>
-</section>
-</section>
-<section id="structure-topology-motion-functions-and-potential-energy" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="structure-topology-motion-functions-and-potential-energy"><span class="header-section-number">1.2</span> Structure, Topology, Motion, Functions, and Potential Energy</h2>
-<p>This section aims to illustrate how different energy functions can influence the behavior of particles in a system.</p>
-<section id="case-1" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="case-1"><span class="header-section-number">1.2.1</span> Case #1</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/system.jpg" class="img-fluid figure-img" width="156"></p>
-<p></p><figcaption class="figure-caption">A Simple System to Consider</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The potential and kinetic energy <span class="math inline">\(E_p\)</span> and <span class="math inline">\(E_k\)</span> respectively in this system is given by:</p>
-<span class="math display">\[\begin{align}
-  E_p &amp;= E_p(\vec{x}) = \sum_{i}f_i(x, y, z) \\
-  E_k &amp;= \frac{1}{2} \cdot (m_1v_1^2 + m_2v_2^2)
-\end{align}\]</span>
-<p>Where <span class="math inline">\(\vec{x}\)</span> is the system and <span class="math inline">\(f_i(x, y, z)\)</span> a function that calculates the potential energy for each particle in the system (i.e., each atom). Hence, we can say that:</p>
-<span class="math display">\[\begin{equation}
-  E_{tot} = E_p + E_k
-\end{equation}\]</span>
-<p>Where <span class="math inline">\(E_{tot}\)</span> is the total energy of the system.</p>
-<p>Since <span class="math inline">\(r\)</span> represents the distance between both molecules, therefore <span class="math inline">\(E_p(r) = 0\)</span>.</p>
-<span class="math display">\[\begin{equation}
-  \vec{F} = \frac{\partial E_p(\vec{x})}{\partial \vec{x}}
-\end{equation}\]</span>
-<p>The force<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">\(\vec{F}\)</span> on the system is denoted via the above equation.</p>
-<p>Since <span class="math inline">\(E_p(r) = 0\)</span> in the first figure, it follows that <span class="math inline">\(F(r) = 0\)</span>.</p>
-</section>
-<section id="case-2" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="case-2"><span class="header-section-number">1.2.2</span> Case #2</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/sys2.jpg" class="img-fluid figure-img" width="138"></p>
-<p></p><figcaption class="figure-caption">A System with Two Charged Molecules</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here, the charge <span class="math inline">\(V_{ele}\)</span> and the potential energy <span class="math inline">\(E_p(r)\)</span> is given via the following equations:</p>
-<span class="math display">\[\begin{align}
-  V_{ele}(r) &amp;= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1}{r} \\
-  E_p(r) &amp;= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1q_2}{r}
-\end{align}\]</span>
-<p>Some important considerations to think about include the variables and the parameters of the system.</p>
-</section>
-<section id="case-3" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="case-3"><span class="header-section-number">1.2.3</span> Case #3</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/sys3.jpg" class="img-fluid figure-img" width="504"></p>
-<p></p><figcaption class="figure-caption">A System with Two Molecules and their Energy Graph</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In this system, we let:</p>
-<span class="math display">\[\begin{equation}
-  E_p(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
-\end{equation}\]</span>
-<p>In this system, we also note that <span class="math inline">\(E_p(r) = 0\)</span> when <span class="math inline">\(r = \sigma\)</span> and that <span class="math inline">\(\displaystyle E_p(\sqrt[6]{2}\sigma) = -\epsilon\)</span>.</p>
-<p>Do also consider the variables and parameters in this system (and whether or not both particles in this system can move freely).</p>
-</section>
-<section id="case-4" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="case-4"><span class="header-section-number">1.2.4</span> Case #4</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/sys4.jpg" class="img-fluid figure-img" width="470"></p>
-<p></p><figcaption class="figure-caption">A System with Two Molecules and their Energy Graph</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here, we define the system’s potential energy <span class="math inline">\(E_p\)</span> as:</p>
-<span class="math display">\[\begin{equation}
-  E_p(r) = \frac{1}{2}k(r - r_0)^2
-\end{equation}\]</span>
-<p>While the energy graph for this system appears to be that of bonding, it is still important to consider the variables and the parameters of the system.</p>
-<p>We can also further decompose the above equation to its spatial components <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> and say that:</p>
-<span class="math display">\[\begin{equation}
-E_p(r) = \frac{1}{2}k(x - x_0)^2 + \frac{1}{2}k(y - y_0)^2 + \frac{1}{2}k(z - z_0)^2
-\end{equation}\]</span>
-<p>In this sub-case, the system appears to be a lattice. However, are the particles still movable?</p>
-</section>
-</section>
-<section id="professor-mus-current-works" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="professor-mus-current-works"><span class="header-section-number">1.3</span> Professor Mu’s Current Works</h2>
-<p>As of the time of writing, professor Mu’s lab is currently focused on the following topics:</p>
-<ol type="1">
-<li>Amyloidogenic protein / peptide aggregation and misfolding</li>
-<li>DNA-DNA, DNA-ions, and DNA-protein interactions</li>
-<li>Drug-protein interaction and drug candidate screening</li>
-<li>Peptide-membrane interactions.</li>
-</ol>
-<p>For more information on professor Mu’s current research topics, do visit his <a href="https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang">lab’s homepage</a>.</p>
 
 
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Note that <span class="math inline">\(\vec{F}\)</span> is caused by a change in potential energy, not by potential energy itself!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -604,8 +484,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./wk2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Force Fields</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./wk2a.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

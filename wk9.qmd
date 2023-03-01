@@ -1,0 +1,6 @@
+# Nonbonded Computations and Data Analysis
+
+```{r echo = F, fig.cap = "A Computational Bottleneck", fig.align = "center"}
+knitr::include_graphics("images/wk9/cutoff.jpg")
+```
+

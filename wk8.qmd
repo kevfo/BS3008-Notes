@@ -1,0 +1,91 @@
+# Docking and Drug Discovery
+
+```{r echo = F, fig.cap = "Docking and Scoring", fig.align = "center"}
+knitr::include_graphics("images/wk8/docking.jpg")
+```
+
+**Docking** is the act of placing a ligand (i.e., a small molecule) into the binding site of a receptor in an appropriate manner so that it may interact with the receptor.
+
+**Scoring** is the evaluation of the ligand-receptor interactions in a way that may distinguish between experimentally-observed results and also estimate the binding affinity.
+
+Docking is done to discover how best to optimize drug binding to their targets as drug discovery costs are quite high (i.e. about 800 million dollars just to go through 10000 compounds in eight to 14 years).
+
+## Determinants for Binding 
+
+Biding is a complex process that is controlled by several factors, including:
+
+1.  Interaction energies between two different energies.
+1.  Desolvation and solvation energies associated with interacting molecules.
+1.  Entropic factors that occur upon binding.
+
+### "Lock and Key" Principle
+
+> "The specificity of an enzyme (the lock) for its substrate (the key) arises from their geometrically complementary shapes.”
+>
+> -- Emil Fischer (1894)
+
+This model proposes that a molecule fits into the enzyme like a key fitting into a lock.
+
+### Induced Fit Model
+
+```{r echo = F, fig.cap = "Illustration of the Induced Fit Model", fig.align = "center"}
+knitr::include_graphics("images/wk8/induced.jpg")
+```
+
+Proteins in their apo conformations have different shapes in their holo states. When a ligand binds to the enzyme's active site, this induces a sort of conformational change within the enzyme itself.
+
+This model is supported by X-ray structures of the same protein in the apo (i.e., open) form without the ligand's presence and in thte holo (i.e., closed) form with the ligand binding.
+
+### Conformational Selection
+
+```{r echo = F, fig.cap = "Conformational Selection Model", fig.align = "center"}
+knitr::include_graphics("images/wk8/conformational.jpg")
+```
+
+Prior to the binding interaction, the protein is an ensemble of conformations that exist in dynamic equilibrium.  The binding partner (i.e., ligand) then interacts with a weakly populated, higher-energy conformation, causing the equilibrium to shift in favor of the selected conformation.
+
+### Protein-Ligand Binding Process
+
+```{r echo = F, fig.cap = "Multiple States in Ligand Binding", fig.align = "center"}
+knitr::include_graphics("images/wk8/binding.jpg")
+```
+
+Protein-ligand binding is a complex process between:
+
+1.  An ensemble of solvated ligand conformations
+1.  A sovlated receptor binding site
+1.  A solvated receptor-ligand complex
+
+Binding free energies may involve:
+
+1.  Enthalpic components (e.g., breaking and forming new hydrogen bonds and forming hydrophobic components)
+1.  Entropic components (e.g., loss of conformational flexibility)
+1.  Desolvation effects
+
+## Components of Docking
+
+```{r echo = F, fig.cap = "Three Main Components of Docking", fig.align = "center"}
+knitr::include_graphics("images/wk8/dockingsteps.jpg")
+```
+
+The above graphic lists three main components of docking that BS3008 covers.
+
+### Binding Site Descriptions
+
+The **P**rotein **D**ata **B**ank (i.e., **PDB**) is a publicly available database that contains proteins or enzymes.
+
+However, Davis et al. notes the following limitations of experimental structures (in general):
+
+1.  Locations of hydrogen atoms, water molecules, and metal ions.
+1.  Identities and locations of heavy atoms
+1.  Conformational flexibility of proteins
+
+Binding sites can be described in terms of atomic coordinates, volume, points & distances, and various properties such as electrostatic interactions and atom types.
+
+### Drug, Chemical, and Structural Space
+
+
+
+
+
+

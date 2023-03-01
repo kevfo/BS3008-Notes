@@ -1,0 +1,3 @@
+# Linux Command Line
+
+Week 3's practical aims to provide an introduction to the Linux command line.  Ths Linux command line is crucial to know for 

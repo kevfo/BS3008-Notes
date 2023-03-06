@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BS3008: Computer Aided Drug Discovery - 5&nbsp; Realization of Force Field and Energy Minimalization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./wk6.html" rel="next">
+<link href="./wk2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">BS3008: Computer Aided Drug Discovery</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/kevfo/BS3008-Notes" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>PART 1 : LECTURES</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theoretical Foundations of BS3008</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2a.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><strong>PART 2 : PRACTICAL SESSIONS</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Untitled</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#types-of-force-fields" id="toc-types-of-force-fields" class="nav-link active" data-scroll-target="#types-of-force-fields"><span class="toc-section-number">5.1</span>  Types of Force Fields</a>
+  <ul class="collapse">
+  <li><a href="#amber-force-fields" id="toc-amber-force-fields" class="nav-link" data-scroll-target="#amber-force-fields"><span class="toc-section-number">5.1.1</span>  AMBER Force Fields</a></li>
+  <li><a href="#opls-force-fields" id="toc-opls-force-fields" class="nav-link" data-scroll-target="#opls-force-fields"><span class="toc-section-number">5.1.2</span>  OPLS Force Fields</a></li>
+  <li><a href="#charmm-force-fields" id="toc-charmm-force-fields" class="nav-link" data-scroll-target="#charmm-force-fields"><span class="toc-section-number">5.1.3</span>  CHARMM Force Fields</a></li>
+  <li><a href="#applications-of-force-fields-in-practice" id="toc-applications-of-force-fields-in-practice" class="nav-link" data-scroll-target="#applications-of-force-fields-in-practice"><span class="toc-section-number">5.1.4</span>  Applications of Force Fields in Practice</a></li>
+  </ul></li>
+  <li><a href="#gromacs-software" id="toc-gromacs-software" class="nav-link" data-scroll-target="#gromacs-software"><span class="toc-section-number">5.2</span>  GROMACS Software</a></li>
+  <li><a href="#minimization" id="toc-minimization" class="nav-link" data-scroll-target="#minimization"><span class="toc-section-number">5.3</span>  Minimization</a>
+  <ul class="collapse">
+  <li><a href="#minimization-methods" id="toc-minimization-methods" class="nav-link" data-scroll-target="#minimization-methods"><span class="toc-section-number">5.3.1</span>  Minimization Methods</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/circles.jpg" class="img-fluid figure-img" width="218"></p>
+<p></p><figcaption class="figure-caption">Illustrations of Different Parameters in a Sample System</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The potential energy <span class="math inline">\(V(r)\)</span> for any force field is:</p>
+<p><span class="math display">\[\begin{align}
+  V(r) &amp;= \sum_{\text{bonds}}k_b(b - b_0)^2 + \sum_{\text{angles}}k_\theta(\theta-\theta_0)^2 + \sum_{\text{torsions}}k_\phi[\cos(n\phi + \delta) + 1] \\
+  &amp;+ \sum_{\text{nonbonded pairs}}\left[\frac{q_iq_j}{r_{ij}} + \frac{A_{ij}}{r_{ij}^{12}} - \frac{C_{ij}}{r_{ij}^6}\right]
+\end{align}\]</span></p>
+<p>This lecture covers different kinds of force fields.</p>
+<section id="types-of-force-fields" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="types-of-force-fields"><span class="header-section-number">5.1</span> Types of Force Fields</h2>
+<p>BS3008 covers three kinds:</p>
+<section id="amber-force-fields" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="amber-force-fields"><span class="header-section-number">5.1.1</span> AMBER Force Fields</h3>
+<p>These were developed by the Kollman Group at the University of California, San Francisco from the early 1980s until now.</p>
+<p>The charges in this force field were derived from quantum chemistry calculations at the Hartree-Fock STO-3G level via fitting of partial atomic charges to the quantum electrostatic potential. These forces are called <strong>ESP</strong> (i.e., <strong>E</strong>lectro<strong>s</strong>tatic <strong>p</strong>otential) charges.</p>
+<p>The van der Waals terms were adopted from amide crystal data from a research group (i.e., Lifson) and from liquid-state simulations by another research group (i.e., Jorgensen).</p>
+<p>Force constants and idealized bond lengths and angles were taken from crystal structures and adapted to match normal frequencies for a number of peptide fragments.</p>
+<p>Torsion force constants were adjusted to match torsional barriers from experiment or from quantum chemistry calculations.</p>
+<p>The values in an AMBER force field are closely coupled to non-bonded potentials and are <em>hardly transferrable</em> from one force field to another.</p>
+</section>
+<section id="opls-force-fields" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="opls-force-fields"><span class="header-section-number">5.1.2</span> OPLS Force Fields</h3>
+<p><strong>OPLS</strong> is short for <strong>O</strong>ptimized <strong>P</strong>otential for <strong>L</strong>iquid <strong>S</strong>imulation. OPLS force fields were developed by Jorgensen and co-workers at Yale university to simulate liquid-state properties for water and more than 40 organic liquids.</p>
+<p>OPLS force fields placed a strong emphasis on deriving non-bonded interactions in comparison to liquid-state thermodynamics. The earliest application of an OPLS force field was to that of rigid-molecule Monte Carlo simulations of the structure and thermodynamics of hydrofluoric acid (i.e., liquid HF).</p>
+<section id="change-in-opls-performance" class="level4" data-number="5.1.2.1">
+<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="change-in-opls-performance"><span class="header-section-number">5.1.2.1</span> Change in OPLS Performance</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/rama.jpg" class="img-fluid figure-img" width="240"></p>
+<p></p><figcaption class="figure-caption">Ramachandran Plots of an OPLS Force Field</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In 2001, the OPLS-AA performance for peptides was refitted by key Fourier torsional coefficients.</p>
+<p>This technique uses experimental data as its target to choose a suitable subspace of the whole potential energy surface and to determine weights for each of the fitting points based on gradients.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/energy.jpg" class="img-fluid figure-img" width="488"></p>
+<p></p><figcaption class="figure-caption">Experimental Results for Liquid Densities, Heats of Vaporization, and Free Energies of Hydration (from left to right)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The average energy deviation (in root mean squared) from the LMP2/cc- pVTZ(-f)//HF/6-31G** data has been reduced by 40% from 0.81 to 0.47 kcal / mol due to fitting for electrostatically uncharged dipeptides.</p>
+</section>
+</section>
+<section id="charmm-force-fields" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="charmm-force-fields"><span class="header-section-number">5.1.3</span> CHARMM Force Fields</h3>
+<p><strong>CHARMM</strong> is short for <strong>C</strong>hemistry at <strong>Har</strong>vard using <strong>M</strong>olecular <strong>M</strong>echanics; this force field was developed in the early 1980s by the Karplus group. The goal of CHARMM was to obtain a balanced interaction between solute-water and water-water energies when the latter are represented by TIP3P.</p>
+<p>For peptides, it was found that peptide-water interactions led to peptide-peptide hydrogen bonds that were larger than HF/6-31G values by a factor of close to 1.6.</p>
+<p>Lennard-Jones parameters were then refined to reproduce densities and heats of vaporization of liquids (along with unit cell parameters and sublimation heat for crystals).</p>
+<p>Quantum calculations at the HF/6-13G level of hydrogen bond complexes between water and hydrogen bond donors or acceptors of amino acids or fragments.</p>
+<p>The above set of calculations involves a series of supermolecular calculations of the model compound (e.g., formamide or a single water molecule).</p>
+<section id="change-in-charmm-force-fields" class="level4" data-number="5.1.3.1">
+<h4 data-number="5.1.3.1" class="anchored" data-anchor-id="change-in-charmm-force-fields"><span class="header-section-number">5.1.3.1</span> Change in CHARMM Force Fields</h4>
+<p>In 2004, a new parameter was introduced such that:</p>
+<p><span class="math display">\[\begin{equation}
+  V_{\text{cross}} = K_{n, m}(1 + \cos(n\phi + m\psi - \delta_{n, m}))
+\end{equation}\]</span></p>
+<p>Molecular dynamics simulations of up to <em>seven</em> proteins in their crystalline environments were used to validate force field enhancements.</p>
+</section>
+</section>
+<section id="applications-of-force-fields-in-practice" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="applications-of-force-fields-in-practice"><span class="header-section-number">5.1.4</span> Applications of Force Fields in Practice</h3>
+<p>In a non-bonded kind of interaction, the van der Waals parameters are; <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\sigma\)</span>. In a bonded interaction, the van der Waals parameters are:</p>
+<ol type="1">
+<li>An equilibrium bond length <span class="math inline">\(l_0\)</span> with a force constraint <span class="math inline">\(k\)</span>.</li>
+<li>An equilibrium angle <span class="math inline">\(\alpha_0\)</span> with a force constraint <span class="math inline">\(k\)</span></li>
+<li>Torsional angle terms <span class="math inline">\(V_i\)</span>, <span class="math inline">\(n_i\)</span>, and <span class="math inline">\(\theta_i\)</span>.</li>
+</ol>
+<p>In a database (i.e., topological library), atom types, partial charges, and chemical bonding information are included.</p>
+</section>
+</section>
+<section id="gromacs-software" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="gromacs-software"><span class="header-section-number">5.2</span> GROMACS Software</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/gromacs.jpg" class="img-fluid figure-img" width="459"></p>
+<p></p><figcaption class="figure-caption">Example of GROMACS Input</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>GROMACS</strong> is short for <strong>GRO</strong>ningen <strong>MA</strong>chine for <strong>C</strong>hemical <strong>S</strong>imulation. GROMACS is an inter-group effort between different project groups in the University of Groningen’s chemistry department (located in the Netherlands).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/tip.jpg" class="img-fluid figure-img" width="472"></p>
+<p></p><figcaption class="figure-caption">A GROMACS Simulation with a Four-Point Water Molecule</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>[settle]</code> section defines the first atom of a water molecule in a water molecule. The H-H and the O-H distances must always be given - this algorithm can also be used for TIP3P and TIP4P.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/watermodel.jpg" class="img-fluid figure-img" width="321"></p>
+<p></p><figcaption class="figure-caption">Energy of a Water Molecule in Different Systems</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above graphs shows computed and experimental results for the density of liquid water versus the temperature at 1 atm.</p>
+</section>
+<section id="minimization" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="minimization"><span class="header-section-number">5.3</span> Minimization</h2>
+<p>As the initial structure of an atom is usually taken from a guess (e.g., particle in a box model), there could be unexpected, “bad” contacts between atoms.</p>
+<p>If a system has <span class="math inline">\(N\)</span> atoms, then there are <span class="math inline">\(3N\)</span> coordinates or <span class="math inline">\(3N - 6\)</span> internal coordinates - these coordinates all define multi-dimensional <strong>PES</strong> (i.e., <strong>p</strong>otential <strong>e</strong>nergy <strong>s</strong>urface).</p>
+<p>A process is needed to find the local minimum of a PES. Minimization is typically performed after model building</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/stationary.jpg" class="img-fluid figure-img" width="484"></p>
+<p></p><figcaption class="figure-caption">Meanings of Derivatives in Multivariable Calculus</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Given a function <span class="math inline">\(\displaystyle f = f(x_1, x_2, x_3, ...)\)</span>, we need to find the values of <span class="math inline">\(x\)</span> such that <span class="math inline">\(f\)</span> will be a minimum - in other terms:</p>
+<p><span class="math display">\[\begin{align}
+  \frac{\partial f}{\partial x_i} &amp;= 0 &amp; \frac{\partial^2 f}{\partial x_i^2} &amp;&gt; 0
+\end{align}\]</span></p>
+<p><span class="math inline">\(f\)</span> can usually be a function dealing with quantum mechanics energy or molecular mechanics energy, while <span class="math inline">\(x\)</span> can deal with Cartesian coordinates (in molecular mechanics) or internal coordinates (as is the case with quantum mechanics).</p>
+<section id="minimization-methods" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="minimization-methods"><span class="header-section-number">5.3.1</span> Minimization Methods</h3>
+<section id="simplex-method" class="level4" data-number="5.3.1.1">
+<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="simplex-method"><span class="header-section-number">5.3.1.1</span> Simplex Method</h4>
+<p>A <strong>simplex</strong> is a geometric figure with <span class="math inline">\(M + 1\)</span> connected vertices, where <span class="math inline">\(M\)</span> is the dimensionality of the energy function.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/minimal.jpg" class="img-fluid figure-img" width="416"></p>
+<p></p><figcaption class="figure-caption">Minimum Point on a Simplex Function</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The minima is / are usually found via reflection, reflection-and-expansion, and contraction.</p>
+</section>
+<section id="derivative-minimization-methods" class="level4" data-number="5.3.1.2">
+<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="derivative-minimization-methods"><span class="header-section-number">5.3.1.2</span> Derivative Minimization Methods</h4>
+<p>A Taylor series can be used to expand a function at a point <span class="math inline">\(x_0\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+  V(x) = v(x_0) + \frac{dV(x)}{dx}(x - x_0) + \frac{d^2V(x)}{dx^2} \cdot \frac{(x - x_0)^2}{2}
+\end{equation}\]</span></p>
+<p>If <span class="math inline">\(V(x)\)</span> is a function of <span class="math inline">\(N\)</span> variables, then <span class="math inline">\(V'(x_k)\)</span> is the <span class="math inline">\(N*1\)</span> matrix - hence, <span class="math inline">\(V''\)</span> should be re-written as <span class="math inline">\(\displaystyle \frac{\partial^2V}{\partial x_{k1}\partial x_{k2}}\)</span>. This matrix is then known as the <strong>Hessian matrix</strong> or the <em>force constant matrix</em>.</p>
+</section>
+<section id="first-order-minimization-methods" class="level4" data-number="5.3.1.3">
+<h4 data-number="5.3.1.3" class="anchored" data-anchor-id="first-order-minimization-methods"><span class="header-section-number">5.3.1.3</span> First Order Minimization Methods</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/steep.jpg" class="img-fluid figure-img" width="162"></p>
+<p></p><figcaption class="figure-caption">Illustration of a Steepest Descent Method</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>steepest descent method</strong> moves in the direction parallel to the net force - this is like walking downhill.</p>
+<p><span class="math display">\[\begin{align}
+  s_k &amp;= \frac{-g_k}{|g_k|} &amp; g_k &amp;= \frac{\partial V}{\partial x_k}
+\end{align}\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk5/conj.jpg" class="img-fluid figure-img" width="202"></p>
+<p></p><figcaption class="figure-caption">Conjugate Gradients Method</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>conjugate graidents methods</strong> not only considers net force, but also takes the previous move step into consideration.</p>
+<p><span class="math display">\[\begin{align}
+  s_k &amp;= -g_{k - 1} + \gamma_ks_{k - 1} &amp; \gamma_k &amp;= \frac{s_{k - 1} \cdot g_{k - 1}}{s^2_{k - 1}}
+\end{align}\]</span></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./wk2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./wk6.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

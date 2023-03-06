@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BS3008: Computer Aided Drug Discovery - 8&nbsp; Docking and Drug Discovery</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lab1.html" rel="next">
+<link href="./wk7.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">BS3008: Computer Aided Drug Discovery</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/kevfo/BS3008-Notes" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>PART 1 : LECTURES</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theoretical Foundations of BS3008</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2a.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk8.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><strong>PART 2 : PRACTICAL SESSIONS</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Untitled</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#determinants-for-binding" id="toc-determinants-for-binding" class="nav-link active" data-scroll-target="#determinants-for-binding"><span class="toc-section-number">8.1</span>  Determinants for Binding</a>
+  <ul class="collapse">
+  <li><a href="#lock-and-key-principle" id="toc-lock-and-key-principle" class="nav-link" data-scroll-target="#lock-and-key-principle"><span class="toc-section-number">8.1.1</span>  “Lock and Key” Principle</a></li>
+  <li><a href="#induced-fit-model" id="toc-induced-fit-model" class="nav-link" data-scroll-target="#induced-fit-model"><span class="toc-section-number">8.1.2</span>  Induced Fit Model</a></li>
+  <li><a href="#conformational-selection" id="toc-conformational-selection" class="nav-link" data-scroll-target="#conformational-selection"><span class="toc-section-number">8.1.3</span>  Conformational Selection</a></li>
+  <li><a href="#protein-ligand-binding-process" id="toc-protein-ligand-binding-process" class="nav-link" data-scroll-target="#protein-ligand-binding-process"><span class="toc-section-number">8.1.4</span>  Protein-Ligand Binding Process</a></li>
+  </ul></li>
+  <li><a href="#components-of-docking" id="toc-components-of-docking" class="nav-link" data-scroll-target="#components-of-docking"><span class="toc-section-number">8.2</span>  Components of Docking</a>
+  <ul class="collapse">
+  <li><a href="#binding-site-descriptions" id="toc-binding-site-descriptions" class="nav-link" data-scroll-target="#binding-site-descriptions"><span class="toc-section-number">8.2.1</span>  Binding Site Descriptions</a></li>
+  <li><a href="#drug-chemical-and-structural-space" id="toc-drug-chemical-and-structural-space" class="nav-link" data-scroll-target="#drug-chemical-and-structural-space"><span class="toc-section-number">8.2.2</span>  Drug, Chemical, and Structural Space</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk8.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/docking.jpg" class="img-fluid figure-img" width="444"></p>
+<p></p><figcaption class="figure-caption">Docking and Scoring</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Docking</strong> is the act of placing a ligand (i.e., a small molecule) into the binding site of a receptor in an appropriate manner so that it may interact with the receptor.</p>
+<p><strong>Scoring</strong> is the evaluation of the ligand-receptor interactions in a way that may distinguish between experimentally-observed results and also estimate the binding affinity.</p>
+<p>Docking is done to discover how best to optimize drug binding to their targets as drug discovery costs are quite high (i.e.&nbsp;about 800 million dollars just to go through 10000 compounds in eight to 14 years).</p>
+<section id="determinants-for-binding" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="determinants-for-binding"><span class="header-section-number">8.1</span> Determinants for Binding</h2>
+<p>Biding is a complex process that is controlled by several factors, including:</p>
+<ol type="1">
+<li>Interaction energies between two different energies.</li>
+<li>Desolvation and solvation energies associated with interacting molecules.</li>
+<li>Entropic factors that occur upon binding.</li>
+</ol>
+<section id="lock-and-key-principle" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="lock-and-key-principle"><span class="header-section-number">8.1.1</span> “Lock and Key” Principle</h3>
+<blockquote class="blockquote">
+<p>“The specificity of an enzyme (the lock) for its substrate (the key) arises from their geometrically complementary shapes.”</p>
+<p>– Emil Fischer (1894)</p>
+</blockquote>
+<p>This model proposes that a molecule fits into the enzyme like a key fitting into a lock.</p>
+</section>
+<section id="induced-fit-model" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="induced-fit-model"><span class="header-section-number">8.1.2</span> Induced Fit Model</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/induced.jpg" class="img-fluid figure-img" width="468"></p>
+<p></p><figcaption class="figure-caption">Illustration of the Induced Fit Model</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Proteins in their apo conformations have different shapes in their holo states. When a ligand binds to the enzyme’s active site, this induces a sort of conformational change within the enzyme itself.</p>
+<p>This model is supported by X-ray structures of the same protein in the apo (i.e., open) form without the ligand’s presence and in thte holo (i.e., closed) form with the ligand binding.</p>
+</section>
+<section id="conformational-selection" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="conformational-selection"><span class="header-section-number">8.1.3</span> Conformational Selection</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/conformational.jpg" class="img-fluid figure-img" width="278"></p>
+<p></p><figcaption class="figure-caption">Conformational Selection Model</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Prior to the binding interaction, the protein is an ensemble of conformations that exist in dynamic equilibrium. The binding partner (i.e., ligand) then interacts with a weakly populated, higher-energy conformation, causing the equilibrium to shift in favor of the selected conformation.</p>
+</section>
+<section id="protein-ligand-binding-process" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="protein-ligand-binding-process"><span class="header-section-number">8.1.4</span> Protein-Ligand Binding Process</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/binding.jpg" class="img-fluid figure-img" width="242"></p>
+<p></p><figcaption class="figure-caption">Multiple States in Ligand Binding</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Protein-ligand binding is a complex process between:</p>
+<ol type="1">
+<li>An ensemble of solvated ligand conformations</li>
+<li>A sovlated receptor binding site</li>
+<li>A solvated receptor-ligand complex</li>
+</ol>
+<p>Binding free energies may involve:</p>
+<ol type="1">
+<li>Enthalpic components (e.g., breaking and forming new hydrogen bonds and forming hydrophobic components)</li>
+<li>Entropic components (e.g., loss of conformational flexibility)</li>
+<li>Desolvation effects</li>
+</ol>
+</section>
+</section>
+<section id="components-of-docking" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="components-of-docking"><span class="header-section-number">8.2</span> Components of Docking</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/dockingsteps.jpg" class="img-fluid figure-img" width="360"></p>
+<p></p><figcaption class="figure-caption">Three Main Components of Docking</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above graphic lists three main components of docking that BS3008 covers.</p>
+<section id="binding-site-descriptions" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="binding-site-descriptions"><span class="header-section-number">8.2.1</span> Binding Site Descriptions</h3>
+<p>The <strong>P</strong>rotein <strong>D</strong>ata <strong>B</strong>ank (i.e., <strong>PDB</strong>) is a publicly available database that contains proteins or enzymes.</p>
+<p>However, Davis et al.&nbsp;notes the following limitations of experimental structures (in general):</p>
+<ol type="1">
+<li>Locations of hydrogen atoms, water molecules, and metal ions.</li>
+<li>Identities and locations of heavy atoms</li>
+<li>Conformational flexibility of proteins</li>
+</ol>
+<p>Binding sites can be described in terms of atomic coordinates, volume, points &amp; distances, and various properties such as electrostatic interactions and atom types.</p>
+</section>
+<section id="drug-chemical-and-structural-space" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="drug-chemical-and-structural-space"><span class="header-section-number">8.2.2</span> Drug, Chemical, and Structural Space</h3>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./wk7.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./lab1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

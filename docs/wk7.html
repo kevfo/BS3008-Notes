@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BS3008: Computer Aided Drug Discovery - 7&nbsp; Monte Carlo Simulations and Basic Statistical Mechanics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./wk8.html" rel="next">
+<link href="./wk6.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">BS3008: Computer Aided Drug Discovery</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/kevfo/BS3008-Notes" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>PART 1 : LECTURES</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theoretical Foundations of BS3008</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2a.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk7.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><strong>PART 2 : PRACTICAL SESSIONS</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Untitled</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#monte-carlo-simulations" id="toc-monte-carlo-simulations" class="nav-link active" data-scroll-target="#monte-carlo-simulations"><span class="toc-section-number">7.1</span>  Monte Carlo Simulations</a>
+  <ul class="collapse">
+  <li><a href="#generating-random-numbers" id="toc-generating-random-numbers" class="nav-link" data-scroll-target="#generating-random-numbers"><span class="toc-section-number">7.1.1</span>  Generating Random Numbers</a></li>
+  <li><a href="#monte-carlo-sampling-to-estimate-pi" id="toc-monte-carlo-sampling-to-estimate-pi" class="nav-link" data-scroll-target="#monte-carlo-sampling-to-estimate-pi"><span class="toc-section-number">7.1.2</span>  Monte Carlo Sampling to Estimate <span class="math inline">\(\pi\)</span></a></li>
+  </ul></li>
+  <li><a href="#metropolis-algorithm-and-markov-chains" id="toc-metropolis-algorithm-and-markov-chains" class="nav-link" data-scroll-target="#metropolis-algorithm-and-markov-chains"><span class="toc-section-number">7.2</span>  Metropolis Algorithm and Markov Chains</a>
+  <ul class="collapse">
+  <li><a href="#metropolis-algorithm" id="toc-metropolis-algorithm" class="nav-link" data-scroll-target="#metropolis-algorithm"><span class="toc-section-number">7.2.1</span>  Metropolis Algorithm</a></li>
+  <li><a href="#markov-chains" id="toc-markov-chains" class="nav-link" data-scroll-target="#markov-chains"><span class="toc-section-number">7.2.2</span>  Markov Chains</a></li>
+  <li><a href="#comparing-molecular-dynamics-and-molecular-computation" id="toc-comparing-molecular-dynamics-and-molecular-computation" class="nav-link" data-scroll-target="#comparing-molecular-dynamics-and-molecular-computation"><span class="toc-section-number">7.2.3</span>  Comparing Molecular Dynamics and Molecular Computation</a></li>
+  </ul></li>
+  <li><a href="#statistical-mechanics" id="toc-statistical-mechanics" class="nav-link" data-scroll-target="#statistical-mechanics"><span class="toc-section-number">7.3</span>  Statistical Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#types-of-ensembles" id="toc-types-of-ensembles" class="nav-link" data-scroll-target="#types-of-ensembles"><span class="toc-section-number">7.3.1</span>  Types of Ensembles</a></li>
+  <li><a href="#entropy" id="toc-entropy" class="nav-link" data-scroll-target="#entropy"><span class="toc-section-number">7.3.2</span>  Entropy</a></li>
+  <li><a href="#potential-of-mean-force" id="toc-potential-of-mean-force" class="nav-link" data-scroll-target="#potential-of-mean-force"><span class="toc-section-number">7.3.3</span>  Potential of Mean Force</a></li>
+  </ul></li>
+  <li><a href="#ergodic-hypothesis" id="toc-ergodic-hypothesis" class="nav-link" data-scroll-target="#ergodic-hypothesis"><span class="toc-section-number">7.4</span>  Ergodic Hypothesis</a>
+  <ul class="collapse">
+  <li><a href="#dilemma" id="toc-dilemma" class="nav-link" data-scroll-target="#dilemma"><span class="toc-section-number">7.4.1</span>  Dilemma</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk7.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="monte-carlo-simulations" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="monte-carlo-simulations"><span class="header-section-number">7.1</span> Monte Carlo Simulations</h2>
+<blockquote class="blockquote">
+<p>“In a Monte Carlo simulation we attempt to study the system of a model for which change, or growth, does not proceed in some rigorously predefined fashion (e.g.&nbsp;according to Newton’s equations of motion) but rather in a stochastic manner which depends on a sequence of random numbers which is generated during the simulation.”</p>
+<p>– Landau and Binder</p>
+</blockquote>
+<p>A <strong>Monte Carlo simulation</strong> is a mathematical technique that is used to estimate the outcome of an uncertain event<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<section id="generating-random-numbers" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="generating-random-numbers"><span class="header-section-number">7.1.1</span> Generating Random Numbers</h3>
+<p>When a number is said to be <strong>pseudorandom</strong>, it means that there is some sort of algorithm (i.e., recursion) used to generate a sequence of numbers based on an initial number (i.e., the “seed”) <span class="math inline">\(x_0\)</span>.</p>
+<p>The resultant set of numbers generated <span class="math inline">\(\{x_1, x_2, x_3, ...\}\)</span> are independent of one another, uniform, and follow a long period.</p>
+<section id="linear-congruential-generators-i.e.-lcgs" class="level4" data-number="7.1.1.1">
+<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="linear-congruential-generators-i.e.-lcgs"><span class="header-section-number">7.1.1.1</span> Linear Congruential Generators (i.e., LCGs)</h4>
+<p>This was an approached first used in 1948 by DH Lehmer to generate pseudorandom numbers. The process is as follows:</p>
+<ol type="1">
+<li>Multiply the previous term by a constant <span class="math inline">\(a\)</span>.</li>
+<li>Add the product in 1. to another constant <span class="math inline">\(c\)</span>.</li>
+<li>Take the modulus of the result with respect to a large number <span class="math inline">\(M\)</span>.</li>
+</ol>
+<p>Therefore, the next pseudorandom number generated <span class="math inline">\(X_{i + 1}\)</span> is equivalent to <span class="math inline">\((aX_i + c)\mod(M)\)</span></p>
+</section>
+</section>
+<section id="monte-carlo-sampling-to-estimate-pi" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="monte-carlo-sampling-to-estimate-pi"><span class="header-section-number">7.1.2</span> Monte Carlo Sampling to Estimate <span class="math inline">\(\pi\)</span></h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/circ.jpg" class="img-fluid figure-img" width="183"></p>
+<p></p><figcaption class="figure-caption">A Circle on a Cartesian Plane</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The area of the green circle <span class="math inline">\(\pi r^2\)</span> is proportional to the possibility of finding a point inside the object when the point is selected at random.</p>
+<p>If we choose 1000 points in the above figure, 800 points will land inside the quarter circle.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/est.jpg" class="img-fluid figure-img" width="218"></p>
+<p></p><figcaption class="figure-caption">Randomly Plotted Points on a Cartesian Plane</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Nonetheless, initially assume that <span class="math inline">\(N_{in} = 0\)</span> - then, we perform the following <span class="math inline">\(N\)</span> times:</p>
+<ol type="1">
+<li>We calculate two random numbers <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
+<li>If <span class="math inline">\(x^2 + y^2 &lt; l\)</span>, then <span class="math inline">\(N_{in} = N_{in} + l\)</span></li>
+</ol>
+<p>Hence, we can argue that <span class="math inline">\(\displaystyle \pi \approx \frac{4N_{in}}{N}\)</span></p>
+</section>
+</section>
+<section id="metropolis-algorithm-and-markov-chains" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="metropolis-algorithm-and-markov-chains"><span class="header-section-number">7.2</span> Metropolis Algorithm and Markov Chains</h2>
+<p>In canonical ensembles, the probability density function is proportional to the Boltzmann factor via the following equation:</p>
+<p><span class="math display">\[\begin{equation}
+  \rho(X) \alpha \exp(-\beta E(X))
+\end{equation}\]</span></p>
+<p>Where <span class="math inline">\(\displaystyle \beta = \frac{1}{k_BT}\)</span>. To calculate a physical quantity <span class="math inline">\(A\)</span> for an ensemble, we would need to calculate the value of the following integral:</p>
+<p><span class="math display">\[\begin{equation}
+  A = \int \rho(X) A(X) dX
+\end{equation}\]</span></p>
+<p>Using Monte Carlo Sampling, the integral becomes:</p>
+<p><span class="math display">\[\begin{equation}
+  A = \lim_{m \rightarrow \infty}\sum_{i = 1}^MA(X_i)
+\end{equation}\]</span></p>
+<section id="metropolis-algorithm" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="metropolis-algorithm"><span class="header-section-number">7.2.1</span> Metropolis Algorithm</h3>
+<p>This algorithm - devised in 1953 - is an efficient and simple procedure for the canonical ensemble.</p>
+<p>For <span class="math inline">\(i = 0, 1, 2, ...\)</span> given <span class="math inline">\(X_0\)</span>, we do the following:</p>
+<ol type="1">
+<li>Generate <span class="math inline">\(X_{i + 1}'\)</span> from <span class="math inline">\(X_i\)</span> using a perturbation technique</li>
+<li>Compute <span class="math inline">\(\Delta E = E(X_{i + 1}' - E(X_i)\)</span></li>
+<li>If <span class="math inline">\(\Delta E &lt; 0\)</span> (i.e., a downhill move), <span class="math inline">\(X_{i + 1} = X'_{i + 1}\)</span>, else <span class="math inline">\(\rho = \exp(-\beta \Delta E)\)</span> - if <span class="math inline">\(\rho\)</span> is larger than a random number, then <span class="math inline">\(X_{i + 1} = X'_{i + 1}\)</span>.</li>
+<li>The above three steps repeat.</li>
+</ol>
+</section>
+<section id="markov-chains" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="markov-chains"><span class="header-section-number">7.2.2</span> Markov Chains</h3>
+<p>The metropolis algorithm generates a chain of molecule states <span class="math inline">\(\{X_1, X_2, X_3, ...\}\)</span>. States that have a lower energy are always accepted, but states with higher energies have a nonzero probability of acceptance too.</p>
+<p>Because of this, sampling typically occurs in regions of lower energies, but the system can escape to other energy basins by jumping over large energy barriers.</p>
+<section id="boss-program" class="level4" data-number="7.2.2.1">
+<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="boss-program"><span class="header-section-number">7.2.2.1</span> BOSS Program</h4>
+<p>The <strong>B</strong>iochemical and <strong>O</strong>rganic <strong>S</strong>imulation <strong>S</strong>ystem (i.e., <strong>BOSS</strong>) program is a general purpose molecular modeling system that performs molecular mechanics, monte carlo simulations, and other quantum mechanical calculations.</p>
+<p>A monte carlo simulation generates a new configuration via random motions. This difference in energy between the new and the old set is used as a selection criterion in the Metropolis algorithm - this procedure is then repeated and uses internal coordinates</p>
+</section>
+<section id="z-matrices" class="level4" data-number="7.2.2.2">
+<h4 data-number="7.2.2.2" class="anchored" data-anchor-id="z-matrices"><span class="header-section-number">7.2.2.2</span> Z Matrices</h4>
+<p>A <strong>Z-matrix</strong> is used to represent a system made out of atoms - it is also known as an <strong>internal coordinate representation</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/zmatrix.jpg" class="img-fluid figure-img" width="250"></p>
+<p></p><figcaption class="figure-caption">Z-Matrix for Methane</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Z-matrices provide a description of each atom in a molecule in term of its atomic number, its bond length, its bond angle, and its dihedral angle (i.e., the <strong>internal coordinates</strong>).</p>
+<p>The first line of the above Z-matrix contains a carbon atom (i.e., atom 1).</p>
+<p>The second line contains a hydrogen atom (i.e., atom 2) the “H 1 1.089000” represents the distance between the hydrogen atom in question and the first atom (i.e., the carbon atom mentioned in the preceding paragraph).</p>
+<p>The third line states that the bond angle between the first, the second, and the third atom is 109.471 degrees.</p>
+<p>The fourth line states that the dihedral angle between the current atom and the other three atoms is 120 degrees.</p>
+</section>
+</section>
+<section id="comparing-molecular-dynamics-and-molecular-computation" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="comparing-molecular-dynamics-and-molecular-computation"><span class="header-section-number">7.2.3</span> Comparing Molecular Dynamics and Molecular Computation</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/compos.jpg" class="img-fluid figure-img" width="316"></p>
+<p></p><figcaption class="figure-caption">Comparisons Between Molecular Dynamics and Molecular Computations</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-mechanics" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="statistical-mechanics"><span class="header-section-number">7.3</span> Statistical Mechanics</h2>
+<p>The <strong>mechanical</strong> or <strong>microscopic state</strong> of a system is given by its atomic positions <span class="math inline">\(q\)</span> and its momenta <span class="math inline">\(p(m_iv_i)\)</span>. The latter can also be considered as coordinates in a multidimensional space called the <strong>phase space</strong>.</p>
+<p>For a system with <span class="math inline">\(N\)</span> particles, the phase space has <span class="math inline">\(6N\)</span> dimensions. A single point in this space describes the system’s state.</p>
+<p>The <strong>thermodynamic</strong> or <strong>macroscopic state</strong> of a system is defined by a small set of parameters - for instance, the temperature <span class="math inline">\(T\)</span>, the pressure <span class="math inline">\(P\)</span>, and the number of particles <span class="math inline">\(P\)</span>.</p>
+<section id="types-of-ensembles" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="types-of-ensembles"><span class="header-section-number">7.3.1</span> Types of Ensembles</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/ensemble.jpg" class="img-fluid figure-img" width="413"></p>
+<p></p><figcaption class="figure-caption">Illustration of an Ensemble</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An <strong>ensemble</strong> is a collection of possible systems (with different microscopic states), but have an identical macroscopic or thermodynamic state.</p>
+<p>There are several states examined in BS3008:</p>
+<ol type="1">
+<li><p><strong>Microcanonical Ensemble (NVE)</strong></p>
+<p>The thermodynamical state is characterized by a fixed amount of atoms <span class="math inline">\(N\)</span>, a fixed volume <span class="math inline">\(V\)</span>, and a fixed energy <span class="math inline">\(E\)</span>. This is an isolated system.</p></li>
+<li><p><strong>Canonical Ensemble (NVT)</strong></p>
+<p>The thermodynamical state has a fixed number of atoms and a fixed volume and temperature.</p></li>
+<li><p><strong>Isobaric-Isothermal Ensemble (NPT)</strong></p>
+<p>The ensemble has a constant amount of atoms and a constant pressure and temperature.</p></li>
+<li><p><strong>Grand Canonical Ensemble (<span class="math inline">\(\mu\)</span>VT)</strong></p>
+<p>The thermodynamic state has a constant volume, temperature, and chemical potential.</p></li>
+</ol>
+</section>
+<section id="entropy" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="entropy"><span class="header-section-number">7.3.2</span> Entropy</h3>
+<p><span class="math display">\[\begin{equation}
+  S = -k_B \sum_iP_i^B \ln(P_i^B)
+\end{equation}\]</span></p>
+<p>The entropy of a system is also the ensemble average.</p>
+</section>
+<section id="potential-of-mean-force" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="potential-of-mean-force"><span class="header-section-number">7.3.3</span> Potential of Mean Force</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/prob.jpg" class="img-fluid figure-img" width="297"></p>
+<p></p><figcaption class="figure-caption">Energy of a Molecule</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>potential of mean force</strong> (i.e., <strong>PMF</strong>) is the free energy of one or more coordinates. It is defined from the average distribution function:</p>
+<p><span class="math display">\[\begin{align}
+  w(x) &amp;= w(x') - k_BT \cdot \ln\left(\frac{\rho(x)}{\rho(x')}\right) \\
+  \rho(x) &amp;= \sum_{i \in data}\delta(x - x_i)
+\end{align}\]</span></p>
+<p>Where <span class="math inline">\(w\)</span> is the PMF,<span class="math inline">\(x\)</span> is the coordinate, and <span class="math inline">\(x'\)</span> is a reference point.</p>
+<section id="procedure-for-calculating-pmf" class="level4" data-number="7.3.3.1">
+<h4 data-number="7.3.3.1" class="anchored" data-anchor-id="procedure-for-calculating-pmf"><span class="header-section-number">7.3.3.1</span> Procedure for Calculating PMF</h4>
+<p>Once a MD or a MC study has been performed:</p>
+<ol type="1">
+<li><span class="math inline">\(\phi\)</span> and <span class="math inline">\(\psi\)</span> can be calculated from trajectories.</li>
+<li>Divide the range of <span class="math inline">\(\phi\)</span> as <span class="math inline">\(x\)</span> into <span class="math inline">\(N\)</span> bins.</li>
+<li>Count the number in each bin <span class="math inline">\(n(x)\)</span>.</li>
+<li>Calculate the free energy difference between two bins or two states via the equation <span class="math inline">\(\displaystyle F = -k_BT\ln\left(\frac{n(x_!)}{n(x_2)}\right)\)</span></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="ergodic-hypothesis" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="ergodic-hypothesis"><span class="header-section-number">7.4</span> Ergodic Hypothesis</h2>
+<p>In reality, the summation of different states in an ensemble is super tough as one must calculate the possible states of a system.</p>
+<p>In a molecular dynamic simulation, the points in an ensemble are calculated sequentially in time, so to calculate an average, the simulation must pass through all possible states that correspond to the particular thermodynamic constraints.</p>
+<p>Another way also involves determining a time average of <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+  A_{time} = \frac{1}{\tau}\sum_{r \rightarrow \infty}A(p^N(t), r^N(t)) \approx \sum_{t = 1}^MA(t)
+\end{equation}\]</span></p>
+<p>Where <span class="math inline">\(t\)</span> is the simulation time, <span class="math inline">\(M\)</span> the number of time steps in the simulation, and <span class="math inline">\(A(p^N, r^N)\)</span> is the instantaneous value of <span class="math inline">\(A\)</span>.</p>
+<section id="dilemma" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="dilemma"><span class="header-section-number">7.4.1</span> Dilemma</h3>
+<p>The dilemma of the above is that a molecular dynamics simulation can calculate time averages, but the experimental observables are assumed to be ensemble averages.</p>
+<p><span class="math display">\[\begin{equation}
+  A_{ensemble} = A_{time}
+\end{equation}\]</span></p>
+<p>Hence, the <strong>ergodic hypothesis</strong> states that the time average is equivalent to the ensemble average - in other terms, the above equation.</p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This tidbit of information was taken off <a href="https://www.ibm.com/topics/monte-carlo-simulation">IBM</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./wk6.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./wk8.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

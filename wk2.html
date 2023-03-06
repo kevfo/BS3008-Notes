@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BS3008: Computer Aided Drug Discovery - 3&nbsp; Molecular Mechanics in Molecular Modelling</title>
+<title>BS3008: Computer Aided Drug Discovery - 4&nbsp; Force Fields</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./wk2.html" rel="next">
-<link href="./wk2a.html" rel="prev">
+<<<<<<< HEAD:docs/wk2.html
+<link href="./wk5.html" rel="next">
+=======
+<link href="./lab1.html" rel="next">
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc:wk2.html
+<link href="./wk3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -146,12 +150,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./wk3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
+  <a href="./wk3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./wk2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+  <a href="./wk2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></a>
+<<<<<<< HEAD:docs/wk2.html
   </div>
 </li>
           <li class="sidebar-item">
@@ -172,6 +177,8 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wk8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></a>
+=======
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc:wk2.html
   </div>
 </li>
       </ul>
@@ -186,6 +193,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+<<<<<<< HEAD:docs/wk2.html
   <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
   </div>
 </li>
@@ -197,6 +205,9 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
+=======
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc:wk2.html
   </div>
 </li>
       </ul>
@@ -210,23 +221,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#structure-topology-motion-functions-and-potential-energy" id="toc-structure-topology-motion-functions-and-potential-energy" class="nav-link active" data-scroll-target="#structure-topology-motion-functions-and-potential-energy"><span class="toc-section-number">3.1</span>  Structure, Topology, Motion, Functions, and Potential Energy</a>
+  <li><a href="#typical-force-fields" id="toc-typical-force-fields" class="nav-link active" data-scroll-target="#typical-force-fields"><span class="toc-section-number">4.1</span>  Typical Force Fields</a>
   <ul class="collapse">
-  <li><a href="#case-1" id="toc-case-1" class="nav-link" data-scroll-target="#case-1"><span class="toc-section-number">3.1.1</span>  Case #1</a></li>
-  <li><a href="#case-2" id="toc-case-2" class="nav-link" data-scroll-target="#case-2"><span class="toc-section-number">3.1.2</span>  Case #2</a></li>
-  <li><a href="#case-3" id="toc-case-3" class="nav-link" data-scroll-target="#case-3"><span class="toc-section-number">3.1.3</span>  Case #3</a></li>
-  <li><a href="#case-4" id="toc-case-4" class="nav-link" data-scroll-target="#case-4"><span class="toc-section-number">3.1.4</span>  Case #4</a></li>
+  <li><a href="#bond-stretching" id="toc-bond-stretching" class="nav-link" data-scroll-target="#bond-stretching"><span class="toc-section-number">4.1.1</span>  Bond Stretching</a></li>
+  <li><a href="#angle-bending" id="toc-angle-bending" class="nav-link" data-scroll-target="#angle-bending"><span class="toc-section-number">4.1.2</span>  Angle Bending</a></li>
+  <li><a href="#torison-terms" id="toc-torison-terms" class="nav-link" data-scroll-target="#torison-terms"><span class="toc-section-number">4.1.3</span>  Torison Terms</a></li>
+  <li><a href="#non-bonded-interactions" id="toc-non-bonded-interactions" class="nav-link" data-scroll-target="#non-bonded-interactions"><span class="toc-section-number">4.1.4</span>  Non-Bonded Interactions</a></li>
+  <li><a href="#electrostatic-interactions" id="toc-electrostatic-interactions" class="nav-link" data-scroll-target="#electrostatic-interactions"><span class="toc-section-number">4.1.5</span>  Electrostatic Interactions</a></li>
+  <li><a href="#van-der-waals-interactions" id="toc-van-der-waals-interactions" class="nav-link" data-scroll-target="#van-der-waals-interactions"><span class="toc-section-number">4.1.6</span>  van der Waals Interactions</a></li>
   </ul></li>
-  <li><a href="#professor-mus-current-works" id="toc-professor-mus-current-works" class="nav-link" data-scroll-target="#professor-mus-current-works"><span class="toc-section-number">3.2</span>  Professor Mu’s Current Works</a></li>
+  <li><a href="#common-empirical-force-fields" id="toc-common-empirical-force-fields" class="nav-link" data-scroll-target="#common-empirical-force-fields"><span class="toc-section-number">4.2</span>  Common Empirical Force Fields</a>
+  <ul class="collapse">
+  <li><a href="#on-class-ii-force-fields" id="toc-on-class-ii-force-fields" class="nav-link" data-scroll-target="#on-class-ii-force-fields"><span class="toc-section-number">4.2.1</span>  On Class II Force Fields</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></h1>
 </div>
 
 
@@ -240,119 +256,229 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Molecular modelling started with the idea that molecular geometry, energy, and other molecular properties could be calculated from models (that are influenced by basic forces).</p>
-<p>A <strong>molecule</strong> - hence - is a system of particles (i.e., atoms) connected by springs (i.e., bonds). This molecule is free to rotate, vibrate, and adopt a favorable conformation in space as a result of the inter- <em>and</em> intramolecular forces acting upon it.</p>
-<section id="structure-topology-motion-functions-and-potential-energy" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="structure-topology-motion-functions-and-potential-energy"><span class="header-section-number">3.1</span> Structure, Topology, Motion, Functions, and Potential Energy</h2>
-<p>This section aims to illustrate how different energy functions can influence the behavior of particles in a system.</p>
-<section id="case-1" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="case-1"><span class="header-section-number">3.1.1</span> Case #1</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/system.jpg" class="img-fluid figure-img" width="156"></p>
-<p></p><figcaption class="figure-caption">A Simple System to Consider</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The potential and kinetic energy <span class="math inline">\(E_p\)</span> and <span class="math inline">\(E_k\)</span> respectively in this system is given by:</p>
+<p>A <strong>force field</strong> implies that a molecule’s atoms are a collection of different matter interacting with one another via <em>forces described by empirical energy functions</em>. This is unlike quantum mechanical calculations: the electrons and atoms’ nuclei are not explicitly included in such calculations.</p>
+<p>Force fields provide a fast computational method that works for small and big molecules alike (and even complex molecular systems).</p>
+<section id="typical-force-fields" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="typical-force-fields"><span class="header-section-number">4.1</span> Typical Force Fields</h2>
+<p>A typical force field <span class="math inline">\(U(\{r_{ij}\})\)</span> has the following formula:</p>
 <span class="math display">\[\begin{align}
-  E_p &amp;= E_p(\vec{x}) = \sum_{i}f_i(x, y, z) \\
-  E_k &amp;= \frac{1}{2} \cdot (m_1v_1^2 + m_2v_2^2)
+  U(\{r_{ij}\}) = &amp;\sum_j\frac{k^l_j}{2}(l_j - l^0_j)^2 + \sum_j\frac{k^\delta_j}{2}(\delta_j - \delta_j^0)^2 + \sum_{torsions}\frac{V_n}{2}(1 + \cos(n\phi - \gamma)) \\ &amp;+   
+  \sum_{i, j = 1}^N\frac{q_iq_j}{r_{ij}} + \sum_{i, j = 1}^N4\epsilon_{ij}\left[\left(\frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left(\frac{\sigma_{ij}}{r_{ij}}\right)^6\right]
 \end{align}\]</span>
-<p>Where <span class="math inline">\(\vec{x}\)</span> is the system and <span class="math inline">\(f_i(x, y, z)\)</span> a function that calculates the potential energy for each particle in the system (i.e., each atom). Hence, we can say that:</p>
-<span class="math display">\[\begin{equation}
-  E_{tot} = E_p + E_k
-\end{equation}\]</span>
-<p>Where <span class="math inline">\(E_{tot}\)</span> is the total energy of the system.</p>
-<p>Since <span class="math inline">\(r\)</span> represents the distance between both molecules, therefore <span class="math inline">\(E_p(r) = 0\)</span>.</p>
-<span class="math display">\[\begin{equation}
-  \vec{F} = \frac{\partial E_p(\vec{x})}{\partial \vec{x}}
-\end{equation}\]</span>
-<p>The force<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">\(\vec{F}\)</span> on the system is denoted via the above equation.</p>
-<p>Since <span class="math inline">\(E_p(r) = 0\)</span> in the first figure, it follows that <span class="math inline">\(F(r) = 0\)</span>.</p>
-</section>
-<section id="case-2" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="case-2"><span class="header-section-number">3.1.2</span> Case #2</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk1/sys2.jpg" class="img-fluid figure-img" width="138"></p>
-<p></p><figcaption class="figure-caption">A System with Two Charged Molecules</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here, the charge <span class="math inline">\(V_{ele}\)</span> and the potential energy <span class="math inline">\(E_p(r)\)</span> is given via the following equations:</p>
+<p>Or in more layman terms:</p>
 <span class="math display">\[\begin{align}
-  V_{ele}(r) &amp;= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1}{r} \\
-  E_p(r) &amp;= \frac{1}{4\pi \epsilon_0} \cdot \frac{q_1q_2}{r}
+  \text{Force field} = &amp;\text{ bond stretching} + \text{valence angle bending} \\
+  &amp;+ \text{torsions} + \text{Electrostatic charges} \\
+  &amp;+ \text{van der Waals forces}
 \end{align}\]</span>
-<p>Some important considerations to think about include the variables and the parameters of the system.</p>
-</section>
-<section id="case-3" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="case-3"><span class="header-section-number">3.1.3</span> Case #3</h3>
+<p>Both bond stretching and valence angle bending refer to <em>intramolecular forces</em>. This is in contrast to electrostatic charges and van der Waals forces: <em>intra- and intermolecular bonding</em>.</p>
+<section id="bond-stretching" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="bond-stretching"><span class="header-section-number">4.1.1</span> Bond Stretching</h3>
+<p>The Morse potential <span class="math inline">\(E(l)\)</span> and the Harmonic potential <span class="math inline">\(a\)</span> are:</p>
+<span class="math display">\[\begin{align}
+  E(l) &amp;= D_e\{1 - \exp[-a(l - l_0)]\}^2 \\
+  a &amp;= \omega \sqrt{\frac{\mu}{2D_e}}
+\end{align}\]</span>
+<p><span class="math inline">\(D_e\)</span> in the above equations represent the depth of the potential energy minimum:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/wk1/sys3.jpg" class="img-fluid figure-img" width="504"></p>
-<p></p><figcaption class="figure-caption">A System with Two Molecules and their Energy Graph</figcaption><p></p>
+<p><img src="images/wk2/d3.jpg" class="img-fluid figure-img" width="344"></p>
+<p></p><figcaption class="figure-caption">A Potential Energy Graph Between an Oxygen Atom and a Hydrogen Atom</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In this system, we let:</p>
-<span class="math display">\[\begin{equation}
-  E_p(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
-\end{equation}\]</span>
-<p>In this system, we also note that <span class="math inline">\(E_p(r) = 0\)</span> when <span class="math inline">\(r = \sigma\)</span> and that <span class="math inline">\(\displaystyle E_p(\sqrt[6]{2}\sigma) = -\epsilon\)</span>.</p>
-<p>Do also consider the variables and parameters in this system (and whether or not both particles in this system can move freely).</p>
-</section>
-<section id="case-4" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="case-4"><span class="header-section-number">3.1.4</span> Case #4</h3>
+<p><span class="math inline">\(\omega\)</span> represents the bond vibration frequency, <span class="math inline">\(\mu\)</span> the reduced mass, and <span class="math inline">\(l_0\)</span> the reference bond length<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<section id="at-room-temperature-i.e.-298-k" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="at-room-temperature-i.e.-298-k"><span class="header-section-number">4.1.1.1</span> At Room Temperature (i.e., 298 K)</h4>
+<p>In such a case, the thermal kinetic energy of the system (i.e., molecule) falls within <span class="math inline">\(\displaystyle \frac{1}{2}k_BT\)</span> and <span class="math inline">\(300 K\)</span>. An approximation for the thermal kinetic energy <span class="math inline">\(E_{thermal}\)</span> is about <em>0.3 kcal / mol</em>. We can also say that:</p>
+<span class="math display">\[\begin{align}
+  E(l) &amp;= \frac{1}{2}k(l - l_0)^2 \\
+  k &amp;= 2D_ea^2 = \mu\omega^2
+\end{align}\]</span>
+<p>At room temperature, the energy potential of a molecule can be described via the following graph:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/wk1/sys4.jpg" class="img-fluid figure-img" width="470"></p>
-<p></p><figcaption class="figure-caption">A System with Two Molecules and their Energy Graph</figcaption><p></p>
+<p><img src="images/wk2/well.jpg" class="img-fluid figure-img" width="228"></p>
+<p></p><figcaption class="figure-caption">A Potential Energy Well at Room Temperature</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here, we define the system’s potential energy <span class="math inline">\(E_p\)</span> as:</p>
-<span class="math display">\[\begin{equation}
-  E_p(r) = \frac{1}{2}k(r - r_0)^2
-\end{equation}\]</span>
-<p>While the energy graph for this system appears to be that of bonding, it is still important to consider the variables and the parameters of the system.</p>
-<p>We can also further decompose the above equation to its spatial components <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> and say that:</p>
-<span class="math display">\[\begin{equation}
-E_p(r) = \frac{1}{2}k(x - x_0)^2 + \frac{1}{2}k(y - y_0)^2 + \frac{1}{2}k(z - z_0)^2
-\end{equation}\]</span>
-<p>In this sub-case, the system appears to be a lattice. However, are the particles still movable?</p>
+<p>This graph is also called a <strong>Hooke’s spring</strong>.</p>
 </section>
 </section>
-<section id="professor-mus-current-works" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="professor-mus-current-works"><span class="header-section-number">3.2</span> Professor Mu’s Current Works</h2>
-<p>As of the time of writing, professor Mu’s lab is currently focused on the following topics:</p>
+<section id="angle-bending" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="angle-bending"><span class="header-section-number">4.1.2</span> Angle Bending</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk2/bondangle.jpg" class="img-fluid figure-img" width="458"></p>
+<p></p><figcaption class="figure-caption">Information on Several Bond Angles</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because of a covalent bond’s directionality, its bond angles do not change that much.</p>
+<span class="math display">\[\begin{equation}
+  E(\theta) = \frac{k}{2}(\theta - \theta_0)^2
+\end{equation}\]</span>
+<p>Therefore, <a href="https://www.khanacademy.org/science/physics/work-and-energy/hookes-law/a/what-is-hookes-law">Hooke’s law</a> is often used to calculate the harmonic potential energy of a certain type of bond angle.</p>
+</section>
+<section id="torison-terms" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="torison-terms"><span class="header-section-number">4.1.3</span> Torison Terms</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk2/torsional.jpg" class="img-fluid figure-img" width="419"></p>
+<p></p><figcaption class="figure-caption">Professor Mu’s Slides on Torsion Terms and Dihedral Angles</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>torsional energy</strong> is defined between every quartet of atoms - it depends on the dihedral angle <span class="math inline">\(\phi\)</span> made by two planes (and also incorporating the first and last three terms in the torsion).</p>
+<span class="math display">\[\begin{equation}
+  E(\psi) = \sum_{n = 0}^N\frac{V_n}{2}[1 + \cos(n\psi - \psi_0)]
+\end{equation}\]</span>
+<p>Torsional motions are typically hundreds of times less stiff than bond stretching motions.</p>
+<p>Torsion terms also mimic bonding characteristics and neighboring atoms’ and their side groups’ steric hindrances about the chain axis.</p>
+<section id="exammple-torsional-terms-for-ethane" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="exammple-torsional-terms-for-ethane"><span class="header-section-number">4.1.3.1</span> Exammple Torsional Terms for Ethane</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk2/ethane.jpg" class="img-fluid figure-img" width="500"></p>
+<p></p><figcaption class="figure-caption">Example Torsional Term for an Ethane Molecule</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the y-axis of the above graphic is in kcal / mol.</p>
+</section>
+</section>
+<section id="non-bonded-interactions" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="non-bonded-interactions"><span class="header-section-number">4.1.4</span> Non-Bonded Interactions</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk2/nonbond.jpg" class="img-fluid figure-img" width="478"></p>
+<p></p><figcaption class="figure-caption">Nomenclature for Non-Bonded Interactions</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The kind of bonded interactions depend on the bonding relationship between atoms. Such energy functions in this scenario describe the total interactions between atoms and cannot be further decomposed.</p>
+</section>
+<section id="electrostatic-interactions" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="electrostatic-interactions"><span class="header-section-number">4.1.5</span> Electrostatic Interactions</h3>
+<p>This is a group in its own right - the other group of non-bonded terms is van der Waals interactions.</p>
+<span class="math display">\[\begin{equation}
+  E_{ele} = \sum_{i &gt; j}\frac{1}{4\pi\epsilon_0}\frac{q_iq_j}{r_{ij}}
+\end{equation}\]</span>
+<p>In a simple model consisting of two water molecules, their partial charges are <span class="math inline">\(q_O = -0.834\)</span> and <span class="math inline">\(q_H = 0.417\)</span>.</p>
+<section id="calculating-partial-charges" class="level4" data-number="4.1.5.1">
+<h4 data-number="4.1.5.1" class="anchored" data-anchor-id="calculating-partial-charges"><span class="header-section-number">4.1.5.1</span> Calculating Partial Charges</h4>
+<p>A molecule’s electrostatic potential can be measured - it can also be determined from molecular wavefunctions (from quantum mechanics):</p>
+<span class="math display">\[\begin{equation}
+  R = \sum_{i = 1}^{N_{points}}(\phi_i^{calc} - \phi_i^0)^2
+\end{equation}\]</span>
+<p>The goal is to find a set partial charge from which the calculated potentials are closest to the reference ones.</p>
+</section>
+</section>
+<section id="van-der-waals-interactions" class="level3" data-number="4.1.6">
+<h3 data-number="4.1.6" class="anchored" data-anchor-id="van-der-waals-interactions"><span class="header-section-number">4.1.6</span> van der Waals Interactions</h3>
+<p>They arise from a balance between attractive and repulsive forces.</p>
+<p>The attractive force is due to dispersion forces and is equivalent to <span class="math inline">\(\displaystyle \frac{1}{r^6}\)</span>. The repulsive force originates from quantum mechanics and can be understood using Pauli’s exclusion principle.</p>
+<section id="lennard-jones-potential" class="level4" data-number="4.1.6.1">
+<h4 data-number="4.1.6.1" class="anchored" data-anchor-id="lennard-jones-potential"><span class="header-section-number">4.1.6.1</span> Lennard-Jones Potential</h4>
+<p>The <strong>Lennard-Jones 12-6 function</strong> <span class="math inline">\(\displaystyle 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]\)</span> has two adjustable parameters:</p>
 <ol type="1">
-<li>Amyloidogenic protein / peptide aggregation and misfolding</li>
-<li>DNA-DNA, DNA-ions, and DNA-protein interactions</li>
-<li>Drug-protein interaction and drug candidate screening</li>
-<li>Peptide-membrane interactions.</li>
+<li>Collision diameter <span class="math inline">\(\sigma\)</span></li>
+<li>Well depth <span class="math inline">\(\sigma\)</span></li>
 </ol>
-<p>For more information on professor Mu’s current research topics, do visit his <a href="https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang">lab’s homepage</a>.</p>
+<p>The <span class="math inline">\(\displaystyle \frac{1}{r^{12}}\)</span> is questionable at times, but also allows for rapid computations.</p>
+</section>
+<section id="combination-rules" class="level4" data-number="4.1.6.2">
+<h4 data-number="4.1.6.2" class="anchored" data-anchor-id="combination-rules"><span class="header-section-number">4.1.6.2</span> Combination Rules</h4>
+<p>A way to approximate parameters is needed to calculate the van der Waals interactions between different kinds of atoms.</p>
+<p>There are two methods covered in BS3008:</p>
+<ol type="1">
+<li><p><strong>Amber and Charmm</strong></p>
+<span class="math display">\[\begin{align}
+  \epsilon_{ij} &amp;= \sqrt{\epsilon_i\epsilon_j} \\
+  \sigma_{ij} &amp;= \frac{\sigma_i + \sigma_j}{2}
+\end{align}\]</span>
+<p>The Lorentz-Berthelodt rules are used.</p></li>
+<li><p><strong>OPLS</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Force Fields</p>
+<span class="math display">\[\begin{align}
+  \epsilon_{ij} &amp;= \sqrt{\epsilon_i\epsilon_j} \\
+  \sigma_{ij} &amp;= \sqrt{\sigma_i\sigma_j}
+\end{align}\]</span></li>
+</ol>
+</section>
+<section id="parameters-of-van-der-waals-forces" class="level4" data-number="4.1.6.3">
+<h4 data-number="4.1.6.3" class="anchored" data-anchor-id="parameters-of-van-der-waals-forces"><span class="header-section-number">4.1.6.3</span> Parameters of van der Waals Forces</h4>
+<p>The <strong>L</strong>ennard <strong>J</strong>ohnson (i.e., <strong>LJ</strong>) parameters state the following:</p>
+<ol type="1">
+<li>Heat of vaporization</li>
+<li>Density (i.e., molecular volume)</li>
+<li>Partial Molar Volume</li>
+<li>Crystal simulations</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="common-empirical-force-fields" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="common-empirical-force-fields"><span class="header-section-number">4.2</span> Common Empirical Force Fields</h2>
+<p>BS3008 lists several different force fields for one’s own reference:</p>
+<ol type="1">
+<li><p><strong>Class I Force Fields</strong></p>
+<ul>
+<li>CHARMM</li>
+<li>CHARMm</li>
+<li>AMBER</li>
+<li>OPLS / Schrodinger</li>
+<li>ECEPP (i.e., free energy force field)</li>
+<li>GROMOS</li>
+</ul></li>
+<li><p><strong>Class II Force Field</strong></p>
+<ul>
+<li>CFF95</li>
+<li>MM3</li>
+<li>MMFF94</li>
+<li>UFF, DREIDING</li>
+</ul></li>
+</ol>
+<section id="on-class-ii-force-fields" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="on-class-ii-force-fields"><span class="header-section-number">4.2.1</span> On Class II Force Fields</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk2/classii.jpg" class="img-fluid figure-img" width="474"></p>
+<p></p><figcaption class="figure-caption">Equation and Summary of Class II Force Fields</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above image was taken off professor Mu’s teaching slides.</p>
 
 
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Note that <span class="math inline">\(\vec{F}\)</span> is caused by a change in potential energy, not by potential energy itself!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>This is 0.923 <span class="math inline">\(\stackrel{\circ}{A}\)</span> in this scenario.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><strong>This is short for O</strong>ptimized <strong>P</strong>otentials for <strong>L</strong>iquid <strong>S</strong>imulations<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -570,13 +696,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./wk2a.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental Quantum Chemistry</span></span>
+      <a href="./wk3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Molecular Mechanics in Molecular Modelling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./wk2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Force Fields</span></span> <i class="bi bi-arrow-right-short"></i>
+<<<<<<< HEAD:docs/wk2.html
+      <a href="./wk5.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></span> <i class="bi bi-arrow-right-short"></i>
+=======
+      <a href="./lab1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></span> <i class="bi bi-arrow-right-short"></i>
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc:wk2.html
       </a>
   </div>
 </nav>

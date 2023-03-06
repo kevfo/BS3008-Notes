@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.4.10)  21 JAN 2023 17:19
+=======
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.4.10)  21 JAN 2023 15:25
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1288,6 +1292,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 Package hyperref Warning: Suppressing link with empty target on input line 300.
 
 
+<<<<<<< HEAD
 [6]
 File: ./images/wk1/system.jpg Graphic file (type bmp)
 <./images/wk1/system.jpg>
@@ -1355,3 +1360,63 @@ Here is how much of TeX's memory you used:
  108i,9n,121p,10600b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on index.pdf (18 pages).
+=======
+[6] [7]
+chapter 2.
+[8
+
+]
+File: ./images/wk2a/hgbr.jpg Graphic file (type bmp)
+<./images/wk2a/hgbr.jpg>
+[9] [10] [11]
+File: ./images/wk2a/fock.jpg Graphic file (type bmp)
+<./images/wk2a/fock.jpg>
+[12] [13]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.00082pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.99904pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 687.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 687.
+[14]
+File: ./images/wk2a/gaussian.jpg Graphic file (type bmp)
+<./images/wk2a/gaussian.jpg>
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 763.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 763.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.0011pt on input line 763.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.00073pt on input line 763.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 763.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 763.
+[15]
+! Undefined control sequence.
+l.783 multiple-\(\xeta
+                      \) basis sets. More examples of such sets include 
+Here is how much of TeX's memory you used:
+ 37365 strings out of 476179
+ 784901 string characters out of 5813072
+ 1386846 words of memory out of 5000000
+ 57535 multiletter control sequences out of 15000+600000
+ 480540 words of font info for 112 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 108i,9n,121p,10600b,431s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on index.pdf (15 pages).
+>>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc

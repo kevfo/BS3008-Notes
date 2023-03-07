@@ -11,15 +11,12 @@ book:
       chapters:
         - intro.qmd
         - wk2a.qmd
-<<<<<<< HEAD
         - wk3.qmd
         - wk2.qmd
         - wk5.qmd
         - wk6.qmd
         - wk7.qmd
         - wk8.qmd
-        - wk3.qmd 
-        - wk2.qmd
     - part: "**PART 2 : PRACTICAL SESSIONS**"
       chapters:
         - lab1.qmd

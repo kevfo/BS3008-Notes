@@ -10,17 +10,17 @@ knitr::include_graphics("images/wk8/docking.jpg")
 
 Docking is done to discover how best to optimize drug binding to their targets as drug discovery costs are quite high (i.e. about 800 million dollars just to go through 10000 compounds in eight to 14 years).
 
-## Determinants for Binding 
+## Determinants for Binding
 
 Biding is a complex process that is controlled by several factors, including:
 
 1.  Interaction energies between two different energies.
-1.  Desolvation and solvation energies associated with interacting molecules.
-1.  Entropic factors that occur upon binding.
+2.  Desolvation and solvation energies associated with interacting molecules.
+3.  Entropic factors that occur upon binding.
 
 ### "Lock and Key" Principle
 
-> "The specificity of an enzyme (the lock) for its substrate (the key) arises from their geometrically complementary shapes.”
+> "The specificity of an enzyme (the lock) for its substrate (the key) arises from their geometrically complementary shapes."
 >
 > -- Emil Fischer (1894)
 
@@ -42,7 +42,7 @@ This model is supported by X-ray structures of the same protein in the apo (i.e.
 knitr::include_graphics("images/wk8/conformational.jpg")
 ```
 
-Prior to the binding interaction, the protein is an ensemble of conformations that exist in dynamic equilibrium.  The binding partner (i.e., ligand) then interacts with a weakly populated, higher-energy conformation, causing the equilibrium to shift in favor of the selected conformation.
+Prior to the binding interaction, the protein is an ensemble of conformations that exist in dynamic equilibrium. The binding partner (i.e., ligand) then interacts with a weakly populated, higher-energy conformation, causing the equilibrium to shift in favor of the selected conformation.
 
 ### Protein-Ligand Binding Process
 
@@ -53,14 +53,14 @@ knitr::include_graphics("images/wk8/binding.jpg")
 Protein-ligand binding is a complex process between:
 
 1.  An ensemble of solvated ligand conformations
-1.  A sovlated receptor binding site
-1.  A solvated receptor-ligand complex
+2.  A sovlated receptor binding site
+3.  A solvated receptor-ligand complex
 
 Binding free energies may involve:
 
 1.  Enthalpic components (e.g., breaking and forming new hydrogen bonds and forming hydrophobic components)
-1.  Entropic components (e.g., loss of conformational flexibility)
-1.  Desolvation effects
+2.  Entropic components (e.g., loss of conformational flexibility)
+3.  Desolvation effects
 
 ## Components of Docking
 
@@ -77,12 +77,203 @@ The **P**rotein **D**ata **B**ank (i.e., **PDB**) is a publicly available databa
 However, Davis et al. notes the following limitations of experimental structures (in general):
 
 1.  Locations of hydrogen atoms, water molecules, and metal ions.
-1.  Identities and locations of heavy atoms
-1.  Conformational flexibility of proteins
+2.  Identities and locations of heavy atoms
+3.  Conformational flexibility of proteins
 
 Binding sites can be described in terms of atomic coordinates, volume, points & distances, and various properties such as electrostatic interactions and atom types.
 
+However, Davis et al. notes several limitations of experimental structures:
+
+1.  The locations of metal ions, hydrogen ions, and water molecules may be off.
+1.  The identities of the metal ions may be off in a biomolecule's PDB file.
+1.  Conformational flexibility of proteins may be off.
+
 ### Drug, Chemical, and Structural Space
+
+Prof. Mu lists some resources for drug and chemical structures:
+
+1.  The **M**DL **D**rug **D**ata **R**eport (i.e., **MDDR**) has more than 147000 entries and the **C**omprehensive **M**edicinal **C**hemistry (i.e., **CMC**) more than 8600 entries.
+1.  The **A**vailable **C**hemical **D**irectory has about three million entries.
+1.  Beilstein, **C**hemical **A**bstract **S**ervices (i.e., **CAS**), and SciFinder - both literature finding services 
+1.  **C**ambridge **S**tructural **D**atabase (i.e., **CSD**) - this has about three million X-ray crystal structures for more than 264000 different compounds and more than 12800 organic structures.
+1.  Corporate databases also a have a few million entries.
+
+### 3D Structural Information and Ligand Descriptors
+
+Prof. Mu continues listing some more resources in this section:
+
+1.  **2D to 3D Software**
+
+    Including CORINA, OMEGA, CONCORD, MM2/3, WIZARD, and COBRA.
+    
+1.  **CSD**
+
+    It contains sizes of less than 0.1 Angstrom for small molecules, but may not be the bound conformation to the receptor in question.
+    
+1.  **PDB**
+
+    This resource has about 6000 entries of ligand-bound protein structures.
+
+## Sampling the Configuration Space of the Ligand-Receptor Complex
+
+```{r echo = F, fig.cap = "Comparisions Between a Systematic and a Stochastic Complex", fig.align = "center"}
+knitr::include_graphics("images/wk8/compos.jpg")
+```
+
+The above graphic lists some differences between a stochastic and a systematic complex.
+
+A sampling requires the following parameters:
+
+1.  **Position or Translation**
+
+    In other terms, the three Cartesian coordinates $x$, $y$ and $z$.
+    
+1.  **Orientations**
+
+    This refers to the derivatives of the above Cartesian coordinates $dx$, $dy$ and $dz$. 
+
+1.  **Rotatable Bonds or Torsions**
+
+    This is represented as $tor_1$, $tor_2$, $tor_n$, and so on (where $n$ is some positive integer).
+    
+1.  **Total DOF (i.e., dimensionality)**
+
+    This is given by the formula $D = 3 + 3 + n$.
+
+### Estimating Search Spaces
+
+A typical ligand binding pocket is about 10^3^ Angstroms big.  A typical ligand has four rotational bonds.
+
+The **granularity** has an angle sampling of 10 degrees and a translation of a 0.5 Angstrom grid.  Hence, the total number of possible sampling configurations is about $20^3 \cdot 36^3 \cdot 36^4 \approx 6 \times 10^{14}$.
+
+Given that a computer can process about 1000 conformations per second, a search space this size could easily result in *20000 years per ligand*.
+
+Consequently, other methods - such as descriptor matching (which uses pattern-recognizing methods to match ligands and receptor sites), molecular dynamics, monte carlo simulations, genetic algorithms, similarities, and fragment-based approaches - must be utilized.
+
+Some examples of descriptor matching methods include:
+
+1.  Distance-compatibility graphs in the DOCK program
+1.  Interaction site matching in the LUDI program
+1.  Pose clustering and triplet matching in the FlexX program
+1.  Shape matching in the FRED program
+1.  Vector matching in the CAVEAT program
+1.  Steric effects matching in the CLIX program
+1.  Shape chemical complimentarity in the SANDOCK program
+1.  Surface complimentarity in the LIGIN program
+1.  H-bond matching in the ADAM program
+
+However, the following disadvantages must be noted:
+
+1.  One can never truly sample the entire conformation and the configuration space - it is simply too large.
+1.  One cannot ignore the conformational flexibility of the ligand and the receptor.
+1.  There is no one "best" method or general solution for describing and matching molecular shapes.  Shape alone is not a good indicator of a low-energy conformation in a ligand-receptor complex.
+
+#### Method 1: Clique Search
+
+This is a descriptor-matching method that uses distance-compatibility graphs in the DOCK program:
+
+```{r echo = F, fig.cap = "A Sample Distance-Compatibility Graph", fig.align = "center"}
+knitr::include_graphics("images/wk8/distcomp.jpg")
+```
+
+A **Distance-Compatibility graph** is a graph where each node represents possible matches and each edge a pair of compatible nodes.
+
+A **clique** in graph theory is a subgraph that is fully connected.  There are fast algorithms that can optimize this problem.
+
+#### Method 2: Molecular Dynamics (i.e., MD) and Monte Carlo (i.e., MC) Simulations
+
+The two major components of this system are the energy evaluations and the description of the energies of freedom.
+
+Local movement of the atoms are preferred - this is random in a Monte Carlo simulation due to forces in a molecular dynamics setup.
+
+However, both MD and MC are time consuming as not only do both approaches start from a "starting orientation", but multiple simulations with different "starting orientations" must also be performed to get a statistically significant result.
+
+Larger steps are typically used for speed in a MD simulation.
+
+##### Using a Grid Map
+
+A **grid map** is a representation of a macromolecule (i.e., a regular orthogonal lattice of points).  A man has one ligand atom type.
+
+```{r echo = F, fig.cap = "A Sample Grid Map Generated Using AutoDock", fig.align = "center"}
+knitr::include_graphics("images/wk8/gridmap.jpg")
+```
+
+All AutoDock-generated grid maps use *trilinear interpolation*.  Non-bonded energies are pre-calculated.
+
+Grid maps save time - they are a 100 times faster than traditional non-bonded list methods.
+
+##### MC-Based Dockings
+
+The good part about using a MC-based approach is that prior information does not need to be known - it is able to "step over an energy barrier".
+
+Simulated Annealing is used in the program DockVision and Affinity.
+
+##### Simulated Annealing (i.e., SA)
+
+**Simulated Annealing** is the generalization of a Monte Carlo method for examining the equations of state and frozen states of n-body systems.  This process is based on how liquids freeze or how metals recrystalize.
+
+In an annealing process, the material is initially at a high temperature and is disordered.  It is slowly cooled over time (to the ground state $T = 0$) so that it can roughly reach thermodynamic equilibrium.
+
+If the initial temperature of the system is too low or if the cooling is not done properly, then the system may form defects or lose metstable states (i.e., be trapped in a local minimum energy state).
+
+#### Fragment-Based Methods
+
+```{r echo = F, fig.cap = "Illustration of a Fragment-Based Method", fig.align = "center"}
+knitr::include_graphics("images/wk8/fragmnet.jpg")
+```
+
+The identification and the placement of a base or an anchor fragment is critical.  Energy optimization is also important here.
+
+##### Fragment-Based Lead Discovery
+
+```{r echo = F, fig.cap = "Fragment-Based Drug Discovery Part I", fig.align = "center"}
+knitr::include_graphics("images/wk8/fragmnet1.jpg")
+```
+
+The **h**igh-**t**hroughput **s**creening (i.e., **HTS**) hit is large and makes surface contact with the receptor without forming high-quality interactions in key pockets. 
+
+The affinity is spread throughout the entire molecule and, in the absence of structural information, the medicinal chemist does not know which areas of the molecule to focus on during hit optimization.
+
+This is in contrast to the schematic on right side, in which fragment 1 is much smaller, makes high-quality contacts with the receptor and has relatively weak affinity. It has been shown that such fragments can often be built up into attractive leads with the aid of structural information.
+
+```{r echo = F, fig.cap = "Fragment-Based Drug Discovery Graph", fig.align = "center"}
+knitr::include_graphics("images/wk8/graph.jpg")
+```
+
+The figure shows graphically a broad generalization of the range of molecular mass and potency for **h**igh-**t**hroughput **s**creening (i.e., **HTS**) hits and fragments, superimposed on the typical requirements for leads, drug candidates and oral drugs using the same criteria. 
+
+Fragment hits will have an Mr in the range 120–250 and low potency 
+(mM–30 $\mu$M); HTS hits will have a much broader range of Mr (perhaps 250–600) and tend to be in the low-$\mu$M to high-nM potency range.
+
+#### Genetic Algorithm Docking
+
+In this algorithm, degrees of freedoms are encoded as genes or binary strings; this algorithm also requires the generation of an initial population.
+
+After each reproduction cycle, the binary strings are then translated back to their candidate states (i.e., Cartesian coordinates) - the fitness of these strings are also evaluated by an appropriate function.
+
+Candidates with a better fitness have a higher probability to partake in the next reproduction cycle - in the end, only states with the highest fitnesses will survive.
+
+##### An Example:
+
+A coolection of genes (i.e., a chromosome) is assigned a fitness value depending on a scoring function.  There are two such genetic operators:
+
+1.  **Mutation**
+
+    This changes the value of a gene.
+    
+1.  **Crossovers**
+
+    These exchange a set of genes from one parent chromosome to another.
+    
+A fitness function is then used to decide which configurations (i.e., individuals) survive and produce offspring for the next iteration of optimization.
+
+#### Multiple Methods
+
+Sometimes, more than one docking protocol can be combined to increase a protocol's effectiveness.
+
+Typically, a computationally-inexpensive method, followed by a time-consuming, yet more accurate method is used to generate a final docking solution.
+
+
 
 
 

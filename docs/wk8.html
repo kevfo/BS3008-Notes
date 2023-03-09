@@ -64,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script async="" src="https://hypothes.is/embed.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -220,6 +221,11 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#binding-site-descriptions" id="toc-binding-site-descriptions" class="nav-link" data-scroll-target="#binding-site-descriptions"><span class="toc-section-number">8.2.1</span>  Binding Site Descriptions</a></li>
   <li><a href="#drug-chemical-and-structural-space" id="toc-drug-chemical-and-structural-space" class="nav-link" data-scroll-target="#drug-chemical-and-structural-space"><span class="toc-section-number">8.2.2</span>  Drug, Chemical, and Structural Space</a></li>
+  <li><a href="#d-structural-information-and-ligand-descriptors" id="toc-d-structural-information-and-ligand-descriptors" class="nav-link" data-scroll-target="#d-structural-information-and-ligand-descriptors"><span class="toc-section-number">8.2.3</span>  3D Structural Information and Ligand Descriptors</a></li>
+  </ul></li>
+  <li><a href="#sampling-the-configuration-space-of-the-ligand-receptor-complex" id="toc-sampling-the-configuration-space-of-the-ligand-receptor-complex" class="nav-link" data-scroll-target="#sampling-the-configuration-space-of-the-ligand-receptor-complex"><span class="toc-section-number">8.3</span>  Sampling the Configuration Space of the Ligand-Receptor Complex</a>
+  <ul class="collapse">
+  <li><a href="#estimating-search-spaces" id="toc-estimating-search-spaces" class="nav-link" data-scroll-target="#estimating-search-spaces"><span class="toc-section-number">8.3.1</span>  Estimating Search Spaces</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk8.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -350,11 +356,201 @@ ul.task-list li input[type="checkbox"] {
 <li>Conformational flexibility of proteins</li>
 </ol>
 <p>Binding sites can be described in terms of atomic coordinates, volume, points &amp; distances, and various properties such as electrostatic interactions and atom types.</p>
+<p>However, Davis et al.&nbsp;notes several limitations of experimental structures:</p>
+<ol type="1">
+<li>The locations of metal ions, hydrogen ions, and water molecules may be off.</li>
+<li>The identities of the metal ions may be off in a biomolecule’s PDB file.</li>
+<li>Conformational flexibility of proteins may be off.</li>
+</ol>
 </section>
 <section id="drug-chemical-and-structural-space" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="drug-chemical-and-structural-space"><span class="header-section-number">8.2.2</span> Drug, Chemical, and Structural Space</h3>
+<p>Prof.&nbsp;Mu lists some resources for drug and chemical structures:</p>
+<ol type="1">
+<li>The <strong>M</strong>DL <strong>D</strong>rug <strong>D</strong>ata <strong>R</strong>eport (i.e., <strong>MDDR</strong>) has more than 147000 entries and the <strong>C</strong>omprehensive <strong>M</strong>edicinal <strong>C</strong>hemistry (i.e., <strong>CMC</strong>) more than 8600 entries.</li>
+<li>The <strong>A</strong>vailable <strong>C</strong>hemical <strong>D</strong>irectory has about three million entries.</li>
+<li>Beilstein, <strong>C</strong>hemical <strong>A</strong>bstract <strong>S</strong>ervices (i.e., <strong>CAS</strong>), and SciFinder - both literature finding services</li>
+<li><strong>C</strong>ambridge <strong>S</strong>tructural <strong>D</strong>atabase (i.e., <strong>CSD</strong>) - this has about three million X-ray crystal structures for more than 264000 different compounds and more than 12800 organic structures.</li>
+<li>Corporate databases also a have a few million entries.</li>
+</ol>
+</section>
+<section id="d-structural-information-and-ligand-descriptors" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="d-structural-information-and-ligand-descriptors"><span class="header-section-number">8.2.3</span> 3D Structural Information and Ligand Descriptors</h3>
+<p>Prof.&nbsp;Mu continues listing some more resources in this section:</p>
+<ol type="1">
+<li><p><strong>2D to 3D Software</strong></p>
+<p>Including CORINA, OMEGA, CONCORD, MM2/3, WIZARD, and COBRA.</p></li>
+<li><p><strong>CSD</strong></p>
+<p>It contains sizes of less than 0.1 Angstrom for small molecules, but may not be the bound conformation to the receptor in question.</p></li>
+<li><p><strong>PDB</strong></p>
+<p>This resource has about 6000 entries of ligand-bound protein structures.</p></li>
+</ol>
+</section>
+</section>
+<section id="sampling-the-configuration-space-of-the-ligand-receptor-complex" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sampling-the-configuration-space-of-the-ligand-receptor-complex"><span class="header-section-number">8.3</span> Sampling the Configuration Space of the Ligand-Receptor Complex</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/compos.jpg" class="img-fluid figure-img" width="422"></p>
+<p></p><figcaption class="figure-caption">Comparisions Between a Systematic and a Stochastic Complex</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above graphic lists some differences between a stochastic and a systematic complex.</p>
+<p>A sampling requires the following parameters:</p>
+<ol type="1">
+<li><p><strong>Position or Translation</strong></p>
+<p>In other terms, the three Cartesian coordinates <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>.</p></li>
+<li><p><strong>Orientations</strong></p>
+<p>This refers to the derivatives of the above Cartesian coordinates <span class="math inline">\(dx\)</span>, <span class="math inline">\(dy\)</span> and <span class="math inline">\(dz\)</span>.</p></li>
+<li><p><strong>Rotatable Bonds or Torsions</strong></p>
+<p>This is represented as <span class="math inline">\(tor_1\)</span>, <span class="math inline">\(tor_2\)</span>, <span class="math inline">\(tor_n\)</span>, and so on (where <span class="math inline">\(n\)</span> is some positive integer).</p></li>
+<li><p><strong>Total DOF (i.e., dimensionality)</strong></p>
+<p>This is given by the formula <span class="math inline">\(D = 3 + 3 + n\)</span>.</p></li>
+</ol>
+<section id="estimating-search-spaces" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="estimating-search-spaces"><span class="header-section-number">8.3.1</span> Estimating Search Spaces</h3>
+<p>A typical ligand binding pocket is about 10<sup>3</sup> Angstroms big. A typical ligand has four rotational bonds.</p>
+<p>The <strong>granularity</strong> has an angle sampling of 10 degrees and a translation of a 0.5 Angstrom grid. Hence, the total number of possible sampling configurations is about <span class="math inline">\(20^3 \cdot 36^3 \cdot 36^4 \approx 6 \times 10^{14}\)</span>.</p>
+<p>Given that a computer can process about 1000 conformations per second, a search space this size could easily result in <em>20000 years per ligand</em>.</p>
+<p>Consequently, other methods - such as descriptor matching (which uses pattern-recognizing methods to match ligands and receptor sites), molecular dynamics, monte carlo simulations, genetic algorithms, similarities, and fragment-based approaches - must be utilized.</p>
+<p>Some examples of descriptor matching methods include:</p>
+<ol type="1">
+<li>Distance-compatibility graphs in the DOCK program</li>
+<li>Interaction site matching in the LUDI program</li>
+<li>Pose clustering and triplet matching in the FlexX program</li>
+<li>Shape matching in the FRED program</li>
+<li>Vector matching in the CAVEAT program</li>
+<li>Steric effects matching in the CLIX program</li>
+<li>Shape chemical complimentarity in the SANDOCK program</li>
+<li>Surface complimentarity in the LIGIN program</li>
+<li>H-bond matching in the ADAM program</li>
+</ol>
+<p>However, the following disadvantages must be noted:</p>
+<ol type="1">
+<li>One can never truly sample the entire conformation and the configuration space - it is simply too large.</li>
+<li>One cannot ignore the conformational flexibility of the ligand and the receptor.</li>
+<li>There is no one “best” method or general solution for describing and matching molecular shapes. Shape alone is not a good indicator of a low-energy conformation in a ligand-receptor complex.</li>
+</ol>
+<section id="method-1-clique-search" class="level4" data-number="8.3.1.1">
+<h4 data-number="8.3.1.1" class="anchored" data-anchor-id="method-1-clique-search"><span class="header-section-number">8.3.1.1</span> Method 1: Clique Search</h4>
+<p>This is a descriptor-matching method that uses distance-compatibility graphs in the DOCK program:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/distcomp.jpg" class="img-fluid figure-img" width="350"></p>
+<p></p><figcaption class="figure-caption">A Sample Distance-Compatibility Graph</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A <strong>Distance-Compatibility graph</strong> is a graph where each node represents possible matches and each edge a pair of compatible nodes.</p>
+<p>A <strong>clique</strong> in graph theory is a subgraph that is fully connected. There are fast algorithms that can optimize this problem.</p>
+</section>
+<section id="method-2-molecular-dynamics-i.e.-md-and-monte-carlo-i.e.-mc-simulations" class="level4" data-number="8.3.1.2">
+<h4 data-number="8.3.1.2" class="anchored" data-anchor-id="method-2-molecular-dynamics-i.e.-md-and-monte-carlo-i.e.-mc-simulations"><span class="header-section-number">8.3.1.2</span> Method 2: Molecular Dynamics (i.e., MD) and Monte Carlo (i.e., MC) Simulations</h4>
+<p>The two major components of this system are the energy evaluations and the description of the energies of freedom.</p>
+<p>Local movement of the atoms are preferred - this is random in a Monte Carlo simulation due to forces in a molecular dynamics setup.</p>
+<p>However, both MD and MC are time consuming as not only do both approaches start from a “starting orientation”, but multiple simulations with different “starting orientations” must also be performed to get a statistically significant result.</p>
+<p>Larger steps are typically used for speed in a MD simulation.</p>
+<section id="using-a-grid-map" class="level5" data-number="8.3.1.2.1">
+<h5 data-number="8.3.1.2.1" class="anchored" data-anchor-id="using-a-grid-map"><span class="header-section-number">8.3.1.2.1</span> Using a Grid Map</h5>
+<p>A <strong>grid map</strong> is a representation of a macromolecule (i.e., a regular orthogonal lattice of points). A man has one ligand atom type.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/gridmap.jpg" class="img-fluid figure-img" width="166"></p>
+<p></p><figcaption class="figure-caption">A Sample Grid Map Generated Using AutoDock</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>All AutoDock-generated grid maps use <em>trilinear interpolation</em>. Non-bonded energies are pre-calculated.</p>
+<p>Grid maps save time - they are a 100 times faster than traditional non-bonded list methods.</p>
+</section>
+<section id="mc-based-dockings" class="level5" data-number="8.3.1.2.2">
+<h5 data-number="8.3.1.2.2" class="anchored" data-anchor-id="mc-based-dockings"><span class="header-section-number">8.3.1.2.2</span> MC-Based Dockings</h5>
+<p>The good part about using a MC-based approach is that prior information does not need to be known - it is able to “step over an energy barrier”.</p>
+<p>Simulated Annealing is used in the program DockVision and Affinity.</p>
+</section>
+<section id="simulated-annealing-i.e.-sa" class="level5" data-number="8.3.1.2.3">
+<h5 data-number="8.3.1.2.3" class="anchored" data-anchor-id="simulated-annealing-i.e.-sa"><span class="header-section-number">8.3.1.2.3</span> Simulated Annealing (i.e., SA)</h5>
+<p><strong>Simulated Annealing</strong> is the generalization of a Monte Carlo method for examining the equations of state and frozen states of n-body systems. This process is based on how liquids freeze or how metals recrystalize.</p>
+<p>In an annealing process, the material is initially at a high temperature and is disordered. It is slowly cooled over time (to the ground state <span class="math inline">\(T = 0\)</span>) so that it can roughly reach thermodynamic equilibrium.</p>
+<p>If the initial temperature of the system is too low or if the cooling is not done properly, then the system may form defects or lose metstable states (i.e., be trapped in a local minimum energy state).</p>
+</section>
+</section>
+<section id="fragment-based-methods" class="level4" data-number="8.3.1.3">
+<h4 data-number="8.3.1.3" class="anchored" data-anchor-id="fragment-based-methods"><span class="header-section-number">8.3.1.3</span> Fragment-Based Methods</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/fragmnet.jpg" class="img-fluid figure-img" width="370"></p>
+<p></p><figcaption class="figure-caption">Illustration of a Fragment-Based Method</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The identification and the placement of a base or an anchor fragment is critical. Energy optimization is also important here.</p>
+<section id="fragment-based-lead-discovery" class="level5" data-number="8.3.1.3.1">
+<h5 data-number="8.3.1.3.1" class="anchored" data-anchor-id="fragment-based-lead-discovery"><span class="header-section-number">8.3.1.3.1</span> Fragment-Based Lead Discovery</h5>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/fragmnet1.jpg" class="img-fluid figure-img" width="420"></p>
+<p></p><figcaption class="figure-caption">Fragment-Based Drug Discovery Part I</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>h</strong>igh-<strong>t</strong>hroughput <strong>s</strong>creening (i.e., <strong>HTS</strong>) hit is large and makes surface contact with the receptor without forming high-quality interactions in key pockets.</p>
+<p>The affinity is spread throughout the entire molecule and, in the absence of structural information, the medicinal chemist does not know which areas of the molecule to focus on during hit optimization.</p>
+<p>This is in contrast to the schematic on right side, in which fragment 1 is much smaller, makes high-quality contacts with the receptor and has relatively weak affinity. It has been shown that such fragments can often be built up into attractive leads with the aid of structural information.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk8/graph.jpg" class="img-fluid figure-img" width="202"></p>
+<p></p><figcaption class="figure-caption">Fragment-Based Drug Discovery Graph</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure shows graphically a broad generalization of the range of molecular mass and potency for <strong>h</strong>igh-<strong>t</strong>hroughput <strong>s</strong>creening (i.e., <strong>HTS</strong>) hits and fragments, superimposed on the typical requirements for leads, drug candidates and oral drugs using the same criteria.</p>
+<p>Fragment hits will have an Mr in the range 120–250 and low potency (mM–30 <span class="math inline">\(\mu\)</span>M); HTS hits will have a much broader range of Mr (perhaps 250–600) and tend to be in the low-<span class="math inline">\(\mu\)</span>M to high-nM potency range.</p>
+</section>
+</section>
+<section id="genetic-algorithm-docking" class="level4" data-number="8.3.1.4">
+<h4 data-number="8.3.1.4" class="anchored" data-anchor-id="genetic-algorithm-docking"><span class="header-section-number">8.3.1.4</span> Genetic Algorithm Docking</h4>
+<p>In this algorithm, degrees of freedoms are encoded as genes or binary strings; this algorithm also requires the generation of an initial population.</p>
+<p>After each reproduction cycle, the binary strings are then translated back to their candidate states (i.e., Cartesian coordinates) - the fitness of these strings are also evaluated by an appropriate function.</p>
+<p>Candidates with a better fitness have a higher probability to partake in the next reproduction cycle - in the end, only states with the highest fitnesses will survive.</p>
+<section id="an-example" class="level5" data-number="8.3.1.4.1">
+<h5 data-number="8.3.1.4.1" class="anchored" data-anchor-id="an-example"><span class="header-section-number">8.3.1.4.1</span> An Example:</h5>
+<p>A coolection of genes (i.e., a chromosome) is assigned a fitness value depending on a scoring function. There are two such genetic operators:</p>
+<ol type="1">
+<li><p><strong>Mutation</strong></p>
+<p>This changes the value of a gene.</p></li>
+<li><p><strong>Crossovers</strong></p>
+<p>These exchange a set of genes from one parent chromosome to another.</p></li>
+</ol>
+<p>A fitness function is then used to decide which configurations (i.e., individuals) survive and produce offspring for the next iteration of optimization.</p>
+</section>
+</section>
+<section id="multiple-methods" class="level4" data-number="8.3.1.5">
+<h4 data-number="8.3.1.5" class="anchored" data-anchor-id="multiple-methods"><span class="header-section-number">8.3.1.5</span> Multiple Methods</h4>
+<p>Sometimes, more than one docking protocol can be combined to increase a protocol’s effectiveness.</p>
+<p>Typically, a computationally-inexpensive method, followed by a time-consuming, yet more accurate method is used to generate a final docking solution.</p>
 
 
+</section>
 </section>
 </section>
 

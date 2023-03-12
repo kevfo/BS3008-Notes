@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BS3008: Computer Aided Drug Discovery - 9&nbsp; PDB Files and PyMOL Visualizations</title>
+<title>BS3008: Computer Aided Drug Discovery - 10&nbsp; PDB Files and PyMOL Visualizations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./P2.html" rel="next">
-<link href="./wk8.html" rel="prev">
+<link href="./wk9.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -174,6 +174,11 @@ ul.task-list li input[type="checkbox"] {
   <a href="./wk8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wk9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -186,17 +191,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
+  <a href="./lab1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Untitled</span></a>
+  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Untitled</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
+  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Linux Command Line</span></a>
   </div>
 </li>
       </ul>
@@ -210,13 +215,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pdb-files" id="toc-pdb-files" class="nav-link active" data-scroll-target="#pdb-files"><span class="toc-section-number">9.1</span>  PDB Files</a>
+  <li><a href="#pdb-files" id="toc-pdb-files" class="nav-link active" data-scroll-target="#pdb-files"><span class="toc-section-number">10.1</span>  PDB Files</a>
   <ul class="collapse">
-  <li><a href="#what-is-a-pdb-file" id="toc-what-is-a-pdb-file" class="nav-link" data-scroll-target="#what-is-a-pdb-file"><span class="toc-section-number">9.1.1</span>  What is a PDB File?</a></li>
-  <li><a href="#points-to-note" id="toc-points-to-note" class="nav-link" data-scroll-target="#points-to-note"><span class="toc-section-number">9.1.2</span>  Points to Note</a></li>
-  <li><a href="#making-a-pdb-file-for-a-water-molecule" id="toc-making-a-pdb-file-for-a-water-molecule" class="nav-link" data-scroll-target="#making-a-pdb-file-for-a-water-molecule"><span class="toc-section-number">9.1.3</span>  Making a PDB File for a Water Molecule</a></li>
+  <li><a href="#what-is-a-pdb-file" id="toc-what-is-a-pdb-file" class="nav-link" data-scroll-target="#what-is-a-pdb-file"><span class="toc-section-number">10.1.1</span>  What is a PDB File?</a></li>
+  <li><a href="#points-to-note" id="toc-points-to-note" class="nav-link" data-scroll-target="#points-to-note"><span class="toc-section-number">10.1.2</span>  Points to Note</a></li>
+  <li><a href="#making-a-pdb-file-for-a-water-molecule" id="toc-making-a-pdb-file-for-a-water-molecule" class="nav-link" data-scroll-target="#making-a-pdb-file-for-a-water-molecule"><span class="toc-section-number">10.1.3</span>  Making a PDB File for a Water Molecule</a></li>
   </ul></li>
-  <li><a href="#visualizing-molecules-in-pymol" id="toc-visualizing-molecules-in-pymol" class="nav-link" data-scroll-target="#visualizing-molecules-in-pymol"><span class="toc-section-number">9.2</span>  Visualizing Molecules in PyMOL</a></li>
+  <li><a href="#visualizing-molecules-in-pymol" id="toc-visualizing-molecules-in-pymol" class="nav-link" data-scroll-target="#visualizing-molecules-in-pymol"><span class="toc-section-number">10.2</span>  Visualizing Molecules in PyMOL</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/lab1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -225,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></h1>
 </div>
 
 
@@ -241,17 +246,17 @@ ul.task-list li input[type="checkbox"] {
 
 <p>If you have taken <a href="https://labs.sbs.ntu.edu.sg/obtl/obtl.aspx?sch=sbs&amp;p=BS1005"><em>BS1005: Biochemistry I</em></a>, then the contents of this practical will be relatively straightforward<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>This lab aims to provide a gentle introduction to PDB files and also PyMOL.</p>
-<section id="pdb-files" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="pdb-files"><span class="header-section-number">9.1</span> PDB Files</h2>
+<section id="pdb-files" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="pdb-files"><span class="header-section-number">10.1</span> PDB Files</h2>
 <p>The first part of the lab examines the structure of a PDB typical PDB file. The later part of this lab then requires you to write your own PDB file for a water molecule (before opening it up in PyMOL to ensure that you have done it correctly.)</p>
 <p>The <strong>P</strong>rotein <strong>D</strong>ata <strong>B</strong>ank (i.e., <strong>PDB</strong>) is an initiative by the <a href="https://www.bnl.gov/world/">Brookhaven National Laboratory</a> that stores three-dimensional data of biological molecules (i.e., biomolecules). A considerable amount of information has since been uploaded to the PDB from various fields in Biology, including but not limited to genomics, proteonomics, and structural biology.</p>
-<section id="what-is-a-pdb-file" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="what-is-a-pdb-file"><span class="header-section-number">9.1.1</span> What is a PDB File?</h3>
+<section id="what-is-a-pdb-file" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="what-is-a-pdb-file"><span class="header-section-number">10.1.1</span> What is a PDB File?</h3>
 <p>A <strong>PDB file</strong> is a plain text document that contains metainformation about a biomolecule - for instance, its atoms, its side chains, and its amino acid residues.</p>
 <p>The PDB also has <a href="https://files.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_Letter.pdf">official documentation</a> on the structure of its files that you can view for reference.</p>
 </section>
-<section id="points-to-note" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="points-to-note"><span class="header-section-number">9.1.2</span> Points to Note</h3>
+<section id="points-to-note" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="points-to-note"><span class="header-section-number">10.1.2</span> Points to Note</h3>
 <p>Although a typical PDB file contains numerous section and record types, BS3008 only focuses on a few of these records (and their important parts):</p>
 <ol type="1">
 <li><p><strong>The <code>ATOM</code> Record</strong></p>
@@ -265,8 +270,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Depending on how many conformations there are available, the occupancy may be less than one (but whatever the case, the values of all occupancices will always add up to one).</p></li>
 </ol>
 </section>
-<section id="making-a-pdb-file-for-a-water-molecule" class="level3" data-number="9.1.3">
-<h3 data-number="9.1.3" class="anchored" data-anchor-id="making-a-pdb-file-for-a-water-molecule"><span class="header-section-number">9.1.3</span> Making a PDB File for a Water Molecule</h3>
+<section id="making-a-pdb-file-for-a-water-molecule" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="making-a-pdb-file-for-a-water-molecule"><span class="header-section-number">10.1.3</span> Making a PDB File for a Water Molecule</h3>
 <p>A water molecule has two hydrogen atoms and one oxygen atom. Its O-H bond length is 0.957 Angstroms and its H-O-H bond angle is <span class="math inline">\(109^\circ\)</span>.</p>
 <p>Hence, first set the Oxygen atom to the origin (0, 0, 0) using an ATOM record<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
 <pre><code>         1         2         3         4         5         6         7
@@ -293,8 +298,8 @@ END </code></pre>
 <p>You can open your PDB file in PyMOL to verify that your PDB file is correct.</p>
 </section>
 </section>
-<section id="visualizing-molecules-in-pymol" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="visualizing-molecules-in-pymol"><span class="header-section-number">9.2</span> Visualizing Molecules in PyMOL</h2>
+<section id="visualizing-molecules-in-pymol" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="visualizing-molecules-in-pymol"><span class="header-section-number">10.2</span> Visualizing Molecules in PyMOL</h2>
 <p><strong>PyMOL</strong> is an open-source software for visualizing molecules and measuring their various properties. These “molecules” are often stored in a PDB file format (hence the reason why the first portion of the practical deals with PDB files).</p>
 <pre><code>         1         2         3         4         5         6         7         8
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -567,13 +572,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./wk8.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></span>
+      <a href="./wk9.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./P2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Untitled</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Untitled</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

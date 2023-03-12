@@ -17,6 +17,7 @@ book:
         - wk6.qmd
         - wk7.qmd
         - wk8.qmd
+        - wk9.qmd
     - part: "**PART 2 : PRACTICAL SESSIONS**"
       chapters:
         - lab1.qmd

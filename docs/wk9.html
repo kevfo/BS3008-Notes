@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BS3008: Computer Aided Drug Discovery - 6&nbsp; Molecular Dynamic Simulations</title>
+<title>BS3008: Computer Aided Drug Discovery - 9&nbsp; Nonbonded Computations and Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./wk7.html" rel="next">
-<link href="./wk5.html" rel="prev">
+<link href="./lab1.html" rel="next">
+<link href="./wk8.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./wk6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></a>
+  <a href="./wk6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./wk9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></a>
+  <a href="./wk9.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -215,36 +215,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#a-brief-introduction-to-molecular-dynamics" id="toc-a-brief-introduction-to-molecular-dynamics" class="nav-link active" data-scroll-target="#a-brief-introduction-to-molecular-dynamics"><span class="toc-section-number">6.1</span>  A Brief Introduction to Molecular Dynamics</a>
+  <li><a href="#spherical-cutoff-techniques" id="toc-spherical-cutoff-techniques" class="nav-link active" data-scroll-target="#spherical-cutoff-techniques"><span class="toc-section-number">9.1</span>  Spherical Cutoff Techniques</a>
   <ul class="collapse">
-  <li><a href="#historical-origins" id="toc-historical-origins" class="nav-link" data-scroll-target="#historical-origins"><span class="toc-section-number">6.1.1</span>  Historical Origins</a></li>
+  <li><a href="#guidelines-for-cutoff-functions" id="toc-guidelines-for-cutoff-functions" class="nav-link" data-scroll-target="#guidelines-for-cutoff-functions"><span class="toc-section-number">9.1.1</span>  Guidelines for Cutoff Functions</a></li>
+  <li><a href="#highly-charged-systems" id="toc-highly-charged-systems" class="nav-link" data-scroll-target="#highly-charged-systems"><span class="toc-section-number">9.1.2</span>  Highly-Charged Systems</a></li>
   </ul></li>
-  <li><a href="#how-molecular-dynamics-work" id="toc-how-molecular-dynamics-work" class="nav-link" data-scroll-target="#how-molecular-dynamics-work"><span class="toc-section-number">6.2</span>  How Molecular Dynamics Work</a>
+  <li><a href="#analyzing-molecular-dynamics-data" id="toc-analyzing-molecular-dynamics-data" class="nav-link" data-scroll-target="#analyzing-molecular-dynamics-data"><span class="toc-section-number">9.2</span>  Analyzing Molecular Dynamics Data</a>
   <ul class="collapse">
-  <li><a href="#verlet-leapfrog-method" id="toc-verlet-leapfrog-method" class="nav-link" data-scroll-target="#verlet-leapfrog-method"><span class="toc-section-number">6.2.1</span>  Verlet Leapfrog Method</a></li>
+  <li><a href="#end-to-end-distance" id="toc-end-to-end-distance" class="nav-link" data-scroll-target="#end-to-end-distance"><span class="toc-section-number">9.2.1</span>  End-to-End Distance</a></li>
+  <li><a href="#radius-of-gyration" id="toc-radius-of-gyration" class="nav-link" data-scroll-target="#radius-of-gyration"><span class="toc-section-number">9.2.2</span>  Radius of Gyration</a></li>
+  <li><a href="#mean-square-distance-fluctuation" id="toc-mean-square-distance-fluctuation" class="nav-link" data-scroll-target="#mean-square-distance-fluctuation"><span class="toc-section-number">9.2.3</span>  Mean Square Distance Fluctuation</a></li>
+  <li><a href="#debye-waller-i.e.-b-or-temperature-factor" id="toc-debye-waller-i.e.-b-or-temperature-factor" class="nav-link" data-scroll-target="#debye-waller-i.e.-b-or-temperature-factor"><span class="toc-section-number">9.2.4</span>  Debye-Waller (i.e., B or Temperature) Factor</a></li>
+  <li><a href="#root-mean-squared-deviation" id="toc-root-mean-squared-deviation" class="nav-link" data-scroll-target="#root-mean-squared-deviation"><span class="toc-section-number">9.2.5</span>  Root Mean Squared Deviation</a></li>
+  <li><a href="#solvent-accessible-area-i.e.-asa" id="toc-solvent-accessible-area-i.e.-asa" class="nav-link" data-scroll-target="#solvent-accessible-area-i.e.-asa"><span class="toc-section-number">9.2.6</span>  Solvent-Accessible Area (i.e., ASA)</a></li>
   </ul></li>
-  <li><a href="#tricks-of-the-trade" id="toc-tricks-of-the-trade" class="nav-link" data-scroll-target="#tricks-of-the-trade"><span class="toc-section-number">6.3</span>  Tricks of the Trade</a>
+  <li><a href="#protein-flexibilities-and-normal-modes" id="toc-protein-flexibilities-and-normal-modes" class="nav-link" data-scroll-target="#protein-flexibilities-and-normal-modes"><span class="toc-section-number">9.3</span>  Protein Flexibilities and Normal Modes</a>
   <ul class="collapse">
-  <li><a href="#periodic-boundary-conditions" id="toc-periodic-boundary-conditions" class="nav-link" data-scroll-target="#periodic-boundary-conditions"><span class="toc-section-number">6.3.1</span>  Periodic Boundary Conditions</a></li>
-  <li><a href="#distance-calculations" id="toc-distance-calculations" class="nav-link" data-scroll-target="#distance-calculations"><span class="toc-section-number">6.3.2</span>  Distance Calculations</a></li>
-  <li><a href="#non-bonded-cutoffs" id="toc-non-bonded-cutoffs" class="nav-link" data-scroll-target="#non-bonded-cutoffs"><span class="toc-section-number">6.3.3</span>  Non-Bonded Cutoffs</a></li>
-  </ul></li>
-  <li><a href="#molecular-dynamics-simulation-parameters" id="toc-molecular-dynamics-simulation-parameters" class="nav-link" data-scroll-target="#molecular-dynamics-simulation-parameters"><span class="toc-section-number">6.4</span>  Molecular Dynamics Simulation Parameters</a>
-  <ul class="collapse">
-  <li><a href="#time-steps" id="toc-time-steps" class="nav-link" data-scroll-target="#time-steps"><span class="toc-section-number">6.4.1</span>  Time Steps</a></li>
-  <li><a href="#kinetic-energy-and-temperature" id="toc-kinetic-energy-and-temperature" class="nav-link" data-scroll-target="#kinetic-energy-and-temperature"><span class="toc-section-number">6.4.2</span>  Kinetic Energy and Temperature</a></li>
-  <li><a href="#pressure-and-virial" id="toc-pressure-and-virial" class="nav-link" data-scroll-target="#pressure-and-virial"><span class="toc-section-number">6.4.3</span>  Pressure and Virial</a></li>
-  <li><a href="#temperature-coupling" id="toc-temperature-coupling" class="nav-link" data-scroll-target="#temperature-coupling"><span class="toc-section-number">6.4.4</span>  Temperature Coupling</a></li>
+  <li><a href="#harmonic-approximations" id="toc-harmonic-approximations" class="nav-link" data-scroll-target="#harmonic-approximations"><span class="toc-section-number">9.3.1</span>  Harmonic Approximations</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk6.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk9.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Molecular Dynamic Simulations</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Nonbonded Computations and Data Analysis</span></h1>
 </div>
 
 
@@ -258,158 +255,245 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><strong>Minimization</strong> only aids in finding the <em>local</em> minimum of a function. Therefore, the structural features of molecules will need to be studied with various other tools (i.e., software) to find the global minimum.</p>
-<p>Given the complexity of the <strong>p</strong>otential <strong>e</strong>nergy <strong>s</strong>urface (i.e., <strong>PES</strong>) of a real system, an efficient method of sapmling all possible phase spaces is necessary.</p>
-<section id="a-brief-introduction-to-molecular-dynamics" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="a-brief-introduction-to-molecular-dynamics"><span class="header-section-number">6.1</span> A Brief Introduction to Molecular Dynamics</h2>
-<p><strong>Moleuclar Dynamics</strong> (i.e., <strong>MD</strong>) is deterministic: the future state of a system is determined by its present state. The idea is to solve Newton’s equations of motion for a system of atoms that interact with each other via an energy function: a <strong>force field</strong>:</p>
-<p><span class="math display">\[\begin{equation}
-  -\frac{dV}{dx} \rightarrow F = ma \rightarrow m\frac{d^2x}{dt^2}
-\end{equation}\]</span></p>
-<p>Where <span class="math inline">\(x\)</span> represents the position of a molecule and <span class="math inline">\(V(x)\)</span> the potential energy of a molecule.</p>
-<p>MD is typically used to compute equilibrium properties and transport properties (e.g., diffusion coefficients). MD is particularly well-suited to model macromolecular systems because of its generality.</p>
-<section id="historical-origins" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="historical-origins"><span class="header-section-number">6.1.1</span> Historical Origins</h3>
-<p>MD was introduced by Alder and Wainwright in the late 1950’s to study hard sphere interactions. Many important insights regarding simple liquid behaviors arose from their studies.</p>
-<p>Rahman then carried out the first simulation using a realistic potential for liquid argon.</p>
-<p>The first molecular dynamics simulation of a realistic system was done by Rahman and Stillinger during their liquid water simulation in 1974.</p>
-<p>The first protein simulations were done in 1977 with the simulation of <strong>b</strong>ovine <strong>p</strong>ancreatic <strong>t</strong>rypsin <strong>i</strong>nhibitor (i.e., <strong>BPTI</strong>) by McCammon and Karplus.</p>
-<p>The DNA double helix was done by Levitt in 1983. In today’s literature, one typically finds molecular dynamic simulations of protein-protein, protein-DNA, and lipid systems that address a variety of issues (including the thermodynamics of ligand binding and small protein folding).</p>
-<p>Because of the above, there are many specialized systems for particular problems, including mixed quantum mechanical - classical simulations (that are employed to study enzymatic reactions).</p>
-<p>Simulations are typically used for experimental procedures (e.g., X-ray crystallography and NMR structure determination).</p>
-</section>
-</section>
-<section id="how-molecular-dynamics-work" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="how-molecular-dynamics-work"><span class="header-section-number">6.2</span> How Molecular Dynamics Work</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/wk6/works.jpg" class="img-fluid figure-img" width="213"></p>
-<p></p><figcaption class="figure-caption">Steps Underlying Molecular Dynamics</figcaption><p></p>
+<p><img src="images/wk9/cutoff.jpg" class="img-fluid figure-img" width="312"></p>
+<p></p><figcaption class="figure-caption">A Computational Bottleneck</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The derivatives of a macromolecular force field (e.g., OPLS) allows one to find the forces on each atom as a function of its position. A standard technique is to solve Newton’s methods numerically via some finite difference scheme.</p>
-<p>In other terms, if the system is advanced by a small step <span class="math inline">\(\Delta t\)</span>, the forces and velocities can be re-calculated. Provided that <span class="math inline">\(\Delta t\)</span> is sufficiently small, an approximation to the continuous equations of motion can be found.</p>
-<section id="verlet-leapfrog-method" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="verlet-leapfrog-method"><span class="header-section-number">6.2.1</span> Verlet Leapfrog Method</h3>
+<p>The rapid, quadratic growth in computational time when all non-bonded interactions increase are summed - this is in contrast to the linear growth shown with “cutoff” procedures.</p>
+<section id="spherical-cutoff-techniques" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="spherical-cutoff-techniques"><span class="header-section-number">9.1</span> Spherical Cutoff Techniques</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/wk6/leapfrog.jpg" class="img-fluid figure-img" width="166"></p>
-<p></p><figcaption class="figure-caption">Illustration of the Verlet Leapfrog Method</figcaption><p></p>
+<p><img src="images/wk9/functions.jpg" class="img-fluid figure-img" width="495"></p>
+<p></p><figcaption class="figure-caption">Different Spherical Cutoff Techniques Illustrated</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>This is one of the most popular methods and widely used integrators. Here, the positions and the velocities of particles are successively “leap-frogged” over one another using a force field’s acceleration:</p>
+<p>BS3008 lists three basic categories of cutoff techniques. All of these approaches set a distance-dependent nonbonded function to zero beyond some distance <span class="math inline">\(r = b\)</span>. However, distances less than <span class="math inline">\(b\)</span> are treated differently:</p>
+<ol type="1">
+<li><p><strong>Truncation</strong></p>
+<p>This is the simplest. Values at a distance <span class="math inline">\(b\)</span> are zeroes, but otherwise unchanged.</p></li>
+<li><p><strong>Switching Schemes</strong></p>
+<p>Values <span class="math inline">\(a\)</span> at a nonzero value are changed when <span class="math inline">\(a &lt; b\)</span>, but values for <span class="math inline">\(r &lt; a\)</span> are unchanged.</p></li>
+<li><p><strong>Shift Functions</strong></p>
+<p>The nonbonded function is gradually altered for all <span class="math inline">\(r &lt; b\)</span>.</p></li>
+</ol>
+<p>The above three categories can be applied to the force function’s energy of the nonbonded potentials (i.e., van der Waals or electrostatic); the following schemes or cutoffs can be used:</p>
+<ol type="1">
+<li><p><strong>Atom-based or group-based schemes</strong></p>
+<p>In group-based schemes, distance thresholds are applied to distances between group members (e.g., charge groups in a GROMACS topology file).</p></li>
+<li><p><strong>Group-based cutoffs</strong></p>
+<p>These can maintain better charges associated with entire residues. They can avoid potential instabilities in the energy or force that arise when a subset of atoms of a particular residue is altered.</p></li>
+</ol>
+<p>Care should be applied to specify the distance parameter between the distance parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<section id="guidelines-for-cutoff-functions" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="guidelines-for-cutoff-functions"><span class="header-section-number">9.1.1</span> Guidelines for Cutoff Functions</h3>
+<p>Prof.&nbsp;Mu lists some guidelines when choosing to use cutoff functions:</p>
+<ol type="1">
+<li>Short-range energies and forces should be altered as little as possible.</li>
+<li>Energies should be gradually altered over time.</li>
+<li>The cutoff approach chosen should not introduce large forces around the cutoff region. This is important for molecular dynamics simulations.</li>
+<li>On the topic of 3), it is important that the cutoff energy alters the energy in a way that conserves energy.</li>
+</ol>
+</section>
+<section id="highly-charged-systems" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="highly-charged-systems"><span class="header-section-number">9.1.2</span> Highly-Charged Systems</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/highcharge.jpg" class="img-fluid figure-img" width="224"></p>
+<p></p><figcaption class="figure-caption">A Highly-Charged System</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above figure shows the time-evolution of a RMS deviation from the initial structure (i.e., the top graph) - d(CCAACGTTGG)2 and the bottom structure GGAUUUCGGUCC. The dotted lines represent CUT and CUTSS simulations.</p>
+<p><strong>CUT</strong> is a charge group that’s based on a truncation cutoff. <strong>CUTSS</strong> is a group that’s based on a truncation cutoff with complete evaluation of all solute-solute interactions.</p>
+<section id="long-ranged-pme" class="level4" data-number="9.1.2.1">
+<h4 data-number="9.1.2.1" class="anchored" data-anchor-id="long-ranged-pme"><span class="header-section-number">9.1.2.1</span> Long-Ranged PME</h4>
+<p>The total Coulomb energy that corresponds to a system in an infinite periodic domain is:</p>
 <p><span class="math display">\[\begin{align}
-  \vec{x}(t + \Delta t) &amp;= \vec{x}(t) + \vec{\nu}\left(t + \frac{\Delta t}{2}\right)\Delta t \\
-  \vec{\nu}\left(t + \frac{\Delta t}{2}\right) &amp;= \vec{\nu}\left(t - \frac{\Delta t}{2}\right) + \vec{a}(t)\Delta t
+  E_{coul} &amp;= \frac{1}{2}\sum_{i, j = 1}\sum_{images |n|}\frac{q_iq_j}{|r_{ij} + n|} = \frac{1}{2}\sum_{j = 1}q_j\Phi(x_j) \\
+  \Phi(x_j) &amp;= \sum_{i = 1}\sum_{images |n|}\frac{q_i}{|r_{ij} + n|}
 \end{align}\]</span></p>
-<p>This scheme has a higher precision (of order <span class="math inline">\(\Delta t^4\)</span>) - this means that longer step times can be used for a given level of fluctuations.</p>
-<p>This method also has low drift (provided that an appropriate time step and force cut-off is used).</p>
-</section>
-</section>
-<section id="tricks-of-the-trade" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="tricks-of-the-trade"><span class="header-section-number">6.3</span> Tricks of the Trade</h2>
-<p>There are a number of tricks that are centered around reducing the amount of effort in the calculation of atomic forces.</p>
-<section id="periodic-boundary-conditions" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="periodic-boundary-conditions"><span class="header-section-number">6.3.1</span> Periodic Boundary Conditions</h3>
-<p><strong>P</strong>eriodic <strong>B</strong>oundary <strong>C</strong>onditions (i.e., <strong>PBC</strong>s) eliminates surface effect-edge molecules. The size of the system would need to be large enough to ensure that the surface only has a small influence on bulk properties.</p>
-<p>During a PBC, the simulation box is replicated throughout space to form an infinite lattice.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk6/lattice.jpg" class="img-fluid figure-img" width="179"></p>
-<p></p><figcaption class="figure-caption">Infinite Lattice of PBCs in Space</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>When a particle leaves its boundary box, its <em>periodic image</em> in the other boxes also moves in the same orientation.</p>
-<p>As a particle leaves the outer boundaries, it re-enters through the opposite face; the system has no surface at the outer boundaries.</p>
-</section>
-<section id="distance-calculations" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="distance-calculations"><span class="header-section-number">6.3.2</span> Distance Calculations</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk6/dist.jpg" class="img-fluid figure-img" width="215"></p>
-<p></p><figcaption class="figure-caption">Illustration of the Minimum Image Convention</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The <strong>minimum image convention</strong> considers the nearest image of a given particle when calculating distances.</p>
-<p>The maximum distance between two atoms in one dimension is half a box length.</p>
-</section>
-<section id="non-bonded-cutoffs" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="non-bonded-cutoffs"><span class="header-section-number">6.3.3</span> Non-Bonded Cutoffs</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wk6/cutoffs.jpg" class="img-fluid figure-img" width="322"></p>
-<p></p><figcaption class="figure-caption">Illustration of Non-Bonded Cutoffs with Increasing ‘n’</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>If a simulation system has <span class="math inline">\(N\)</span> atoms, then the total number of interaction pairs is <span class="math inline">\(\displaystyle \frac{N(N - 1)}{2} \approx N^2\)</span>. To reduce computational efforts, a cutoff is usually employed (i.e., non-bonded interactions within a distance are considered).</p>
-<p>This simplification is valid for short-range interactions (e.g., van der Waals interactions), but caution should be utilized when dealing with long-range electrostatic interactions.</p>
-</section>
-</section>
-<section id="molecular-dynamics-simulation-parameters" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="molecular-dynamics-simulation-parameters"><span class="header-section-number">6.4</span> Molecular Dynamics Simulation Parameters</h2>
-<section id="time-steps" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="time-steps"><span class="header-section-number">6.4.1</span> Time Steps</h3>
-<p>Too short a time step and the phase space may be inefficiently sampled and too long a time step will cause the energy to fluctuate wildly (i.e., the simulation may “explode”).</p>
-<p>The above instabilities are a consequence of atom motions being extrapolated into regions with exceedingly high potential energies.</p>
-<p>When simulating atomic fluids, the time step should be comparable to the mean time between collisions (i.e., about 5 femtoseconds).</p>
-<p>For flexible molecules, the time step should be an order of magnitude less than the period of fastest motion (i.e., for a C-H bond, it’s around 10 femtoseconds, so about 1 femtosecond is good).</p>
-</section>
-<section id="kinetic-energy-and-temperature" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="kinetic-energy-and-temperature"><span class="header-section-number">6.4.2</span> Kinetic Energy and Temperature</h3>
-<p>The total kinetic energy for a system that has <span class="math inline">\(N\)</span> particles is:</p>
-<p><span class="math display">\[\begin{equation}
-  E_{kin} = \frac{1}{2}\sum_{i = 1}^Nm_i\nu_i^2
-\end{equation}\]</span></p>
-<p>From the above equation, the absolute temperature <span class="math inline">\(T\)</span> is:</p>
-<p><span class="math display">\[\begin{equation}
-  \frac{1}{2}N_{df}kT = E_{kin}
-\end{equation}\]</span></p>
-<p>Where <span class="math inline">\(k\)</span> is Boltzmann’s constant and <span class="math inline">\(N_{df}\)</span> is the degrees of freedom which can be calculated using the formula <span class="math inline">\(\displaystyle N_{df} = 3N - N_{com}\)</span></p>
-<p>In this scenario, three degrees of freedom must be removed from <span class="math inline">\(N_{com}\)</span> as the three center of mass velocities are constants of motion (which are typically set to zeroes).</p>
-</section>
-<section id="pressure-and-virial" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="pressure-and-virial"><span class="header-section-number">6.4.3</span> Pressure and Virial</h3>
-<p>The pressure <span class="math inline">\(P\)</span> is the difference between kinetic energy <span class="math inline">\(E_{kin}\)</span> and the virial <span class="math inline">\(\Xi\)</span>:</p>
-<p><span class="math display">\[\begin{equation}
-  P = \frac{2}{V}\left(E_{kin} - \Xi\right)
-\end{equation}\]</span></p>
-<p>Where <span class="math inline">\(V\)</span> is the volume of the computational box and <span class="math inline">\(P\)</span> is the scalar pressure - <span class="math inline">\(P\)</span> can also be used for isotropic systems, in which case, <span class="math inline">\(P\)</span> is denoted by <span class="math inline">\(\displaystyle P = \frac{trace(P)}{3}\)</span></p>
-<p><span class="math display">\[\begin{equation}
-  \Xi = -\frac{1}{2}\sum_{i &lt; j}\vec{r}_{ij} \bigotimes \vec{F}_{ij}
-\end{equation}\]</span></p>
-<p>The above equation is that for the virial tensor.</p>
-</section>
-<section id="temperature-coupling" class="level3" data-number="6.4.4">
-<h3 data-number="6.4.4" class="anchored" data-anchor-id="temperature-coupling"><span class="header-section-number">6.4.4</span> Temperature Coupling</h3>
-<p>Temperature coupling is utilized when one needs to determine the behavior of the system with regards to temperature (e.g., unfolding a protein). During such a system, the pressure <span class="math inline">\(P\)</span> must be kept constant.</p>
-<p>The Berendson coupling equation states that:</p>
+<p>The sum in the above equation is convergent as:</p>
 <p><span class="math display">\[\begin{align}
-  \frac{dT}{dt} &amp;= \frac{T_0 - T}{\tau_T} &amp; \frac{dP}{dt} = \frac{P_0 - P}{\tau_P}
+  \sum_{n = 1}^\infty \frac{1}{n} &amp;= 1 + \left(\frac{1}{2} + \frac{1}{3}\right) + \left(\frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7}\right) \\
+  &amp;&gt; 1 + \frac{1}{2} + \frac{1}{2} + \frac{1}{2} + \frac{1}{2}
 \end{align}\]</span></p>
-<p>Temperature coupling rescales velocity while pressure coupling rescales volume. When both the temperature and the pressure are controlled, the system is called <strong>isothermal-isobaric</strong>.</p>
+</section>
+<section id="ewalds-trick" class="level4" data-number="9.1.2.2">
+<h4 data-number="9.1.2.2" class="anchored" data-anchor-id="ewalds-trick"><span class="header-section-number">9.1.2.2</span> Ewald’s Trick</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/erf.jpg" class="img-fluid figure-img" width="251"></p>
+<p></p><figcaption class="figure-caption">Shape of the erf(x) function</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To convert the above sum into a sum of two absolutely and rapidly converging series, each point is represented as a Gaussian charge density.</p>
+<p>The <strong>Ewald sum</strong> is:</p>
+<p><span class="math display">\[\begin{align}
+  \Phi(r) &amp;= \frac{1}{r} = \Phi_{real}(r) + \Phi_{recip}(r) \\
+  \Phi_{real} &amp;= \frac{1}{r} - \frac{erf (\beta r)}{r} \\
+  \Phi_{recip}(r) &amp;= \frac{erf(\beta r)}{r}
+\end{align}\]</span></p>
+<p>The variable <span class="math inline">\(\beta\)</span> in the above equations control the width of the distribution and the rate of convergence of the sum.</p>
+<p><span class="math display">\[\begin{equation}
+  \rho_{G_j}(x) = -q_j\left(\frac{\beta}{\sqrt{\pi}}\right)^3\exp[-\beta^2|x|^2]
+\end{equation}\]</span></p>
+<p>The second breakthough in the trick came from the observation that the trigonometric functions in the Fourier series used to represent the reciprocal-space term can be evlauated via smooth interpolation of the potential over a grid.</p>
+<p>This resulting <strong>p</strong>article-<strong>m</strong>esh <strong>E</strong>wald (i.e., <strong>PME</strong>) method runs in <span class="math inline">\(O(n\log(n))\)</span> time<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+</section>
+</section>
+</section>
+<section id="analyzing-molecular-dynamics-data" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="analyzing-molecular-dynamics-data"><span class="header-section-number">9.2</span> Analyzing Molecular Dynamics Data</h2>
+<p>Prof.&nbsp;Mu lists some approaches in this section of this week’s lecture:</p>
+<section id="end-to-end-distance" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="end-to-end-distance"><span class="header-section-number">9.2.1</span> End-to-End Distance</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/biopolymer.jpg" class="img-fluid figure-img" width="170"></p>
+<p></p><figcaption class="figure-caption">An Illustration of the End-to-End Distance</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the distance between the first and last segment of a biopolymer (i.e., <span class="math inline">\(d\)</span> in the above graphic).</p>
+<p>This is most suitable for describing linear polymers.</p>
+</section>
+<section id="radius-of-gyration" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="radius-of-gyration"><span class="header-section-number">9.2.2</span> Radius of Gyration</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/radius.jpg" class="img-fluid figure-img" width="147"></p>
+<p></p><figcaption class="figure-caption">An Illustration of the Gyration Radius</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the mass-weighted average distance of selected atoms from their center of mass and is given by:</p>
+<p><span class="math display">\[\begin{equation}
+  Rg = \sqrt{\frac{\sum_{i = 1}^N m_i(r_i - r_{com})^2}{\sum_{i = 1}^N m_i}}
+\end{equation}\]</span></p>
+<p>This is most suitable for describing branched chains with a large amount of ends.</p>
+</section>
+<section id="mean-square-distance-fluctuation" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="mean-square-distance-fluctuation"><span class="header-section-number">9.2.3</span> Mean Square Distance Fluctuation</h3>
+<p><span class="math display">\[\begin{align}
+  &lt;\delta r^2&gt; &amp;= \frac{\sum_{t = 1}^k(r_t - r_{average})^2}{K} \\
+  r_{average} &amp;= \frac{\sum_{t = 1}^K r_t}{K}
+\end{align}\]</span></p>
+<p><span class="math inline">\(K\)</span> represents the molecular dynamics simulation’s time step. This describes the size of the atoms’ fluctuations around their equilibrium positions.</p>
+</section>
+<section id="debye-waller-i.e.-b-or-temperature-factor" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="debye-waller-i.e.-b-or-temperature-factor"><span class="header-section-number">9.2.4</span> Debye-Waller (i.e., B or Temperature) Factor</h3>
+<p>The Debye-Waller factor <span class="math inline">\(B_a\)</span> is given by:</p>
+<p><span class="math display">\[\begin{align}
+  B_a &amp;= \frac{8}{3}\pi^2&lt;\delta r_a^2&gt; \\
+  \delta r_a &amp;= r_a - r_{a, average}
+\end{align}\]</span></p>
+<p><span class="math inline">\(B_a\)</span> describes the reduction of intensity of Bragg scattering due to atomic motion about their equilibrium position. The atomic scattering factor is:</p>
+<p><span class="math display">\[\begin{equation}
+  f = f_0\exp\left[-B\left(\frac{\sin\phi}{\lambda}\right)^2\right]
+\end{equation}\]</span></p>
+<p><span class="math inline">\(f\)</span> does not vanish even at <span class="math inline">\(T = 0\)</span> because of atomic motion.</p>
+</section>
+<section id="root-mean-squared-deviation" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="root-mean-squared-deviation"><span class="header-section-number">9.2.5</span> Root Mean Squared Deviation</h3>
+<p>This is given by :</p>
+<p><span class="math display">\[\begin{equation}
+  RMSD(t) = \sqrt{\frac{\sum_{i = 1}^N m_i\left[r_i(t) - r_i^{reference}\right]}{M}}
+\end{equation}\]</span></p>
+<p>Where <span class="math inline">\(N\)</span> is the total amount of atoms, <span class="math inline">\(m_i\)</span> the mass of the atom in question, and <span class="math inline">\(M\)</span> is the total mass of the molecule.</p>
+<p>Thie describes the “distance” between the conformation at a time <span class="math inline">\(t\)</span> and that of a reference structure (i.e., how similar they are).</p>
+</section>
+<section id="solvent-accessible-area-i.e.-asa" class="level3" data-number="9.2.6">
+<h3 data-number="9.2.6" class="anchored" data-anchor-id="solvent-accessible-area-i.e.-asa"><span class="header-section-number">9.2.6</span> Solvent-Accessible Area (i.e., ASA)</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/ASA.jpg" class="img-fluid figure-img" width="402"></p>
+<p></p><figcaption class="figure-caption">Solvent-Accessible Area</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>ASA</strong> is the area over which contact between a protein and its solvent can occur.</p>
+</section>
+</section>
+<section id="protein-flexibilities-and-normal-modes" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="protein-flexibilities-and-normal-modes"><span class="header-section-number">9.3</span> Protein Flexibilities and Normal Modes</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/flex.jpg" class="img-fluid figure-img" width="405"></p>
+<p></p><figcaption class="figure-caption">Protein Flexibility Illustrated</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Over half of the 3800 known protein movements can be modelled using two low-frequency normal modes.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/normal.jpg" class="img-fluid figure-img" width="237"></p>
+<p></p><figcaption class="figure-caption">Examples of Normal Modes</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A <strong>normal mode</strong> is an oscillating pattern of motion where all parts of the system move sinusoidally with the same frequency.</p>
+<p>These “frequencies” are known as a normal mode’s <strong>natural frequencies</strong> or <strong>resonant frequencies</strong>.</p>
+<section id="harmonic-approximations" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="harmonic-approximations"><span class="header-section-number">9.3.1</span> Harmonic Approximations</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk9/harmonic.jpg" class="img-fluid figure-img" width="210"></p>
+<p></p><figcaption class="figure-caption">Illustration of a Harmonic Potential</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Prof.&nbsp;Mu lists the following methods:</p>
+<ol type="1">
+<li>Perform energy or geometry minimization</li>
+<li>Calculate the Hessian matrix <span class="math inline">\(\displaystyle K_{ij} = \frac{\partial E}{\partial x_i \partial x_j}\)</span></li>
+<li>Diagonalize the Hessian to find its eigenvalues and eigenvectors.</li>
+</ol>
+<p>The eigenvectors and eigenvalues of 3) indicate the mode of action and the frequency respectively.</p>
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>As opposed to a direct Ewald sum, which requires <span class="math inline">\(O(N^\frac{3}{2})\)</span> time.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -626,13 +710,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./wk5.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Realization of Force Field and Energy Minimalization</span></span>
+      <a href="./wk8.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Docking and Drug Discovery</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./wk7.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations and Basic Statistical Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lab1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">PDB Files and PyMOL Visualizations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

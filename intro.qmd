@@ -75,17 +75,3 @@ Professor Mu lists some important molecular modelling tools in this chapter - cl
 4.  [**Autodock Zina**](https://vina.scripps.edu/)
 
     This is an open-source program for performing molecular docking.
-<<<<<<< HEAD
-
-## Professor Mu's Current Works
-
-As of the time of writing, professor Mu's lab is currently focused on the following topics:
-
-1.  Amyloidogenic protein / peptide aggregation and misfolding
-2.  DNA-DNA, DNA-ions, and DNA-protein interactions
-3.  Drug-protein interaction and drug candidate screening
-4.  Peptide-membrane interactions.
-
-For more information on professor Mu's current research topics, do visit his [lab's homepage](https://www.ntu.edu.sg/sbs/research/research-directory/Mu-Yuguang).
-=======
->>>>>>> 0eff75b34526bcaa96a054174575c32a54ab15bc

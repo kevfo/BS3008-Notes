@@ -236,6 +236,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#dilemma" id="toc-dilemma" class="nav-link" data-scroll-target="#dilemma"><span class="toc-section-number">7.4.1</span>  Dilemma</a></li>
   </ul></li>
+  <li><a href="#replica-exchange-simulations" id="toc-replica-exchange-simulations" class="nav-link" data-scroll-target="#replica-exchange-simulations"><span class="toc-section-number">7.5</span>  Replica Exchange Simulations</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kevfo/BS3008-Notes/edit/main/wk7.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/kevfo/BS3008-Notes/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -315,17 +316,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="metropolis-algorithm-and-markov-chains" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="metropolis-algorithm-and-markov-chains"><span class="header-section-number">7.2</span> Metropolis Algorithm and Markov Chains</h2>
 <p>In canonical ensembles, the probability density function is proportional to the Boltzmann factor via the following equation:</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   \rho(X) \alpha \exp(-\beta E(X))
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>Where <span class="math inline">\(\displaystyle \beta = \frac{1}{k_BT}\)</span>. To calculate a physical quantity <span class="math inline">\(A\)</span> for an ensemble, we would need to calculate the value of the following integral:</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   A = \int \rho(X) A(X) dX
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>Using Monte Carlo Sampling, the integral becomes:</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   A = \lim_{m \rightarrow \infty}\sum_{i = 1}^MA(X_i)
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <section id="metropolis-algorithm" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="metropolis-algorithm"><span class="header-section-number">7.2.1</span> Metropolis Algorithm</h3>
 <p>This algorithm - devised in 1953 - is an efficient and simple procedure for the canonical ensemble.</p>
@@ -406,15 +407,15 @@ ul.task-list li input[type="checkbox"] {
 <p>The thermodynamical state has a fixed number of atoms and a fixed volume and temperature.</p></li>
 <li><p><strong>Isobaric-Isothermal Ensemble (NPT)</strong></p>
 <p>The ensemble has a constant amount of atoms and a constant pressure and temperature.</p></li>
-<li><p><strong>Grand Canonical Ensemble (<span class="math inline">\(\mu\)</span>VT)</strong></p>
+<li><p><strong>Grand Canonical Ensemble (</strong><span class="math inline">\(\mu\)</span>VT)</p>
 <p>The thermodynamic state has a constant volume, temperature, and chemical potential.</p></li>
 </ol>
 </section>
 <section id="entropy" class="level3" data-number="7.3.2">
 <h3 data-number="7.3.2" class="anchored" data-anchor-id="entropy"><span class="header-section-number">7.3.2</span> Entropy</h3>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   S = -k_B \sum_iP_i^B \ln(P_i^B)
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>The entropy of a system is also the ensemble average.</p>
 </section>
 <section id="potential-of-mean-force" class="level3" data-number="7.3.3">
@@ -430,10 +431,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>The <strong>potential of mean force</strong> (i.e., <strong>PMF</strong>) is the free energy of one or more coordinates. It is defined from the average distribution function:</p>
-<p><span class="math display">\[\begin{align}
+<span class="math display">\[\begin{align}
   w(x) &amp;= w(x') - k_BT \cdot \ln\left(\frac{\rho(x)}{\rho(x')}\right) \\
   \rho(x) &amp;= \sum_{i \in data}\delta(x - x_i)
-\end{align}\]</span></p>
+\end{align}\]</span>
 <p>Where <span class="math inline">\(w\)</span> is the PMF,<span class="math inline">\(x\)</span> is the coordinate, and <span class="math inline">\(x'\)</span> is a reference point.</p>
 <section id="procedure-for-calculating-pmf" class="level4" data-number="7.3.3.1">
 <h4 data-number="7.3.3.1" class="anchored" data-anchor-id="procedure-for-calculating-pmf"><span class="header-section-number">7.3.3.1</span> Procedure for Calculating PMF</h4>
@@ -452,20 +453,36 @@ ul.task-list li input[type="checkbox"] {
 <p>In reality, the summation of different states in an ensemble is super tough as one must calculate the possible states of a system.</p>
 <p>In a molecular dynamic simulation, the points in an ensemble are calculated sequentially in time, so to calculate an average, the simulation must pass through all possible states that correspond to the particular thermodynamic constraints.</p>
 <p>Another way also involves determining a time average of <span class="math inline">\(A\)</span>:</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   A_{time} = \frac{1}{\tau}\sum_{r \rightarrow \infty}A(p^N(t), r^N(t)) \approx \sum_{t = 1}^MA(t)
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>Where <span class="math inline">\(t\)</span> is the simulation time, <span class="math inline">\(M\)</span> the number of time steps in the simulation, and <span class="math inline">\(A(p^N, r^N)\)</span> is the instantaneous value of <span class="math inline">\(A\)</span>.</p>
 <section id="dilemma" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="dilemma"><span class="header-section-number">7.4.1</span> Dilemma</h3>
 <p>The dilemma of the above is that a molecular dynamics simulation can calculate time averages, but the experimental observables are assumed to be ensemble averages.</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{equation}
   A_{ensemble} = A_{time}
-\end{equation}\]</span></p>
+\end{equation}\]</span>
 <p>Hence, the <strong>ergodic hypothesis</strong> states that the time average is equivalent to the ensemble average - in other terms, the above equation.</p>
-
-
 </section>
+</section>
+<section id="replica-exchange-simulations" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="replica-exchange-simulations"><span class="header-section-number">7.5</span> Replica Exchange Simulations</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/wk7/exchange_simulation.png" class="img-fluid figure-img" width="960"></p>
+<p></p><figcaption class="figure-caption">Replica Exchange Simulations Illustrated</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A <strong>replica exchange simulation</strong> is an advanced sampling technique that involves performing numerous molecular dynamics simulations on many copies of a system with a different value for some control parameter.</p>
+<p>The point behind a replica exchange simulation is to ensure that high-temperature configurations can overcome energy barriers on a potential energy surface.</p>
+<p>When a replica exchange simulation is done at a low temperature, the sampling represent the lowest energy minima while the high temperature ones are capable of sampling the entire surface. This is superbly advantageous over Monte Carlo or traditional molecular dynamics simulations as both those methods tend to be on the slower side of things.</p>
+
+
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

@@ -43,7 +43,7 @@ knitr::include_graphics("images/wk7/est.jpg")
 Nonetheless, initially assume that $N_{in} = 0$ - then, we perform the following $N$ times:
 
 1.  We calculate two random numbers $x$ and $y$.
-1.  If $x^2 + y^2 < l$, then $N_{in} = N_{in} + l$
+2.  If $x^2 + y^2 < l$, then $N_{in} = N_{in} + l$
 
 Hence, we can argue that $\displaystyle \pi \approx \frac{4N_{in}}{N}$
 
@@ -51,36 +51,39 @@ Hence, we can argue that $\displaystyle \pi \approx \frac{4N_{in}}{N}$
 
 In canonical ensembles, the probability density function is proportional to the Boltzmann factor via the following equation:
 
+```{=tex}
 \begin{equation}
   \rho(X) \alpha \exp(-\beta E(X))
 \end{equation}
+```
+Where $\displaystyle \beta = \frac{1}{k_BT}$. To calculate a physical quantity $A$ for an ensemble, we would need to calculate the value of the following integral:
 
-Where $\displaystyle \beta = \frac{1}{k_BT}$.  To calculate a physical quantity $A$ for an ensemble, we would need to calculate the value of the following integral:
-
+```{=tex}
 \begin{equation}
   A = \int \rho(X) A(X) dX
 \end{equation}
-
+```
 Using Monte Carlo Sampling, the integral becomes:
 
+```{=tex}
 \begin{equation}
   A = \lim_{m \rightarrow \infty}\sum_{i = 1}^MA(X_i)
 \end{equation}
-
+```
 ### Metropolis Algorithm
 
-This algorithm - devised in 1953 - is an efficient and simple procedure for the canonical ensemble.  
+This algorithm - devised in 1953 - is an efficient and simple procedure for the canonical ensemble.
 
 For $i = 0, 1, 2, ...$ given $X_0$, we do the following:
 
 1.  Generate $X_{i + 1}'$ from $X_i$ using a perturbation technique
-1.  Compute $\Delta E = E(X_{i + 1}' - E(X_i)$
-1.  If $\Delta E < 0$ (i.e., a downhill move), $X_{i + 1} = X'_{i + 1}$, else $\rho = \exp(-\beta \Delta E)$ - if $\rho$ is larger than a random number, then $X_{i + 1} = X'_{i + 1}$.
-1.  The above three steps repeat.
+2.  Compute $\Delta E = E(X_{i + 1}' - E(X_i)$
+3.  If $\Delta E < 0$ (i.e., a downhill move), $X_{i + 1} = X'_{i + 1}$, else $\rho = \exp(-\beta \Delta E)$ - if $\rho$ is larger than a random number, then $X_{i + 1} = X'_{i + 1}$.
+4.  The above three steps repeat.
 
 ### Markov Chains
 
-The metropolis algorithm generates a chain of molecule states $\{X_1, X_2, X_3, ...\}$.  States that have a lower energy are always accepted, but states with higher energies have a nonzero probability of acceptance too.
+The metropolis algorithm generates a chain of molecule states $\{X_1, X_2, X_3, ...\}$. States that have a lower energy are always accepted, but states with higher energies have a nonzero probability of acceptance too.
 
 Because of this, sampling typically occurs in regions of lower energies, but the system can escape to other energy basins by jumping over large energy barriers.
 
@@ -88,9 +91,9 @@ Because of this, sampling typically occurs in regions of lower energies, but the
 
 The **B**iochemical and **O**rganic **S**imulation **S**ystem (i.e., **BOSS**) program is a general purpose molecular modeling system that performs molecular mechanics, monte carlo simulations, and other quantum mechanical calculations.
 
-A monte carlo simulation generates a new configuration via random motions.  This difference in energy between the new and the old set is used as a selection criterion in the Metropolis algorithm - this procedure is then repeated and uses internal coordinates
+A monte carlo simulation generates a new configuration via random motions. This difference in energy between the new and the old set is used as a selection criterion in the Metropolis algorithm - this procedure is then repeated and uses internal coordinates
 
-#### Z Matrices 
+#### Z Matrices
 
 A **Z-matrix** is used to represent a system made out of atoms - it is also known as an **internal coordinate representation**.
 
@@ -116,11 +119,11 @@ knitr::include_graphics("images/wk7/compos.jpg")
 
 ## Statistical Mechanics
 
-The **mechanical** or **microscopic state** of a system is given by its atomic positions $q$ and its momenta $p(m_iv_i)$.  The latter can also be considered as coordinates in a multidimensional space called the **phase space**.  
+The **mechanical** or **microscopic state** of a system is given by its atomic positions $q$ and its momenta $p(m_iv_i)$. The latter can also be considered as coordinates in a multidimensional space called the **phase space**.
 
-For a system with $N$ particles, the phase space has $6N$ dimensions.  A single point in this space describes the system's state.
+For a system with $N$ particles, the phase space has $6N$ dimensions. A single point in this space describes the system's state.
 
-The **thermodynamic** or **macroscopic state** of a system is defined by a small set of parameters - for instance, the temperature $T$, the pressure $P$, and the number of particles $P$.  
+The **thermodynamic** or **macroscopic state** of a system is defined by a small set of parameters - for instance, the temperature $T$, the pressure $P$, and the number of particles $P$.
 
 ### Types of Ensembles
 
@@ -134,26 +137,27 @@ There are several states examined in BS3008:
 
 1.  **Microcanonical Ensemble (NVE)**
 
-    The thermodynamical state is characterized by a fixed amount of atoms $N$, a fixed volume $V$, and a fixed energy $E$.  This is an isolated system.
-    
-1.  **Canonical Ensemble (NVT)**
+    The thermodynamical state is characterized by a fixed amount of atoms $N$, a fixed volume $V$, and a fixed energy $E$. This is an isolated system.
+
+2.  **Canonical Ensemble (NVT)**
 
     The thermodynamical state has a fixed number of atoms and a fixed volume and temperature.
-    
-1.  **Isobaric-Isothermal Ensemble (NPT)**
+
+3.  **Isobaric-Isothermal Ensemble (NPT)**
 
     The ensemble has a constant amount of atoms and a constant pressure and temperature.
-    
-1.  **Grand Canonical Ensemble ($\mu$VT)**
+
+4.  **Grand Canonical Ensemble (**$\mu$VT)
 
     The thermodynamic state has a constant volume, temperature, and chemical potential.
 
-### Entropy 
+### Entropy
 
+```{=tex}
 \begin{equation}
   S = -k_B \sum_iP_i^B \ln(P_i^B)
 \end{equation}
-
+```
 The entropy of a system is also the ensemble average.
 
 ### Potential of Mean Force
@@ -162,13 +166,14 @@ The entropy of a system is also the ensemble average.
 knitr::include_graphics("images/wk7/prob.jpg")
 ```
 
-The **potential of mean force** (i.e., **PMF**) is the free energy of one or more coordinates.  It is defined from the average distribution function:
+The **potential of mean force** (i.e., **PMF**) is the free energy of one or more coordinates. It is defined from the average distribution function:
 
+```{=tex}
 \begin{align}
   w(x) &= w(x') - k_BT \cdot \ln\left(\frac{\rho(x)}{\rho(x')}\right) \\ 
   \rho(x) &= \sum_{i \in data}\delta(x - x_i)
 \end{align}
-
+```
 Where $w$ is the PMF,$x$ is the coordinate, and $x'$ is a reference point.
 
 #### Procedure for Calculating PMF
@@ -176,9 +181,9 @@ Where $w$ is the PMF,$x$ is the coordinate, and $x'$ is a reference point.
 Once a MD or a MC study has been performed:
 
 1.  $\phi$ and $\psi$ can be calculated from trajectories.
-1.  Divide the range of $\phi$ as $x$ into $N$ bins.
-1.  Count the number in each bin $n(x)$.
-1.  Calculate the free energy difference between two bins or two states via the equation $\displaystyle F = -k_BT\ln\left(\frac{n(x_!)}{n(x_2)}\right)$
+2.  Divide the range of $\phi$ as $x$ into $N$ bins.
+3.  Count the number in each bin $n(x)$.
+4.  Calculate the free energy difference between two bins or two states via the equation $\displaystyle F = -k_BT\ln\left(\frac{n(x_!)}{n(x_2)}\right)$
 
 ## Ergodic Hypothesis
 
@@ -188,23 +193,33 @@ In a molecular dynamic simulation, the points in an ensemble are calculated sequ
 
 Another way also involves determining a time average of $A$:
 
+```{=tex}
 \begin{equation}
   A_{time} = \frac{1}{\tau}\sum_{r \rightarrow \infty}A(p^N(t), r^N(t)) \approx \sum_{t = 1}^MA(t)
 \end{equation}
-
+```
 Where $t$ is the simulation time, $M$ the number of time steps in the simulation, and $A(p^N, r^N)$ is the instantaneous value of $A$.
 
 ### Dilemma
 
 The dilemma of the above is that a molecular dynamics simulation can calculate time averages, but the experimental observables are assumed to be ensemble averages.
 
+```{=tex}
 \begin{equation}
   A_{ensemble} = A_{time}
 \end{equation}
-
+```
 Hence, the **ergodic hypothesis** states that the time average is equivalent to the ensemble average - in other terms, the above equation.
 
+## Replica Exchange Simulations
 
+```{r echo = F, fig.cap = "Replica Exchange Simulations Illustrated", fig.align = "center"}
+knitr::include_graphics("images/wk7/exchange_simulation.png")
+```
 
+A **replica exchange simulation** is an advanced sampling technique that involves performing numerous molecular dynamics simulations on many copies of a system with a different value for some control parameter.
 
+The point behind a replica exchange simulation is to ensure that high-temperature configurations can overcome energy barriers on a potential energy surface.
+
+When a replica exchange simulation is done at a low temperature, the sampling represent the lowest energy minima while the high temperature ones are capable of sampling the entire surface.  This is superbly advantageous over Monte Carlo or traditional molecular dynamics simulations as both those methods tend to be on the slower side of things.
 
